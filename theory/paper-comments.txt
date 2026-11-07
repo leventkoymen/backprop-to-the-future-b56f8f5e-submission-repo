@@ -20,3 +20,7 @@ Further research could consider cancer drug delivery vehicles (1-s2.0-S022352342
 
 1-s2.0-S0223523425003009-main.pdf (cancer drug delivery):
 “Traditional treatment modalities, including chemotherapy, radiotherapy, and surgical interventions, often fail to provide sustained efficacy due to systemic toxicity, the frequent emergence of drug resistance, and non-specific targeting” ← lack of long-term effectiveness of drugs. Vehicles are penickity: https://pubs.acs.org/aabmcb/article-abstract/5/6/2586/1679312/Transdermal-Delivery-of-Antigenic-Protein-Using?redirectedFrom=fulltext (nanocarriers that administer chemo agents)
+
+RECYCLING AND SYNERGISING OLD AND EXISTING DRUGS - LINKS TO ORPHAN DRUG RESEARCH : Drug repurposing involves identifying the drug, evaluating its efficiency using preclinical models, and proceeding to phase II clinical trials. Identification of the drug candidate can be made through computational and experimental approaches 
+https://pmc.ncbi.nlm.nih.gov/articles/PMC9945820/
+Kulkarni VS, Alagarsamy V, Solomon VR, et al. Drug Repurposing: An Effective Tool in Modern Drug Discovery. Russ J Bioorg Chem. 2023;49(2):157-166. doi:10.1134/S1068162023020139
