@@ -1,0 +1,21 @@
+# dependencies and builds
+node_modules/
+dist/
+.venv/
+__pycache__/
+*.py[cod]
+
+# secrets: never commit
+.env
+.env.*
+*.key
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# team-only material: never commit
+*handover*
+*Handover*
+zz generator*/
