@@ -8,9 +8,7 @@ An audited, human-approved discovery loop for choosing which lung cancer drug co
 
 ```
 data/      shared, read-only inputs (starter data, agent run logs, the log format)
-agent/     data pipeline, model and agent loop (Python)
 visual/    3D pitch visual (React + TypeScript + Vite + React Three Fiber)
-docs/      one-page write-up
 ```
 
 ## Run the 3D visual
