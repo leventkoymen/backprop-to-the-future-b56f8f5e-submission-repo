@@ -1,0 +1,10 @@
+cell_line,EGFR,EGFR_level,TP53,TP53_level,MET,MET_level,ERBB2,ERBB2_level,NKX2-1,NKX2-1_level,CDKN2A,CDKN2A_level,PTEN,PTEN_level,RET,RET_level,NRAS,NRAS_level,MYC,MYC_level,SOX2,SOX2_level,CD274,CD274_level,VIM,VIM_level,CDH1,CDH1_level,TUBB3,TUBB3_level,ABCB1,ABCB1_level,note
+A549/ATCC,0.84,high,0.24,average,1.01,high,-0.5,average,-0.45,average,-1.19,low,0.09,average,-0.48,average,0.09,average,0.01,average,0.19,average,0.04,average,0.59,high,-0.35,average,0.38,average,-0.61,low,
+EKVX,1.12,high,-1.52,low,0.68,high,0.23,average,-0.45,average,0.98,high,0.6,high,-0.47,average,0.61,high,-0.64,low,0.74,high,-0.66,low,0.38,average,1.1,high,0.97,high,0.14,average,
+HOP-62,0.41,average,-1.52,low,0.7,high,-0.04,average,-0.43,average,-0.78,low,0.39,average,-0.38,average,-0.28,average,-0.56,low,-0.67,low,1.25,high,0.86,high,-0.67,low,0.98,high,-0.17,average,
+HOP-92,0.77,high,-0.32,average,1.05,high,-0.17,average,3.25,high,0.5,average,-0.03,average,-0.48,average,0.23,average,0.68,high,-0.73,low,1.45,high,1.22,high,-1.2,low,0.91,high,-0.55,low,
+NCI-H226,1.28,high,1.25,high,1.19,high,-0.53,low,-0.43,average,-0.27,average,0.41,average,-0.52,low,0.48,average,0.15,average,-0.72,low,1.35,high,0.78,high,-1.2,low,0.04,average,-0.46,average,
+NCI-H23,0.17,average,0.12,average,0.43,average,-1.0,low,0.55,high,0.3,average,0.45,average,-0.24,average,1.23,high,0.17,average,-0.58,low,-0.94,low,0.74,high,0.07,average,0.49,average,-0.24,average,
+NCI-H322M,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,no gene data available for this cell line
+NCI-H460,-0.23,average,-0.1,average,-0.22,average,-0.67,low,-0.44,average,-1.21,low,1.27,high,-0.54,low,-0.72,low,0.54,high,-0.73,low,0.18,average,0.63,high,-1.2,low,0.88,high,0.8,high,
+NCI-H522,-1.48,low,-2.24,low,-1.87,low,1.04,high,-0.39,average,1.41,high,1.25,high,-0.24,average,1.16,high,0.58,high,3.34,high,-1.04,low,0.24,average,-1.08,low,1.63,high,-0.63,low,
