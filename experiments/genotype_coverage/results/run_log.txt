@@ -1,0 +1,25 @@
+pair x line results: 45797 | pairs: 5239 | blank grids dropped: 54
+lines per gene: {'KRAS': 4, 'STK11': 4, 'KEAP1': 4, 'TP53': 6, 'SMARCA4': 4}
+pairs hit in ALL tested lines (>=5 tested): 18
+
+Leave-one-line-out, precision@50 (mean over held-out mutant lines):
+         base_rate  p@50_matched  p@50_same_size_random  p@50_all_lines  matched_beats_share
+gene                                                                                        
+KEAP1        0.075         0.705                  0.658           0.825                0.586
+KRAS         0.082         0.740                  0.721           0.890                0.541
+SMARCA4      0.072         0.625                  0.674           0.845                0.282
+STK11        0.073         0.675                  0.686           0.850                0.391
+TP53         0.069         0.763                  0.742           0.803                0.554
+
+Top pairs in KEAP1-mutant lines ['A549/ATCC', 'NCI-H23', 'NCI-H322M', 'NCI-H460']:
+               drug_a_name                   drug_b_name  hit_rate_mutant  n_mutant_tested  hit_rate_other  coverage_all
+              Dactinomycin             Tamoxifen citrate              1.0                4             1.0           1.0
+              Dactinomycin                    Valrubicin              1.0                4             1.0           1.0
+              Dactinomycin Estramustine phosphate sodium              1.0                4             1.0           1.0
+              Dactinomycin                   vemurafenib              1.0                4             1.0           1.0
+                Plicamycin                    Vismodegib              1.0                4             1.0           1.0
+       Vinblastine sulfate      Raloxifene hydrochloride              1.0                4             1.0           1.0
+       Vinblastine sulfate                   vemurafenib              1.0                4             1.0           1.0
+       Vinblastine sulfate                    Vismodegib              1.0                4             1.0           1.0
+       Vincristine sulfate          Lapatinib ditosylate              1.0                4             1.0           1.0
+Procarbazine hydrochloride                  Mitoxantrone              1.0                4             1.0           1.0

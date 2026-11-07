@@ -1,0 +1,21 @@
+drug_a_name,drug_b_name,a,b,hit_rate_mutant,n_mutant_tested,hit_rate_other,coverage_all
+Dactinomycin,Tamoxifen citrate,3053,180973,1.0,4,1.0,1.0
+Dactinomycin,Valrubicin,3053,246131,1.0,4,1.0,1.0
+Dactinomycin,Estramustine phosphate sodium,3053,702294,1.0,4,1.0,1.0
+Dactinomycin,vemurafenib,3053,753082,1.0,4,1.0,1.0
+Plicamycin,Vismodegib,24559,755986,1.0,4,1.0,1.0
+Vinblastine sulfate,Raloxifene hydrochloride,49842,747974,1.0,4,1.0,1.0
+Vinblastine sulfate,vemurafenib,49842,753082,1.0,4,1.0,1.0
+Vinblastine sulfate,Vismodegib,49842,755986,1.0,4,1.0,1.0
+Vincristine sulfate,Lapatinib ditosylate,67574,745750,1.0,4,1.0,1.0
+Procarbazine hydrochloride,Mitoxantrone,77213,279836,1.0,4,1.0,1.0
+Tretinoin,Cabazitaxel,122758,761432,1.0,4,1.0,1.0
+Paclitaxel,Estramustine phosphate sodium,125973,702294,1.0,4,1.0,1.0
+Paclitaxel,Lapatinib ditosylate,125973,745750,1.0,4,1.0,1.0
+Tamoxifen citrate,Cabazitaxel,180973,761432,1.0,4,1.0,1.0
+Mitoxantrone,Gefitinib,279836,715055,1.0,4,1.0,1.0
+Docetaxel,Estramustine phosphate sodium,628503,702294,1.0,4,1.0,1.0
+Docetaxel,Gefitinib,628503,715055,1.0,4,1.0,1.0
+Vandetanib,Cabazitaxel,760766,761432,1.0,4,1.0,1.0
+Plicamycin,vemurafenib,24559,753082,1.0,4,0.8,0.889
+Mitotane,Cabazitaxel,38721,761432,1.0,4,0.8,0.889
