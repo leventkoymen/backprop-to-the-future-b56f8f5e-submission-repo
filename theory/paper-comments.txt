@@ -1,0 +1,22 @@
+PAPER - comments
+
+TCA (lung cancer modelling with precision onco - targeted therapies) - gives good overview of what we are trying to achieve in hackathon. The key line: “Thus, future research on progression patterns could combine molecular tests and other biomarkers to identify patient subgroups more accurately. “ ← there are many drugs and therapies proposed but good solutions and effective monitoring is lacking
+Further thoughts:
+NGS and ctDNA error rates needed for synthetic data from data collection by clinicians
+Need better understanding of efficacy of drug combinations with other therapies
+Toxicity of drugs and translatability of mice models to trials and then to actual clinical treatment: there would still be a lag but the key thing is feedback and constant monitoring and refinement - the regulatory consequences of this is important in terms of mhrc class iii and viability of changing drug specifications over time
+
+Passaro
+
+PISS000 (resistance to immunotherapy, explains mechanisms underpinning process) -
+Key points:
+“Due to enhanced immune responses, possibly during early stages of T cell activation, significant immune-related toxicities have been observed, but most can be managed by systemic steroid therapy” ← key about making more targeted therapies that can reduce side effects, alongside predicting progression
+For hack: we would not be targeting CAR-T initially but administered compounds: e.g. checkpoint inhibitors. Refinement of CAR-T cell and TCR-based therapies for research purposes as well but less directly (as other mods needed beyond just one marker targeting)
+Also consider: tumour antigens may not be expressed in usual cells (unfamiliar markers)
+Not fully understood in terms of mech: “Without recourse to detailed immune and tumor characterization, these resistance mechanisms can be divided, clinically, into those that prevent a patient from ever responding to an immunotherapy or those that facilitate relapse after an initial response. Thus, although resistance to immunotherapies may manifest at different times, in many cases, similar or overlapping mechanisms enable tumor cells to evade anti-tumor immune responses. We discuss known resistance mechanisms and provide rationale for combination therapies to overcome resistance. “ ← not effective tracking and A to B understanding
+“most straightforward reason why a tumor would not respond to immune checkpoint therapy or ACT is lack of recognition by T cells because of absence of tumor antigens (Gubin et al., 2014). Alternatively, cancer cells may have tumor antigens but develop mechanisms to avoid presenting them on the surface restricted by MHC, due to alterations in the antigen-presenting machinery (such as proteasome subunits or transporters associated with antigen processing), beta-2-microglobulin (B2M), or MHC itself (Marincola et al., 2000; Sucker et al., 2014).“ ← can track lack of recognition and the lack of surface markers
+A key question: can surface-based markers always lead to apoptosis of tumour cells? Or is there factors in the tumour microenvironment (stromal cells etc) that can inhibit stasis or shrinkage of a tumour? ← if so, can be used to isolate and “clean” site of tumour around a metastasis before resection
+Further research could consider cancer drug delivery vehicles (1-s2.0-S0223523425003009-main.pdf)
+
+1-s2.0-S0223523425003009-main.pdf (cancer drug delivery):
+“Traditional treatment modalities, including chemotherapy, radiotherapy, and surgical interventions, often fail to provide sustained efficacy due to systemic toxicity, the frequent emergence of drug resistance, and non-specific targeting” ← lack of long-term effectiveness of drugs. Vehicles are penickity: https://pubs.acs.org/aabmcb/article-abstract/5/6/2586/1679312/Transdermal-Delivery-of-Antigenic-Protein-Using?redirectedFrom=fulltext (nanocarriers that administer chemo agents)
