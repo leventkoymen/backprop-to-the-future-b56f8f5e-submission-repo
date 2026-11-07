@@ -1,0 +1,106 @@
+nsc,name,cid,parent_cid,matched_on,smiles,formula,mol_weight,heavy_atoms,formula_check,source_3d,file
+740,Methotrexate,126941,126941,NSC740,CN(CC1=CN=C2C(=N1)C(=NC(=N2)N)N)C3=CC=C(C=C3)C(=O)N[C@@H](CCC(=O)O)C(=O)O,C20H22N8O5,454.4,33,ok,pubchem,structures/740_Methotrexate.sdf
+750,Busulfan,2478,2478,NSC750,CS(=O)(=O)OCCCCOS(=O)(=O)C,C6H14O6S2,246.3,14,ok,pubchem,structures/750_Busulfan.sdf
+752,Thioguanine,2723601,2723601,NSC752,C1=NC2=C(N1)C(=S)N=C(N2)N,C5H5N5S,167.19,11,ok,pubchem,structures/752_Thioguanine.sdf
+755,6-Mercaptopurine,667490,667490,NSC755,C1=NC2=C(N1)C(=S)N=CN2,C5H4N4S,152.18,10,ok,pubchem,structures/755_6_Mercaptopurine.sdf
+762,Nitrogen mustard hydrochloride,5935,4033,NSC762,CN(CCCl)CCCl,C5H11Cl2N,156.05,8,ok,pubchem,structures/762_Nitrogen_mustard_hydrochloride.sdf
+1390,Allopurinol,135401907,135401907,NSC1390,C1=NNC2=C1C(=O)NC=N2,C5H4N4O,136.11,10,ok,pubchem,structures/1390_Allopurinol.sdf
+3053,Dactinomycin,457193,457193,NSC3053,C[C@@H]1[C@@H](C(=O)N[C@@H](C(=O)N2CCC[C@H]2C(=O)N(CC(=O)N([C@H](C(=O)O1)C(C)C)C)C)C(C)C)NC(=O)C3=C4C(=C(C=C3)C)OC5=C(C(=O)C(=C(C5=N4)C(=O)N[C@H]6[C@H](OC(=O)[C@@H](N(C(=O)CN(C(=O)[C@@H]7CCCN7C(=O)[C@H](NC6=O)C(C)C)C)C)C(C)C)C)N)C,C62H86N12O16,1255.4,90,ok,rdkit,structures/3053_Dactinomycin.sdf
+3088,Chlorambucil,2708,2708,NSC3088,C1=CC(=CC=C1CCCC(=O)O)N(CCCl)CCCl,C14H19Cl2NO2,304.2,19,ok,pubchem,structures/3088_Chlorambucil.sdf
+6396,Thiotepa,5453,5453,NSC6396,C1CN1P(=S)(N2CC2)N3CC3,C6H12N3PS,189.22,11,ok,pubchem,structures/6396_Thiotepa.sdf
+8806,Melphalan,460612,460612,NSC8806,C1=CC(=CC=C1C[C@@H](C(=O)O)N)N(CCCl)CCCl,C13H18Cl2N2O2,305.2,19,ok,pubchem,structures/8806_Melphalan.sdf
+9706,Triethylenemelamine,5799,5799,NSC9706,C1CN1C2=NC(=NC(=N2)N3CC3)N4CC4,C9H12N6,204.23,15,ok,pubchem,structures/9706_Triethylenemelamine.sdf
+13875,Hexamethylmelamine,2123,2123,NSC13875,CN(C)C1=NC(=NC(=N1)N(C)C)N(C)C,C9H18N6,210.28,15,ok,pubchem,structures/13875_Hexamethylmelamine.sdf
+14229,Quinacrine,5351141,237,NSC14229,CCN(CC)CCCC(C)NC1=C2C=C(C=CC2=NC3=C1C=CC(=C3)Cl)OC,C23H30ClN3O,400.0,28,ok,pubchem,structures/14229_Quinacrine.sdf
+18509,Aminolevulinic acid hydrochloride,123608,137,NSC18509,C(CC(=O)O)C(=O)CN,C5H9NO3,131.13,9,ok,pubchem,structures/18509_Aminolevulinic_acid_hydrochloride.sdf
+19893,Fluorouracil,3385,3385,NSC19893,C1=C(C(=O)NC(=O)N1)F,C4H3FN2O2,130.08,9,ok,pubchem,structures/19893_Fluorouracil.sdf
+24559,Mithramycin,163659,163659,NSC24559,C[C@@H]1[C@H]([C@@H](C[C@@H](O1)O[C@@H]2C[C@@H](O[C@@H]([C@H]2O)C)OC3=CC4=CC5=C(C(=O)[C@H]([C@@H](C5)[C@@H](C(=O)[C@H]([C@@H](C)O)O)OC)O[C@H]6C[C@H]([C@@H]([C@H](O6)C)O)O[C@H]7C[C@H]([C@H]([C@H](O7)C)O)O[C@H]8C[C@]([C@@H]([C@H](O8)C)O)(C)O)C(=C4C(=C3C)O)O)O)O,C52H76O24,1085.1,76,ok,rdkit,structures/24559_Mithramycin.sdf
+25154,Pipobroman,4842,4842,NSC25154,C1CN(CCN1C(=O)CCBr)C(=O)CCBr,C10H16Br2N2O2,356.05,16,ok,pubchem,structures/25154_Pipobroman.sdf
+26271,Cyclophosphamide,2907,2907,NSC26271,C1CNP(=O)(OC1)N(CCCl)CCCl,C7H15Cl2N2O2P,261.08,14,ok,pubchem,structures/26271_Cyclophosphamide.sdf
+26980,Mitomycin,5746,5746,NSC26980,CC1=C(C(=O)C2=C(C1=O)N3C[C@H]4[C@@H]([C@@]3([C@@H]2COC(=O)N)OC)N4)N,C15H18N4O5,334.33,24,ok,pubchem,structures/26980_Mitomycin.sdf
+27640,Floxuridine,5790,5790,NSC27640,C1[C@@H]([C@H](O[C@H]1N2C=C(C(=O)NC2=O)F)CO)O,C9H11FN2O5,246.19,17,ok,pubchem,structures/27640_Floxuridine.sdf
+32065,Hydroxyurea,3657,3657,NSC32065,C(=O)(N)NO,CH4N2O2,76.055,5,ok,pubchem,structures/32065_Hydroxyurea.sdf
+34462,Uracil mustard,6194,6194,NSC34462,C1=C(C(=O)NC(=O)N1)N(CCCl)CCCl,C8H11Cl2N3O2,252.09,15,ok,pubchem,structures/34462_Uracil_mustard.sdf
+38721,Mitotane,4211,4211,NSC38721,C1=CC=C(C(=C1)C(C2=CC=C(C=C2)Cl)C(Cl)Cl)Cl,C14H10Cl4,320.0,18,ok,pubchem,structures/38721_Mitotane.sdf
+45388,Dacarbazine,135398738,135398738,NSC45388,CN(C)/N=N/C1=C(NC=N1)C(=O)N,C6H10N6O,182.18,13,ok,pubchem,structures/45388_Dacarbazine.sdf
+45923,8-Methoxypsoralen,4114,4114,NSC45923,COC1=C2C(=CC3=C1OC=C3)C=CC(=O)O2,C12H8O4,216.19,16,ok,pubchem,structures/45923_8_Methoxypsoralen.sdf
+49842,Vinblastine sulfate,5388983,13342,NSC49842,CC[C@@]1(C[C@H]2C[C@@](C3=C(CCN(C2)C1)C4=CC=CC=C4N3)(C5=C(C=C6C(=C5)[C@]78CCN9[C@H]7[C@@](C=CC9)([C@H]([C@@]([C@@H]8N6C)(C(=O)OC)O)OC(=O)C)CC)OC)C(=O)OC)O,C46H58N4O9,811.0,59,ok,rdkit,structures/49842_Vinblastine_sulfate.sdf
+63878,Cytarabine hydrochloride,6252,6253,NSC63878,C1=CN(C(=O)N=C1N)[C@H]2[C@H]([C@@H]([C@H](O2)CO)O)O,C9H13N3O5,243.22,17,ok,pubchem,structures/63878_Cytarabine_hydrochloride.sdf
+66847,Thalidomide,5426,5426,NSC66847,C1CC(=O)NC(=O)C1N2C(=O)C3=CC=CC=C3C2=O,C13H10N2O4,258.23,19,ok,pubchem,structures/66847_Thalidomide.sdf
+67574,Vincristine sulfate,249332,5978,NSC67574,CC[C@@]1(C[C@@H]2C[C@@](C3=C(CCN(C2)C1)C4=CC=CC=C4N3)(C5=C(C=C6C(=C5)[C@]78CCN9[C@H]7[C@@](C=CC9)([C@H]([C@@]([C@@H]8N6C=O)(C(=O)OC)O)OC(=O)C)CC)OC)C(=O)OC)O,C46H56N4O10,825.0,60,ok,rdkit,structures/67574_Vincristine_sulfate.sdf
+71423,Megestrol acetate,11683,11683,NSC71423,CC1=C[C@@H]2[C@H](CC[C@]3([C@H]2CC[C@@]3(C(=O)C)OC(=O)C)C)[C@@]4(C1=CC(=O)CC4)C,C24H32O4,384.5,28,ok,pubchem,structures/71423_Megestrol_acetate.sdf
+77213,Procarbazine hydrochloride,9703,4915,NSC77213,CC(C)NC(=O)C1=CC=C(C=C1)CNNC,C12H19N3O,221.3,16,ok,pubchem,structures/77213_Procarbazine_hydrochloride.sdf
+79037,Lomustine,3950,3950,NSC79037,C1CCC(CC1)NC(=O)N(CCCl)N=O,C9H16ClN3O2,233.69,15,ok,pubchem,structures/79037_Lomustine.sdf
+82151,Daunorubicin hydrochloride,62770,30323,NSC82151,C[C@H]1[C@H]([C@H](C[C@@H](O1)O[C@H]2C[C@@](CC3=C2C(=C4C(=C3O)C(=O)C5=C(C4=O)C(=CC=C5)OC)O)(C(=O)C)O)N)O,C27H29NO10,527.5,38,ok,pubchem,structures/82151_Daunorubicin_hydrochloride.sdf
+85998,Streptozocin,29327,29327,NSC85998,CN(C(=O)N[C@@H]1[C@H]([C@@H]([C@H](O[C@@H]1O)CO)O)O)N=O,C8H15N3O7,265.22,18,ok,pubchem,structures/85998_Streptozocin.sdf
+92859,Arsenic trioxide,261004,261004,NSC92859,O=[As]O[As]=O,As2O3,197.841,5,ok,rdkit,structures/92859_Arsenic_trioxide.sdf
+102816,Azacitidine,9444,9444,NSC102816,C1=NC(=NC(=O)N1[C@H]2[C@@H]([C@@H]([C@H](O2)CO)O)O)N,C8H12N4O5,244.2,17,ok,pubchem,structures/102816_Azacitidine.sdf
+105014,Cladribine,20279,20279,NSC105014,C1[C@@H]([C@H](O[C@H]1N2C=NC3=C(N=C(N=C32)Cl)N)CO)O,C10H12ClN5O3,285.69,19,ok,pubchem,structures/105014_Cladribine.sdf
+109724,Ifosfamide,3690,3690,NSC109724,C1CN(P(=O)(OC1)NCCCl)CCCl,C7H15Cl2N2O2P,261.08,14,ok,pubchem,structures/109724_Ifosfamide.sdf
+118218,Fludarabine base,657237,657237,NSC118218,C1=NC2=C(N=C(N=C2N1[C@H]3[C@H]([C@@H]([C@H](O3)CO)O)O)F)N,C10H12FN5O4,285.23,20,ok,pubchem,structures/118218_Fludarabine_base.sdf
+119875,Cisplatin,5460033,5460033,NSC119875,N.N.Cl[Pt]Cl,Cl2H6N2Pt,300.05,5,MISMATCH - check by hand,rdkit,structures/119875_Cisplatin.sdf
+122758,Tretinoin,444795,444795,NSC122758,CC1=C(C(CCC1)(C)C)/C=C/C(=C/C=C/C(=C/C(=O)O)/C)/C,C20H28O2,300.4,22,ok,pubchem,structures/122758_Tretinoin.sdf
+122819,Teniposide,452548,452548,NSC122819,COC1=CC(=CC(=C1O)OC)[C@H]2[C@@H]3[C@H](COC3=O)[C@@H](C4=CC5=C(C=C24)OCO5)O[C@H]6[C@@H]([C@H]([C@H]7[C@H](O6)CO[C@H](O7)C8=CC=CS8)O)O,C32H32O13S,656.7,46,ok,pubchem,structures/122819_Teniposide.sdf
+123127,Doxorubicin hydrochloride,443939,31703,NSC123127,C[C@H]1[C@H]([C@H](C[C@@H](O1)O[C@H]2C[C@@](CC3=C2C(=C4C(=C3O)C(=O)C5=C(C4=O)C(=CC=C5)OC)O)(C(=O)CO)O)N)O,C27H29NO11,543.5,39,ok,pubchem,structures/123127_Doxorubicin_hydrochloride.sdf
+125066,Bleomycin,5360373,5360373,NSC125066,CC1=C(N=C(N=C1N)[C@H](CC(=O)N)NC[C@@H](C(=O)N)N)C(=O)N[C@@H]([C@H](C2=CN=CN2)OC3C(C(C(C(O3)CO)O)O)OC4C(C(C(C(O4)CO)O)OC(=O)N)O)C(=O)N[C@H](C)[C@H]([C@H](C)C(=O)N[C@@H]([C@@H](C)O)C(=O)NCCC5=NC(=CS5)C6=NC(=CS6)C(=O)NCCC[S+](C)C)O,C55H84N17O21S3+,1415.6,96,ok,rdkit,structures/125066_Bleomycin.sdf
+125973,Paclitaxel,36314,36314,NSC125973,CC1=C2[C@H](C(=O)[C@@]3([C@H](C[C@@H]4[C@]([C@H]3[C@@H]([C@@](C2(C)C)(C[C@@H]1OC(=O)[C@@H]([C@H](C5=CC=CC=C5)NC(=O)C6=CC=CC=C6)O)O)OC(=O)C7=CC=CC=C7)(CO4)OC(=O)C)O)C)OC(=O)C,C47H51NO14,853.9,62,ok,rdkit,structures/125973_Paclitaxel.sdf
+127716,Decitabine,451668,451668,NSC127716,C1[C@@H]([C@H](O[C@H]1N2C=NC(=NC2=O)N)CO)O,C8H12N4O4,228.21,16,ok,pubchem,structures/127716_Decitabine.sdf
+138783,Bendamustine hydrochloride,77082,65628,NSC138783,CN1C2=C(C=C(C=C2)N(CCCl)CCCl)N=C1CCCC(=O)O,C16H21Cl2N3O2,358.3,23,ok,pubchem,structures/138783_Bendamustine_hydrochloride.sdf
+141540,Etoposide,36462,36462,NSC141540,C[C@@H]1OC[C@@H]2[C@@H](O1)[C@@H]([C@H]([C@@H](O2)O[C@H]3[C@H]4COC(=O)[C@@H]4[C@@H](C5=CC6=C(C=C35)OCO6)C7=CC(=C(C(=C7)OC)O)OC)O)O,C29H32O13,588.6,42,ok,pubchem,structures/141540_Etoposide.sdf
+169780,ICRF-187,71384,71384,NSC169780,C[C@@H](CN1CC(=O)NC(=O)C1)N2CC(=O)NC(=O)C2,C11H16N4O4,268.27,19,ok,pubchem,structures/169780_ICRF_187.sdf
+180973,Tamoxifen citrate,2733525,2733525,NSC180973,CC/C(=C(\c1ccccc1)c1ccc(OCCN(C)C)cc1)c1ccccc1,C26H29NO,371.52,41,ok,rdkit,structures/180973_Tamoxifen_citrate.sdf
+218321,Pentostatin,439693,439693,NSC218321,C1[C@@H]([C@H](O[C@H]1N2C=NC3=C2NC=NC[C@H]3O)CO)O,C11H16N4O4,268.27,19,ok,pubchem,structures/218321_Pentostatin.sdf
+226080,Rapamycin,5284616,5284616,NSC226080,C[C@@H]1CC[C@H]2C[C@@H](/C(=C/C=C/C=C/[C@H](C[C@H](C(=O)[C@@H]([C@@H](/C(=C/[C@H](C(=O)C[C@H](OC(=O)[C@@H]3CCCCN3C(=O)C(=O)[C@@]1(O2)O)[C@H](C)C[C@@H]4CC[C@H]([C@@H](C4)OC)O)C)/C)O)OC)C)C)/C)OC,C51H79NO13,914.2,65,ok,rdkit,structures/226080_Rapamycin.sdf
+241240,Carboplatin,10339178,2568,NSC241240,C1CC(C1)(C(=O)O)C(=O)O,C6H8O4,144.12,10,ok,pubchem,structures/241240_Carboplatin.sdf
+246131,Valrubicin,454216,454216,NSC246131,CCCCC(=O)OCC(=O)[C@]1(C[C@@H](C2=C(C1)C(=C3C(=C2O)C(=O)C4=C(C3=O)C=CC=C4OC)O)O[C@H]5C[C@@H]([C@@H]([C@@H](O5)C)O)NC(=O)C(F)(F)F)O,C34H36F3NO13,723.6,51,ok,rdkit,structures/246131_Valrubicin.sdf
+256439,Idarubicin,636362,42890,NSC256439,C[C@H]1[C@H]([C@H](C[C@@H](O1)O[C@H]2C[C@@](CC3=C2C(=C4C(=C3O)C(=O)C5=CC=CC=C5C4=O)O)(C(=O)C)O)N)O,C26H27NO9,497.5,36,ok,pubchem,structures/256439_Idarubicin.sdf
+256942,Epirubicin hydrochloride,41867,41867,NSC256942,C[C@H]1[C@@H]([C@H](C[C@@H](O1)O[C@H]2C[C@@](CC3=C2C(=C4C(=C3O)C(=O)C5=C(C4=O)C(=CC=C5)OC)O)(C(=O)CO)O)N)O,C27H29NO11,543.5,39,ok,pubchem,structures/256942_Epirubicin_hydrochloride.sdf
+266046,Oxaliplatin,9887054,9887054,NSC266046,C1CC[C@H]([C@@H](C1)N)N.C(=O)(C(=O)[O-])[O-].[Pt+2],C8H14N2O4Pt,397.29,15,ok,rdkit,structures/266046_Oxaliplatin.sdf
+279836,Mitoxantrone,4212,4212,NSC279836,C1=CC(=C2C(=C1NCCNCCO)C(=O)C3=C(C=CC(=C3C2=O)O)O)NCCNCCO,C22H28N4O6,444.5,32,ok,pubchem,structures/279836_Mitoxantrone.sdf
+296961,Amifostine (ethiofos),2141,2141,NSC296961,C(CN)CNCCSP(=O)(O)O,C5H15N2O3PS,214.23,12,ok,pubchem,structures/296961_Amifostine_ethiofos.sdf
+362856,Temozolomide,5394,5394,NSC362856,CN1C(=O)N2C=NC(=C2N=N1)C(=O)N,C6H6N6O2,194.15,14,ok,pubchem,structures/362856_Temozolomide.sdf
+369100,Imiquimod,57469,57469,NSC369100,CC(C)CN1C=NC2=C1C3=CC=CC=C3N=C2N,C14H16N4,240.3,18,ok,pubchem,structures/369100_Imiquimod.sdf
+409962,Carmustine,2578,2578,NSC409962,C(CCl)NC(=O)N(CCCl)N=O,C5H9Cl2N3O2,214.05,12,ok,pubchem,structures/409962_Carmustine.sdf
+606869,Clofarabine,119182,119182,NSC606869,C1=NC2=C(N=C(N=C2N1[C@H]3[C@H]([C@@H]([C@H](O3)CO)O)F)Cl)N,C10H11ClFN5O3,303.68,20,ok,pubchem,structures/606869_Clofarabine.sdf
+608210,Vinorelbine tartrate,11607738,5311497,NSC608210,CCC1=C[C@H]2C[C@@](C3=C(CN(C2)C1)C4=CC=CC=C4N3)(C5=C(C=C6C(=C5)[C@]78CCN9[C@H]7[C@@](C=CC9)([C@H]([C@@]([C@@H]8N6C)(C(=O)OC)O)OC(=O)C)CC)OC)C(=O)OC,C45H54N4O8,778.9,57,ok,rdkit,structures/608210_Vinorelbine_tartrate.sdf
+609699,Topotecan,60700,60700,NSC609699,CC[C@@]1(C2=C(COC1=O)C(=O)N3CC4=CC5=C(C=CC(=C5CN(C)C)O)N=C4C3=C2)O,C23H23N3O5,421.4,31,ok,pubchem,structures/609699_Topotecan.sdf
+613327,Gemcitabine HCl,60749,60750,NSC613327,C1=CN(C(=O)N=C1N)[C@H]2C([C@@H]([C@H](O2)CO)O)(F)F,C9H11F2N3O4,263.2,18,ok,pubchem,structures/613327_Gemcitabine_HCl.sdf
+628503,Docetaxel,148124,148124,NSC628503,CC1=C2[C@H](C(=O)[C@@]3([C@H](C[C@@H]4[C@]([C@H]3[C@@H]([C@@](C2(C)C)(C[C@@H]1OC(=O)[C@@H]([C@H](C5=CC=CC=C5)NC(=O)OC(C)(C)C)O)O)OC(=O)C6=CC=CC=C6)(CO4)OC(=O)C)O)C)O,C43H53NO14,807.9,58,ok,rdkit,structures/628503_Docetaxel.sdf
+673596,SN-38,104842,104842,NSC673596,CCC1=C2CN3C(=CC4=C(C3=O)COC(=O)[C@@]4(CC)O)C2=NC5=C1C=C(C=C5)O,C22H20N2O5,392.4,29,ok,pubchem,structures/673596_SN_38.sdf
+681239,Bortezomib,387447,387447,NSC681239,B([C@H](CC(C)C)NC(=O)[C@H](CC1=CC=CC=C1)NC(=O)C2=NC=CN=C2)(O)O,C19H25BN4O4,384.2,28,ok,rdkit,structures/681239_Bortezomib.sdf
+686673,Nelarabine,3011155,3011155,NSC686673,COC1=NC(=NC2=C1N=CN2[C@H]3[C@H]([C@@H]([C@H](O3)CO)O)O)N,C11H15N5O5,297.27,21,ok,pubchem,structures/686673_Nelarabine.sdf
+698037,Pemetrexed,135413520,135410875,NSC698037,C1=CC(=CC=C1CCC2=CNC3=C2C(=O)NC(=N3)N)C(=O)N[C@@H](CCC(=O)O)C(=O)O,C20H21N5O6,427.4,31,ok,pubchem,structures/698037_Pemetrexed.sdf
+701852,Vorinostat,5311,5311,NSC701852,C1=CC=C(C=C1)NC(=O)CCCCCCC(=O)NO,C14H20N2O3,264.32,19,ok,pubchem,structures/701852_Vorinostat.sdf
+702294,Estramustine disodium phosphate,54611422,259329,NSC702294,C[C@]12CC[C@H]3[C@H]([C@@H]1CC[C@@H]2OP(=O)(O)O)CCC4=C3C=CC(=C4)OC(=O)N(CCCl)CCCl,C23H32Cl2NO6P,520.4,33,ok,pubchem,structures/702294_Estramustine_disodium_phosphate.sdf
+707389,Eribulin,17755248,11354606,NSC707389,C[C@@H]1C[C@@H]2CC[C@H]3C(=C)C[C@@H](O3)CC[C@]45C[C@@H]6[C@H](O4)[C@H]7[C@@H](O6)[C@@H](O5)[C@@H]8[C@@H](O7)CC[C@@H](O8)CC(=O)C[C@H]9[C@H](C[C@H](C1=C)O2)O[C@@H]([C@@H]9OC)C[C@@H](CN)O,C40H59NO11,729.9,52,ok,rdkit,structures/707389_Eribulin.sdf
+712807,Capecitabine,60953,60953,NSC712807,CCCCCOC(=O)NC1=NC(=O)N(C=C1F)[C@H]2[C@@H]([C@@H]([C@H](O2)C)O)O,C15H22FN3O6,359.35,25,ok,pubchem,structures/712807_Capecitabine.sdf
+713563,Exemestane,60198,60198,NSC713563,C[C@]12CC[C@H]3[C@H]([C@@H]1CCC2=O)CC(=C)C4=CC(=O)C=C[C@]34C,C20H24O2,296.4,22,ok,pubchem,structures/713563_Exemestane.sdf
+715055,Gefitinib,123631,123631,NSC715055,COC1=C(C=C2C(=C1)N=CN=C2NC3=CC(=C(C=C3)F)Cl)OCCCN4CCOCC4,C22H24ClFN4O3,446.9,31,ok,pubchem,structures/715055_Gefitinib.sdf
+718781,Erlotinib HCl,176871,176870,NSC718781,COCCOC1=C(C=C2C(=C1)C(=NC=N2)NC3=CC=CC(=C3)C#C)OCCOC,C22H23N3O4,393.4,29,ok,pubchem,structures/718781_Erlotinib_HCl.sdf
+719276,Fulvestrant,104741,104741,NSC719276,C[C@]12CC[C@H]3[C@H]([C@@H]1CC[C@@H]2O)[C@@H](CC4=C3C=CC(=C4)O)CCCCCCCCCS(=O)CCCC(C(F)(F)F)(F)F,C32H47F5O3S,606.8,41,ok,pubchem,structures/719276_Fulvestrant.sdf
+719344,Anastrozole,2187,2187,NSC719344,CC(C)(C#N)C1=CC(=CC(=C1)CN2C=NC=N2)C(C)(C)C#N,C17H19N5,293.4,22,ok,pubchem,structures/719344_Anastrozole.sdf
+719345,Letrozole,3902,3902,NSC719345,C1=CC(=CC=C1C#N)C(C2=CC=C(C=C2)C#N)N3C=NC=N3,C17H11N5,285.3,22,ok,pubchem,structures/719345_Letrozole.sdf
+719627,Celecoxib,2662,2662,NSC719627,CC1=CC=C(C=C1)C2=CC(=NN2C3=CC=C(C=C3)S(=O)(=O)N)C(F)(F)F,C17H14F3N3O2S,381.4,26,ok,pubchem,structures/719627_Celecoxib.sdf
+721517,Zoledronic acid,68740,68740,NSC721517,C1=CN(C=N1)CC(O)(P(=O)(O)O)P(=O)(O)O,C5H10N2O7P2,272.09,16,ok,pubchem,structures/721517_Zoledronic_acid.sdf
+732517,Dasatinib,3062316,3062316,NSC732517,CC1=C(C(=CC=C1)Cl)NC(=O)C2=CN=C(S2)NC3=CC(=NC(=N3)C)N4CCN(CC4)CCO,C22H26ClN7O2S,488.0,33,ok,pubchem,structures/732517_Dasatinib.sdf
+733504,Everolimus,6442177,6442177,NSC733504,C[C@@H]1CC[C@H]2C[C@@H](/C(=C/C=C/C=C/[C@H](C[C@H](C(=O)[C@@H]([C@@H](/C(=C/[C@H](C(=O)C[C@H](OC(=O)[C@@H]3CCCCN3C(=O)C(=O)[C@@]1(O2)O)[C@H](C)C[C@@H]4CC[C@H]([C@@H](C4)OC)OCCO)C)/C)O)OC)C)C)/C)OC,C53H83NO14,958.2,68,ok,rdkit,structures/733504_Everolimus.sdf
+737754,Pazopanib hydrochloride,11525740,10113978,NSC737754,CC1=C(C=C(C=C1)NC2=NC=CC(=N2)N(C)C3=CC4=NN(C(=C4C=C3)C)C)S(=O)(=O)N,C21H23N7O2S,437.5,31,ok,pubchem,structures/737754_Pazopanib_hydrochloride.sdf
+743414,Imatinib,5291,5291,NSC743414,CC1=C(C=C(C=C1)NC(=O)C2=CC=C(C=C2)CN3CCN(CC3)C)NC4=NC=CC(=N4)C5=CN=CC=C5,C29H31N7O,493.6,37,ok,pubchem,structures/743414_Imatinib.sdf
+745750,Lapatinib,208908,208908,NSC745750,CS(=O)(=O)CCNCC1=CC=C(O1)C2=CC3=C(C=C2)N=CN=C3NC4=CC(=C(C=C4)OCC5=CC(=CC=C5)F)Cl,C29H26ClFN4O4S,581.1,40,ok,pubchem,structures/745750_Lapatinib.sdf
+747599,Nilotinib,644241,644241,NSC747599,CC1=C(C=C(C=C1)C(=O)NC2=CC(=CC(=C2)C(F)(F)F)N3C=C(N=C3)C)NC4=NC=CC(=N4)C5=CN=CC=C5,C28H22F3N7O,529.5,39,ok,pubchem,structures/747599_Nilotinib.sdf
+747971,Sorafenib,216239,216239,NSC747971,CNC(=O)C1=NC=CC(=C1)OC2=CC=C(C=C2)NC(=O)NC3=CC(=C(C=C3)Cl)C(F)(F)F,C21H16ClF3N4O3,464.8,32,ok,pubchem,structures/747971_Sorafenib.sdf
+747972,Lenalidomide,216326,216326,NSC747972,C1CC(=O)NC(=O)C1N2CC3=C(C2=O)C=CC=C3N,C13H13N3O3,259.26,19,ok,pubchem,structures/747972_Lenalidomide.sdf
+747973,Ixabepilone,6445540,6445540,NSC747973,C[C@H]1CCC[C@@]2([C@@H](O2)C[C@H](NC(=O)C[C@@H](C(C(=O)[C@@H]([C@H]1O)C)(C)C)O)/C(=C/C3=CSC(=N3)C)/C)C,C27H42N2O5S,506.7,35,ok,pubchem,structures/747973_Ixabepilone.sdf
+747974,Raloxifene,5035,5035,NSC747974,C1CCN(CC1)CCOC2=CC=C(C=C2)C(=O)C3=C(SC4=C3C=CC(=C4)O)C5=CC=C(C=C5)O,C28H27NO4S,473.6,34,ok,pubchem,structures/747974_Raloxifene.sdf
+749226,Abiraterone,132971,132971,NSC749226,C[C@]12CC[C@@H](CC1=CC[C@@H]3[C@@H]2CC[C@]4([C@H]3CC=C4C5=CN=CC=C5)C)O,C24H31NO,349.5,26,ok,pubchem,structures/749226_Abiraterone.sdf
+750690,Sunitinib,5329102,5329102,NSC750690,CCN(CC)CCNC(=O)C1=C(NC(=C1C)/C=C\2/C3=C(C=CC(=C3)F)NC2=O)C,C22H27FN4O2,398.5,29,ok,pubchem,structures/750690_Sunitinib.sdf
+753082,Vemurafenib,42611257,42611257,Vemurafenib,CCCS(=O)(=O)NC1=C(C(=C(C=C1)F)C(=O)C2=CNC3=C2C=C(C=N3)C4=CC=C(C=C4)Cl)F,C23H18ClF2N3O3S,489.9,33,ok,pubchem,structures/753082_Vemurafenib.sdf
+754143,Romidepsin,5352062,5352062,NSC754143,C/C=C\1/C(=O)N[C@H](C(=O)O[C@H]\2CC(=O)N[C@@H](C(=O)N[C@H](CSSCC/C=C2)C(=O)N1)C(C)C)C(C)C,C24H36N4O6S2,540.7,36,ok,pubchem,structures/754143_Romidepsin.sdf
+754230,Pralatrexate,148121,148121,NSC754230,C#CCC(CC1=CN=C2C(=N1)C(=NC(=N2)N)N)C3=CC=C(C=C3)C(=O)N[C@@H](CCC(=O)O)C(=O)O,C23H23N7O5,477.5,35,ok,pubchem,structures/754230_Pralatrexate.sdf
+755986,Vismodegib,24776445,24776445,NSC755986,CS(=O)(=O)C1=CC(=C(C=C1)C(=O)NC2=CC(=C(C=C2)Cl)C3=CC=CC=N3)Cl,C19H14Cl2N2O3S,421.3,27,ok,pubchem,structures/755986_Vismodegib.sdf
+756645,Crizotinib,54613769,54613769,NSC756645,C[C@H](C1=C(C=C(C=C1Cl)F)Cl)OC2=C(N=CC(=C2)C3=CN(N=C3)C4CCNCC4)N,C21H22Cl2FN5O,450.3,30,ok,pubchem,structures/756645_Crizotinib.sdf
+757441,Axitinib,6450551,6450551,NSC757441,CNC(=O)C1=CC=CC=C1SC2=CC3=C(C=C2)C(=NN3)/C=C/C4=CC=CC=N4,C22H18N4OS,386.5,28,ok,pubchem,structures/757441_Axitinib.sdf
+760766,Vandetanib,3081361,3081361,NSC760766,CN1CCC(CC1)COC2=C(C=C3C(=C2)N=CN=C3NC4=C(C=C(C=C4)Br)F)OC,C22H24BrFN4O2,475.4,30,ok,pubchem,structures/760766_Vandetanib.sdf
+761431,Vemurafenib,42611257,42611257,NSC761431,CCCS(=O)(=O)NC1=C(C(=C(C=C1)F)C(=O)C2=CNC3=C2C=C(C=N3)C4=CC=C(C=C4)Cl)F,C23H18ClF2N3O3S,489.9,33,ok,pubchem,structures/761431_Vemurafenib.sdf
+761432,Cabazitaxel,9854073,9854073,NSC761432,CC1=C2[C@H](C(=O)[C@@]3([C@H](C[C@@H]4[C@]([C@H]3[C@@H]([C@@](C2(C)C)(C[C@@H]1OC(=O)[C@@H]([C@H](C5=CC=CC=C5)NC(=O)OC(C)(C)C)O)O)OC(=O)C6=CC=CC=C6)(CO4)OC(=O)C)OC)C)OC,C45H57NO14,835.9,60,ok,rdkit,structures/761432_Cabazitaxel.sdf
+763371,Ruxolitinib,25126798,25126798,NSC763371,C1CCC(C1)[C@@H](CC#N)N2C=C(C=N2)C3=C4C=CNC4=NC=N3,C17H18N6,306.4,23,ok,pubchem,structures/763371_Ruxolitinib.sdf

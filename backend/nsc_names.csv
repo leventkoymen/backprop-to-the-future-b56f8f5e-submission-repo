@@ -33,25 +33,37 @@ nsc,name
 79037,Lomustine
 82151,Daunorubicin hydrochloride
 85998,Streptozocin
+92859,Arsenic trioxide
 102816,Azacitidine
 105014,Cladribine
+109724,Ifosfamide
 118218,Fludarabine base
+119875,Cisplatin
 122758,Tretinoin
 122819,Teniposide
 123127,Doxorubicin hydrochloride
 125066,Bleomycin
 125973,Paclitaxel
+127716,Decitabine
 138783,Bendamustine hydrochloride
 141540,Etoposide
 169780,ICRF-187
 180973,Tamoxifen citrate
+218321,Pentostatin
 226080,Rapamycin
 241240,Carboplatin
 246131,Valrubicin
+256439,Idarubicin
+256942,Epirubicin hydrochloride
+266046,Oxaliplatin
 279836,Mitoxantrone
+296961,Amifostine (ethiofos)
 362856,Temozolomide
+369100,Imiquimod
+409962,Carmustine
 606869,Clofarabine
 608210,Vinorelbine tartrate
+609699,Topotecan
 613327,Gemcitabine HCl
 628503,Docetaxel
 673596,SN-38
@@ -60,6 +72,7 @@ nsc,name
 698037,Pemetrexed
 701852,Vorinostat
 702294,Estramustine disodium phosphate
+707389,Eribulin
 712807,Capecitabine
 713563,Exemestane
 715055,Gefitinib
@@ -77,6 +90,7 @@ nsc,name
 747599,Nilotinib
 747971,Sorafenib
 747972,Lenalidomide
+747973,Ixabepilone
 747974,Raloxifene
 749226,Abiraterone
 750690,Sunitinib
@@ -87,5 +101,6 @@ nsc,name
 756645,Crizotinib
 757441,Axitinib
 760766,Vandetanib
+761431,Vemurafenib
 761432,Cabazitaxel
 763371,Ruxolitinib

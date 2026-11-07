@@ -36,6 +36,14 @@ app = Flask(__name__)
 
 DATA_DIR = os.path.join(HERE, 'data')
 
+import annotations as ANN
+_nd, _np = ANN.load()
+if _nd or _np:
+    print(f'annotations: {_nd} drugs, {_np} pairs')
+_nf, _nr = ANN.load_extras()
+if _nf or _nr:
+    print(f'extras: {_nf} structures, {_nr} dose-reachability rows')
+
 def load_model():
     """
     Load the cached model, or fit one from the bundled CSVs.
@@ -126,6 +134,7 @@ def nm(x): return NAMES.get(int(x), f'NSC {int(x)}')
 def health():
     return jsonify(status='ok', **META,
                    drugs_loaded=len(KNOWN), surfaces_loaded=bool(SURFACES is not None),
+                   annotations_loaded=ANN.available(),
                    data_classification='public — NCI-ALMANAC, no patient data')
 
 @app.get('/drugs')
@@ -200,7 +209,9 @@ def pair(a, b):
                        'hit_rate_across_lines': round(float(m.hit_rate.iloc[0]),2),
                        'n_cell_lines': int(m.n_lines.iloc[0])},
                    has_surface=bool(SURFACES is not None and
-                       len(SURFACES[(SURFACES.drug_a_nsc==lo)&(SURFACES.drug_b_nsc==hi)])>0))
+                       len(SURFACES[(SURFACES.drug_a_nsc==lo)&(SURFACES.drug_b_nsc==hi)])>0),
+                   annotation=ANN.for_pair(lo, hi),
+                   clinical_reachability=ANN.reach_for(nm(lo), nm(hi)))
 
 @app.get('/pair/<int:a>/<int:b>/surface')
 def surface(a, b):
@@ -227,7 +238,64 @@ def shortlist():
         'interval_95': [round(float(r.score-CONFORMAL_RADIUS),1),
                         round(float(r.score+CONFORMAL_RADIUS),1)],
         'measured_mean': round(float(r['mean']),1),
-        'hit_rate': round(float(r.hit_rate),2)} for i,(_,r) in enumerate(p.iterrows())])
+        'hit_rate': round(float(r.hit_rate),2),
+        'annotation': ANN.for_pair(int(r.a), int(r.b))}
+        for i,(_,r) in enumerate(p.iterrows())])
+
+@app.get('/structure/<int:nsc>')
+def structure(nsc):
+    """SMILES, functional groups and the SMARTS to highlight them.
+
+    The frontend does its own substructure matching from these SMARTS, so the
+    highlighting is correct even where the explanation is not.
+    """
+    s = ANN.structure_for(nsc)
+    if not s:
+        return jsonify(error='no structure annotation for this drug',
+                       drug=nm(nsc), nsc=nsc), 404
+    log('/structure', 1, 1)
+    return jsonify(drug=nm(nsc), nsc=nsc, **s)
+
+
+@app.get('/pipeline')
+def pipeline():
+    """Every stage from raw screen to shortlist, with what survived each one.
+
+    Built for the flow diagram: each stage carries its count and whether the
+    step is a measurement, a correction or a model.
+    """
+    stages = [
+        {'stage': 'raw screen', 'detail': 'NCI-ALMANAC ComboDrugGrowth, all cancers',
+         'count': 3686475, 'unit': 'rows', 'kind': 'measured'},
+        {'stage': 'filter to NSCLC', 'detail': '9 lung cell lines',
+         'count': int(len(PAIRS)), 'unit': 'drug pairs', 'kind': 'measured'},
+        {'stage': 'clean cell lines',
+         'detail': 'control character merged SF-539 into a duplicate; 61 -> 60',
+         'count': 60, 'unit': 'cell lines', 'kind': 'correction'},
+        {'stage': 'rescale dose grid',
+         'detail': 'grid size confounded with screening lab; normalised to 9 points',
+         'count': int(len(PAIRS)), 'unit': 'drug pairs', 'kind': 'correction'},
+        {'stage': 'variance stabilise', 'detail': 'signed asinh, scale 70',
+         'count': int(len(PAIRS)), 'unit': 'drug pairs', 'kind': 'transform'},
+        {'stage': 'label hits', 'detail': 'ComboScore > 50',
+         'count': int(PAIRS.hit.sum()), 'unit': 'hits', 'kind': 'measured'},
+        {'stage': 'rank', 'detail': 'random forest, out-of-fold features',
+         'count': int(len(PAIRS)), 'unit': 'scored pairs', 'kind': 'model'},
+        {'stage': 'conformal interval', 'detail': '95.3% measured coverage',
+         'count': int(CONFORMAL_RADIUS), 'unit': 'radius', 'kind': 'model'},
+        {'stage': 'evidence gate', 'detail': 'tier 4 refused, not scored',
+         'count': 4, 'unit': 'tiers', 'kind': 'model'},
+        {'stage': 'dose surfaces', 'detail': 'full concentration grids',
+         'count': (0 if SURFACES is None
+                   else int(SURFACES.groupby(['drug_a_nsc', 'drug_b_nsc']).ngroups)),
+         'unit': 'pairs with surfaces', 'kind': 'measured'},
+        {'stage': 'clinical reachability',
+         'detail': 'peak synergy vs blood Cmax at standard dose',
+         'count': len(ANN.REACH), 'unit': 'pairs checked', 'kind': 'measured'},
+    ]
+    return jsonify(stages=stages, hit_rate=round(float(PAIRS.hit.mean()), 4),
+                   note='counts are what entered each stage, not what passed it')
+
 
 @app.get('/submissions')
 def submissions():
