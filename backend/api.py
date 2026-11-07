@@ -91,6 +91,7 @@ NAME2NSC = {v.lower(): k for k, v in NAMES.items()}
 SURFACES = pd.read_csv(SURF_CSV) if os.path.exists(SURF_CSV) else None
 KNOWN = sorted(set(PAIRS.a) | set(PAIRS.b))
 HAS_TRANSFER = set(zip(TRANSFER.a, TRANSFER.b))
+HAS_POTENCY = set(POTENCY.drug)
 print(f'ready: {len(PAIRS):,} pairs, {len(KNOWN)} drugs, model {META["model_version"]}', flush=True)
 
 
@@ -125,6 +126,10 @@ def tier_of(a, b):
     key = (min(a,b), max(a,b))
     if key in HAS_TRANSFER:  return 1, 'pair measured in another cancer', 0.89
     if a in KNOWN and b in KNOWN: return 2, 'both drugs screened here, pair untested', 0.34
+    # tier 3 (README table): not combination-screened here, but monotherapy
+    # potency is known for both drugs. With the bundled CSVs every drug with
+    # potency is also in PAIRS, so this only fires once potency.csv grows.
+    if a in HAS_POTENCY and b in HAS_POTENCY: return 3, 'new drugs, monotherapy known', 0.06
     return 4, 'new drugs, no prior measurements', 0.04
 
 def nm(x): return NAMES.get(int(x), f'NSC {int(x)}')
