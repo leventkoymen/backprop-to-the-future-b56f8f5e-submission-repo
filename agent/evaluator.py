@@ -69,6 +69,13 @@ PERSONAS = {
     }
 }
 
+def _clean_schema(d):
+    if isinstance(d, dict):
+        return {k: _clean_schema(v) for k, v in d.items() if k != "additionalProperties"}
+    elif isinstance(d, list):
+        return [_clean_schema(v) for v in d]
+    return d
+
 def evaluate_run(run_receipt_path: str) -> List[BinaryEvalResponse]:
     """Run the multi-persona binary evaluation battery on a completed run."""
     with open(run_receipt_path, "r") as f:
@@ -80,11 +87,20 @@ def evaluate_run(run_receipt_path: str) -> List[BinaryEvalResponse]:
     for entry in run_data:
         if entry.get("type") == "orchestrator":
             final_text = entry.get("text", "")
+        elif entry.get("kind") == "report" and "report" in entry:
+            rep = entry["report"]
+            final_text = rep.get("orchestrator", {}).get("summary", "")
+            gate_results = rep.get("orchestrator", {}).get("gates", [])
+        elif entry.get("kind") == "model_call" and entry.get("agent") == "orchestrator" and entry.get("output"):
+            final_text = entry.get("output")
         if entry.get("type") == "gates":
             gate_results = entry.get("results", [])
+        elif entry.get("kind") == "gates" and "gates" in entry and not gate_results:
+            gate_results.extend(entry.get("gates", []))
 
     context = f"Final Agent Text:\n{final_text}\n\nDeterministic Gates:\n{json.dumps(gate_results, indent=2)}"
     client = make_client()
+    clean_schema = _clean_schema(BinaryEvalResponse.model_json_schema())
     
     results = []
     for persona, details in PERSONAS.items():
@@ -106,7 +122,7 @@ def evaluate_run(run_receipt_path: str) -> List[BinaryEvalResponse]:
                 config=genai.types.GenerateContentConfig(
                     system_instruction=sys_prompt,
                     response_mime_type="application/json",
-                    response_schema=BinaryEvalResponse,
+                    response_schema=clean_schema,
                     temperature=0.0
                 ),
             )

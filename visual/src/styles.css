@@ -101,3 +101,27 @@ button:disabled { opacity: .4; cursor: default; }
 .mol-card dd { margin: 0; }
 .mol-dim { color: var(--muted); }
 button.mol-open { font-size: 12px; padding: 3px 8px; margin-top: 4px; }
+
+/* ---- Gemini Multi-Agent Badge ---- */
+.gemini-badge-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 12px;
+  padding: 8px 10px;
+  background: rgba(139, 124, 246, 0.12);
+  border: 1px solid rgba(139, 124, 246, 0.35);
+  border-radius: 8px;
+}
+.gemini-chip {
+  font-weight: 700;
+  color: #a5b4fc;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.gemini-subchip {
+  font-size: 11px;
+  color: var(--muted);
+}

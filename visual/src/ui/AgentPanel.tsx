@@ -30,6 +30,10 @@ export function AgentPanel({ runs, runName, onRun, compiled, run, state, view, o
 
   return (
     <aside className="agent-panel panel">
+      <div className="gemini-badge-container">
+        <div className="gemini-chip">✨ Google Gemini Multi-Agent</div>
+        <div className="gemini-subchip">Argon 4 (Orchestrator) · Flash 3.8 (Parallel Research) · Flash-Lite 3.5 (Checker)</div>
+      </div>
       <label className="run-picker">
         Run
         <select value={runName} onChange={(e) => onRun(e.target.value)}>

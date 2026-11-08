@@ -1,0 +1,106 @@
+nsc,name,query,match_by,chembl_id,pref_name,max_phase,parent_id,parent_max_phase,first_approval,withdrawn
+740,Methotrexate,Methotrexate,pref_name__iexact,CHEMBL34259,METHOTREXATE,4.0,,,1953,False
+750,Busulfan,Busulfan,pref_name__iexact,CHEMBL820,BUSULFAN,4.0,,,1954,False
+752,Thioguanine,Thioguanine,pref_name__iexact,CHEMBL727,THIOGUANINE,4.0,,,1966,False
+755,6-Mercaptopurine,6-Mercaptopurine,none,,,,,,,
+762,Nitrogen mustard hydrochloride,Nitrogen mustard,none,,,,,,,
+1390,Allopurinol,Allopurinol,pref_name__iexact,CHEMBL1467,ALLOPURINOL,4.0,,,1966,False
+3053,Dactinomycin,Dactinomycin,pref_name__iexact,CHEMBL1554,DACTINOMYCIN,4.0,,,1964,False
+3088,Chlorambucil,Chlorambucil,pref_name__iexact,CHEMBL515,CHLORAMBUCIL,4.0,,,1957,False
+6396,Thiotepa,Thiotepa,pref_name__iexact,CHEMBL671,THIOTEPA,4.0,,,1959,False
+8806,Melphalan,Melphalan,pref_name__iexact,CHEMBL852,MELPHALAN,4.0,,,1964,False
+9706,Triethylenemelamine,Triethylenemelamine,pref_name__iexact,CHEMBL502384,TRIETHYLENEMELAMINE,2.0,,,,False
+13875,Hexamethylmelamine,Hexamethylmelamine,molecule_synonyms__molecule_synonym__iexact,CHEMBL1455,ALTRETAMINE,4.0,,,1990,False
+14229,Quinacrine,Quinacrine,pref_name__iexact,CHEMBL7568,QUINACRINE,4.0,,,,True
+18509,Aminolevulinic acid hydrochloride,Aminolevulinic acid hydrochloride,pref_name__iexact,CHEMBL1200582,AMINOLEVULINIC ACID HYDROCHLORIDE,4.0,CHEMBL601,4.0,1999,False
+19893,Fluorouracil,Fluorouracil,pref_name__iexact,CHEMBL185,FLUOROURACIL,4.0,,,1962,False
+24559,Mithramycin,Mithramycin,molecule_synonyms__molecule_synonym__iexact,CHEMBL1237054,PLICAMYCIN,4.0,,,1970,False
+25154,Pipobroman,Pipobroman,pref_name__iexact,CHEMBL1585,PIPOBROMAN,4.0,,,1966,False
+26271,Cyclophosphamide,Cyclophosphamide,pref_name__iexact,CHEMBL1200796,CYCLOPHOSPHAMIDE,4.0,CHEMBL88,4.0,1959,False
+26980,Mitomycin,Mitomycin,pref_name__iexact,CHEMBL105,MITOMYCIN,4.0,,,1981,False
+27640,Floxuridine,Floxuridine,pref_name__iexact,CHEMBL917,FLOXURIDINE,4.0,,,1970,False
+32065,Hydroxyurea,Hydroxyurea,pref_name__iexact,CHEMBL467,HYDROXYUREA,4.0,,,1967,False
+34462,Uracil mustard,Uracil mustard,pref_name__iexact,CHEMBL1488,URACIL MUSTARD,4.0,,,1962,False
+38721,Mitotane,Mitotane,pref_name__iexact,CHEMBL1670,MITOTANE,4.0,,,1970,False
+45388,Dacarbazine,Dacarbazine,pref_name__iexact,CHEMBL476,DACARBAZINE,4.0,,,1975,False
+45923,8-Methoxypsoralen,8-Methoxypsoralen,none,,,,,,,
+49842,Vinblastine sulfate,Vinblastine sulfate,pref_name__iexact,CHEMBL378544,VINBLASTINE SULFATE,4.0,CHEMBL159,4.0,1965,False
+63878,Cytarabine hydrochloride,Cytarabine hydrochloride,pref_name__iexact,CHEMBL1256472,CYTARABINE HYDROCHLORIDE,3.0,CHEMBL803,4.0,1969,False
+66847,Thalidomide,Thalidomide,pref_name__iexact,CHEMBL468,THALIDOMIDE,4.0,,,1956,True
+67574,Vincristine sulfate,Vincristine sulfate,pref_name__iexact,CHEMBL501867,VINCRISTINE SULFATE,4.0,CHEMBL90555,4.0,1963,False
+71423,Megestrol acetate,Megestrol acetate,pref_name__iexact,CHEMBL1201139,MEGESTROL ACETATE,4.0,,,1971,False
+77213,Procarbazine hydrochloride,Procarbazine hydrochloride,pref_name__iexact,CHEMBL1200410,PROCARBAZINE HYDROCHLORIDE,4.0,CHEMBL1321,4.0,1969,False
+79037,Lomustine,Lomustine,pref_name__iexact,CHEMBL514,LOMUSTINE,4.0,,,1976,False
+82151,Daunorubicin hydrochloride,Daunorubicin hydrochloride,pref_name__iexact,CHEMBL1563,DAUNORUBICIN HYDROCHLORIDE,4.0,CHEMBL178,4.0,1979,False
+85998,Streptozocin,Streptozocin,pref_name__iexact,CHEMBL1977579,STREPTOZOCIN,4.0,,,1982,False
+92859,Arsenic trioxide,Arsenic trioxide,pref_name__iexact,CHEMBL5483015,ARSENIC TRIOXIDE,4.0,,,2000,False
+102816,Azacitidine,Azacitidine,pref_name__iexact,CHEMBL1489,AZACITIDINE,4.0,,,2004,False
+105014,Cladribine,Cladribine,pref_name__iexact,CHEMBL1619,CLADRIBINE,4.0,,,1993,False
+109724,Ifosfamide,Ifosfamide,pref_name__iexact,CHEMBL1024,IFOSFAMIDE,4.0,,,1988,False
+118218,Fludarabine base,Fludarabine base,none,,,,,,,
+119875,Cisplatin,Cisplatin,pref_name__iexact,CHEMBL11359,CISPLATIN,4.0,,,1978,False
+122758,Tretinoin,Tretinoin,pref_name__iexact,CHEMBL38,TRETINOIN,4.0,,,1971,False
+122819,Teniposide,Teniposide,pref_name__iexact,CHEMBL452231,TENIPOSIDE,4.0,,,1992,False
+123127,Doxorubicin hydrochloride,Doxorubicin hydrochloride,pref_name__iexact,CHEMBL359744,DOXORUBICIN HYDROCHLORIDE,4.0,CHEMBL53463,4.0,1974,False
+125066,Bleomycin,Bleomycin,pref_name__iexact,CHEMBL6067492,BLEOMYCIN,4.0,,,1973,False
+125973,Paclitaxel,Paclitaxel,pref_name__iexact,CHEMBL428647,PACLITAXEL,4.0,,,1992,False
+127716,Decitabine,Decitabine,pref_name__iexact,CHEMBL1201129,DECITABINE,4.0,,,2006,False
+138783,Bendamustine hydrochloride,Bendamustine hydrochloride,pref_name__iexact,CHEMBL1201734,BENDAMUSTINE HYDROCHLORIDE,4.0,CHEMBL487253,4.0,2008,False
+141540,Etoposide,Etoposide,pref_name__iexact,CHEMBL44657,ETOPOSIDE,4.0,,,1983,False
+169780,ICRF-187,ICRF-187,molecule_synonyms__molecule_synonym__iexact,CHEMBL1738,DEXRAZOXANE,4.0,,,1995,False
+180973,Tamoxifen citrate,Tamoxifen citrate,pref_name__iexact,CHEMBL786,TAMOXIFEN CITRATE,4.0,CHEMBL83,4.0,1977,False
+218321,Pentostatin,Pentostatin,pref_name__iexact,CHEMBL1580,PENTOSTATIN,4.0,,,1991,False
+226080,Rapamycin,Rapamycin,molecule_synonyms__molecule_synonym__iexact,CHEMBL413,SIROLIMUS,4.0,,,1999,False
+241240,Carboplatin,Carboplatin,pref_name__iexact,CHEMBL1351,CARBOPLATIN,4.0,,,1989,False
+246131,Valrubicin,Valrubicin,pref_name__iexact,CHEMBL1096885,VALRUBICIN,4.0,,,1998,False
+256439,Idarubicin,Idarubicin,pref_name__iexact,CHEMBL1117,IDARUBICIN,4.0,,,1990,False
+256942,Epirubicin hydrochloride,Epirubicin hydrochloride,pref_name__iexact,CHEMBL1200981,EPIRUBICIN HYDROCHLORIDE,4.0,CHEMBL417,4.0,1999,False
+266046,Oxaliplatin,Oxaliplatin,pref_name__iexact,CHEMBL414804,OXALIPLATIN,4.0,,,2002,False
+279836,Mitoxantrone,Mitoxantrone,pref_name__iexact,CHEMBL58,MITOXANTRONE,4.0,,,1987,False
+296961,Amifostine (ethiofos),Amifostine (ethiofos),none,,,,,,,
+362856,Temozolomide,Temozolomide,pref_name__iexact,CHEMBL810,TEMOZOLOMIDE,4.0,,,1999,False
+369100,Imiquimod,Imiquimod,pref_name__iexact,CHEMBL1282,IMIQUIMOD,4.0,,,1997,False
+409962,Carmustine,Carmustine,pref_name__iexact,CHEMBL513,CARMUSTINE,4.0,,,1977,False
+606869,Clofarabine,Clofarabine,pref_name__iexact,CHEMBL1750,CLOFARABINE,4.0,,,2004,False
+608210,Vinorelbine tartrate,Vinorelbine tartrate,pref_name__iexact,CHEMBL538943,VINORELBINE TARTRATE,4.0,CHEMBL553025,4.0,1994,False
+609699,Topotecan,Topotecan,pref_name__iexact,CHEMBL84,TOPOTECAN,4.0,,,1996,False
+613327,Gemcitabine HCl,Gemcitabine HCl,molecule_synonyms__molecule_synonym__iexact,CHEMBL1637,GEMCITABINE HYDROCHLORIDE,4.0,CHEMBL888,4.0,1996,False
+628503,Docetaxel,Docetaxel,pref_name__iexact,CHEMBL3545252,DOCETAXEL,4.0,CHEMBL92,4.0,1995,False
+673596,SN-38,SN-38,molecule_synonyms__molecule_synonym__iexact,CHEMBL837,7-ETHYL-10-HYDROXYCAMPTOTHECIN,2.0,,,,False
+681239,Bortezomib,Bortezomib,pref_name__iexact,CHEMBL325041,BORTEZOMIB,4.0,,,,False
+686673,Nelarabine,Nelarabine,pref_name__iexact,CHEMBL1201112,NELARABINE,4.0,,,2005,False
+698037,Pemetrexed,Pemetrexed,pref_name__iexact,CHEMBL225072,PEMETREXED,4.0,,,2004,False
+701852,Vorinostat,Vorinostat,pref_name__iexact,CHEMBL98,VORINOSTAT,4.0,,,2006,False
+702294,Estramustine disodium phosphate,Estramustine,pref_name__iexact,CHEMBL1575,ESTRAMUSTINE,3.0,,,,False
+707389,Eribulin,Eribulin,pref_name__iexact,CHEMBL1683590,ERIBULIN,4.0,,,2010,False
+712807,Capecitabine,Capecitabine,pref_name__iexact,CHEMBL1773,CAPECITABINE,4.0,,,1998,False
+713563,Exemestane,Exemestane,pref_name__iexact,CHEMBL1200374,EXEMESTANE,4.0,,,1999,False
+715055,Gefitinib,Gefitinib,pref_name__iexact,CHEMBL939,GEFITINIB,4.0,,,2003,False
+718781,Erlotinib HCl,Erlotinib HCl,molecule_synonyms__molecule_synonym__iexact,CHEMBL1079742,ERLOTINIB HYDROCHLORIDE,4.0,CHEMBL553,4.0,2004,False
+719276,Fulvestrant,Fulvestrant,pref_name__iexact,CHEMBL1358,FULVESTRANT,4.0,,,2002,False
+719344,Anastrozole,Anastrozole,pref_name__iexact,CHEMBL1399,ANASTROZOLE,4.0,,,1995,False
+719345,Letrozole,Letrozole,pref_name__iexact,CHEMBL1444,LETROZOLE,4.0,,,1997,False
+719627,Celecoxib,Celecoxib,pref_name__iexact,CHEMBL118,CELECOXIB,4.0,,,1998,False
+721517,Zoledronic acid,Zoledronic acid,pref_name__iexact,CHEMBL4303669,ZOLEDRONIC ACID,4.0,CHEMBL924,4.0,2001,False
+732517,Dasatinib,Dasatinib,pref_name__iexact,CHEMBL5416410,DASATINIB,4.0,CHEMBL1421,4.0,2006,False
+733504,Everolimus,Everolimus,pref_name__iexact,CHEMBL1908360,EVEROLIMUS,4.0,,,2009,False
+737754,Pazopanib hydrochloride,Pazopanib hydrochloride,pref_name__iexact,CHEMBL1201733,PAZOPANIB HYDROCHLORIDE,4.0,CHEMBL477772,4.0,2009,False
+743414,Imatinib,Imatinib,pref_name__iexact,CHEMBL941,IMATINIB,4.0,,,2001,False
+745750,Lapatinib,Lapatinib,pref_name__iexact,CHEMBL554,LAPATINIB,4.0,,,2007,False
+747599,Nilotinib,Nilotinib,pref_name__iexact,CHEMBL255863,NILOTINIB,4.0,,,2007,False
+747971,Sorafenib,Sorafenib,pref_name__iexact,CHEMBL1336,SORAFENIB,4.0,,,2005,False
+747972,Lenalidomide,Lenalidomide,pref_name__iexact,CHEMBL848,LENALIDOMIDE,4.0,,,2005,False
+747973,Ixabepilone,Ixabepilone,pref_name__iexact,CHEMBL1201752,IXABEPILONE,4.0,,,2007,False
+747974,Raloxifene,Raloxifene,pref_name__iexact,CHEMBL81,RALOXIFENE,4.0,,,1997,False
+749226,Abiraterone,Abiraterone,pref_name__iexact,CHEMBL254328,ABIRATERONE,4.0,,,,False
+750690,Sunitinib,Sunitinib,pref_name__iexact,CHEMBL535,SUNITINIB,4.0,,,2006,False
+753082,Vemurafenib,Vemurafenib,pref_name__iexact,CHEMBL1229517,VEMURAFENIB,4.0,,,2011,False
+754143,Romidepsin,Romidepsin,pref_name__iexact,CHEMBL343448,ROMIDEPSIN,4.0,,,2009,False
+754230,Pralatrexate,Pralatrexate,pref_name__iexact,CHEMBL1201746,PRALATREXATE,4.0,,,2009,False
+755986,Vismodegib,Vismodegib,pref_name__iexact,CHEMBL473417,VISMODEGIB,4.0,,,2012,False
+756645,Crizotinib,Crizotinib,pref_name__iexact,CHEMBL601719,CRIZOTINIB,4.0,,,2011,False
+757441,Axitinib,Axitinib,pref_name__iexact,CHEMBL1289926,AXITINIB,4.0,,,2012,False
+760766,Vandetanib,Vandetanib,pref_name__iexact,CHEMBL24828,VANDETANIB,4.0,,,2011,False
+761431,Vemurafenib,Vemurafenib,pref_name__iexact,CHEMBL1229517,VEMURAFENIB,4.0,,,2011,False
+761432,Cabazitaxel,Cabazitaxel,pref_name__iexact,CHEMBL1201748,CABAZITAXEL,4.0,,,2010,False
+763371,Ruxolitinib,Ruxolitinib,pref_name__iexact,CHEMBL1789941,RUXOLITINIB,4.0,,,2011,False

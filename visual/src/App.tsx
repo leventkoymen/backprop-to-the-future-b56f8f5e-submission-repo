@@ -17,9 +17,9 @@ import { MoleculePanel } from "./ui/MoleculePanel";
 
 type Scene = "A" | "B" | "C";
 const TABS: { s: Scene; label: string }[] = [
-  { s: "A", label: "1 · Haystack" },
-  { s: "B", label: "2 · Agent" },
-  { s: "C", label: "3 · Experiment" },
+  { s: "A", label: "1 · Haystack (5,228 pairs)" },
+  { s: "B", label: "2 · Gemini Multi-Agent" },
+  { s: "C", label: "3 · Dose Experiment" },
 ];
 const hasTiers = landscape.file.pairs.some((p) => p.tier);
 const pct = ((landscape.hits / landscape.file.pairs.length) * 100).toFixed(1);
@@ -114,7 +114,7 @@ export default function App() {
 
   const title = {
     A: { h: "The haystack", sub: `${landscape.file.pairs.length.toLocaleString()} measured drug pairs · ${landscape.hits} real hits (${pct}%) · a lab can afford to test maybe 50` },
-    B: { h: "The agent at work", sub: "Agent proposes a batch → researcher approves → the real result is revealed → the model learns" },
+    B: { h: "Google Gemini Multi-Agent at work", sub: "Gemini 4 Argon orchestrates screening → researcher approves → Gemini 3.8 Flash grounds mechanisms via Google Search → Gemini 3.5 Flash-Lite checks gates" },
     C: grid
       ? { h: `Inside one experiment: ${grid.drugA} + ${grid.drugB}`, sub: `Cell line ${grid.cellLine} · 3 × 3 doses · measured on one plate · the gap between expected and observed is the synergy` }
       : { h: "Inside one experiment", sub: "No dose-response data found in data/starter/surface_dose_response.csv" },
@@ -141,7 +141,7 @@ export default function App() {
 
       <header className="top">
         <div>
-          <div className="kicker">LungPair · Scene {TABS.find((t) => t.s === scene)!.label.split(" · ")[0]}</div>
+          <div className="kicker">LungPair · Google Gemini Multi-Agent Triage · Scene {TABS.find((t) => t.s === scene)!.label.split(" · ")[0]}</div>
           <h1>{title.h}</h1>
           <p className="sub">{title.sub}</p>
         </div>

@@ -112,10 +112,11 @@ def main(argv=None) -> int:
     log = RunLog(mode="no-llm" if a.no_llm else "live")
     tools = LungPairTools(make_api(a.api))
     approver = a.approver or getpass.getuser()
-    print(f"run {log.run_id}  mode={log.mode}  receipt={log.path}")
-    if client:
-        print(f"models: orchestrator={config.ORCHESTRATOR_MODEL} research={config.RESEARCH_MODEL} "
-              f"checker={config.CHECKER_MODEL}")
+    print("=" * 80)
+    print("🫁 LungPair Multi-Agent Triage — Powered by Google Gemini Developer API")
+    print(f"   Architecture: Orchestrator ({config.ORCHESTRATOR_MODEL}) | Research ({config.RESEARCH_MODEL}) | Checker ({config.CHECKER_MODEL})")
+    print(f"   Run ID: {log.run_id} | Mode: {log.mode} | Receipt: {log.path}")
+    print("=" * 80)
     from .checks import out_of_scope_drugs
     _scope = out_of_scope_drugs(a.question, [d["name"] for d in tools.list_drugs()["drugs"]])
     if _scope["unknown_drugs"]:
