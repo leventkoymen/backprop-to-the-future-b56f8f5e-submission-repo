@@ -10,6 +10,9 @@ runs/
 # Node / Frontend builds
 node_modules/
 dist/
+!visual/dist/
+visual/dist/*
+!visual/dist/index.html
 
 # Secrets: never commit
 .env
