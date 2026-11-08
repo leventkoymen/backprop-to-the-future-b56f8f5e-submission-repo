@@ -240,13 +240,19 @@ If the venue Wi-Fi is completely down and you want to test new queries without m
 python -m agent.run --no-llm --api inprocess "Which partner should a lab screen with gefitinib next?"
 ```
 
-### 5. Interactive 3D Molecular Viewer & Dose Response Surface
+### 5. Interactive 3D Molecular Viewer & Spatial Visualization (`visual/`)
+Built with **React, Three.js, and @react-three/fiber**, the frontend offers three synchronized viewports and an offline single-file executable:
+- **Scene 1 · The Haystack:** 3D spatial matrix of all 5,228 tested NSCLC combinations, visually contrasting the 172 true biological hits (3.3%) against inactive negative space.
+- **Scene 2 · Gemini Multi-Agent & 3D Molecular Inspector:** Interactive proposal cards streaming from the Gemini harness with an unbypassable human **Approve Batch** button. Clicking **"View molecules"** opens an interactive 3D ball-and-stick structural inspector rendering canonical PubChem `.sdf` coordinate files for all 105 drugs, displaying SMILES, molecular weight, formula, and clinical $C_{\max}$ dose reachability.
+- **Scene 3 · Dose Response Surface:** Continuous 3D Loewe synergy biophysical mesh across the 3 × 3 concentration grid, allowing researchers to verify whether synergy spans the whole concentration space or is an isolated edge artifact.
+- **Instant Offline Bundle:** Pre-compiled into a self-contained 2.4 MB file (`visual/dist/index.html`). Double-click to open in any web browser with zero server or Wi-Fi required.
+
+To run the development server locally:
 ```bash
 cd visual
 npm install
 npm run dev
-# Open http://localhost:5173 to explore 3D molecular structures and synergy surfaces
-# Or double-click run_viewer.sh (macOS) / run_viewer.bat (Windows)
+# Open http://localhost:5173 to explore
 ```
 
 ### 6. Inspect Cryptographic Run Receipts
