@@ -84,7 +84,7 @@ def evidence_for(client, pair: dict, withheld_names: list[str], log: RunLog,
     cit = gates[0]
     shown = checks.strip_ungrounded(r["text"], cit["detail"]["not_grounded"])
     status = "passed" if (checks.all_pass(gates) and model_ok) else "flagged"
-    return {"status": status, "attempts": attempt, "text": shown, "raw_text": r["text"],
+    return {"status": status, "attempts": attempt, "text": shown, "_raw_text": r["text"],
             "grounding": r["grounding"], "gates": gates, "checker": v or ck.get("error"),
             "model": r["model"]}
 
@@ -217,7 +217,15 @@ def run_pipeline(question: str, tools: LungPairTools, log: RunLog, client=None,
     # 4. Human in the loop -------------------------------------------------
     decision = approve(candidates) if approve else {"approved": [], "approver": None,
                                                     "note": "no approval step run"}
-    approved = [c for i, c in enumerate(candidates, 1) if i in decision.get("approved", [])]
+    approved = [c for i, c in enumerate(candidates, 1) if i in decision.get("approved", [])
+                and (client is None or (c.get("evidence") or {}).get("status") == "passed")]
+    unpassed_attempted = [f'{c["drug_a"]}+{c["drug_b"]}' for i, c in enumerate(candidates, 1)
+                          if i in decision.get("approved", [])
+                          and client is not None
+                          and (c.get("evidence") or {}).get("status") != "passed"]
+    if unpassed_attempted:
+        log.write("approval_rejected_unpassed", pairs=unpassed_attempted,
+                  reason="Only pairs with evidence status 'passed' can be approved.")
     log.write("human_decision", approver=decision.get("approver"),
               approved=[f'{c["drug_a"]}+{c["drug_b"]}' for c in approved],
               offered=[f'{c["drug_a"]}+{c["drug_b"]}' for c in candidates],

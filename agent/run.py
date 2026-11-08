@@ -36,15 +36,24 @@ def print_table(cands: list[dict]):
 def interactive_approve(approver: str, preset: str | None):
     def _approve(cands: list[dict]) -> dict:
         print_table(cands)
+        passable = {i for i, c in enumerate(cands, 1)
+                    if (c.get("evidence") or {}).get("status") in ("passed", "not_run")}
         if preset is not None:
             raw = preset
         else:
-            raw = input("\nHuman sign-off: which pairs go into the next screening batch? "
-                        "(e.g. 1,3  or 'none'): ").strip()
-        picks = [] if raw.lower() in ("", "none", "0") else \
+            prompt = "\nHuman sign-off: which pairs go into the next screening batch? "
+            if len(passable) < len(cands):
+                prompt += f"(only passed pairs allowed: {sorted(passable) or 'none'}) "
+            prompt += "(e.g. 1,3  or 'none'): "
+            raw = input(prompt).strip()
+        requested = [] if raw.lower() in ("", "none", "0") else \
             sorted({int(x) for x in raw.replace(" ", "").split(",") if x.isdigit()
                     and 1 <= int(x) <= len(cands)})
-        return {"approved": picks, "approver": approver, "raw_input": raw,
+        picks = [p for p in requested if p in passable]
+        blocked = [p for p in requested if p not in passable]
+        if blocked:
+            print(f"Notice: pair(s) {blocked} cannot be approved because evidence status is not 'passed'.")
+        return {"approved": picks, "approver": approver, "raw_input": raw, "blocked": blocked,
                 "note": "approved for the next screening batch (lab decision, not clinical)"}
     return _approve
 

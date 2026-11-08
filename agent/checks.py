@@ -49,9 +49,11 @@ def citations_grounded(text: str, grounding: list[dict], pubmed_lookup=None,
                          "pubmed_title": (info or {}).get("title")})
     for d in ids["dois"]:
         rows.append({"id": f"doi:{d}", "status": "grounded" if d.lower() in blob else "unverified"})
+    for c in ids.get("pmcids", []):
+        rows.append({"id": c, "status": "grounded" if c.lower() in blob else "unverified"})
     for u in ids["urls"]:
-        if PUBMED_URL_RE.search(u):
-            continue                                # counted as a PMID above
+        if PUBMED_URL_RE.search(u) or re.search(r"ncbi\.nlm\.nih\.gov/pmc/articles/(PMC\d+)", u, re.I):
+            continue                                # counted as PMID or PMCID above
         ok = any(u.rstrip("/") == x.rstrip("/") or x.startswith(u.rstrip("/")) for x in urls)
         rows.append({"id": u, "status": "grounded" if ok else "unverified"})
     bad = [r for r in rows if r["status"] != "grounded"]
@@ -67,6 +69,10 @@ def strip_ungrounded(text: str, not_grounded: list[str]) -> str:
         if ident.startswith("PMID:"):
             out = re.sub(rf"PMID[:\s#]*{re.escape(raw)}\b", "[citation removed: not in grounding]", out, flags=re.I)
             out = re.sub(rf"https?://pubmed\.ncbi\.nlm\.nih\.gov/{re.escape(raw)}/?",
+                         "[citation removed: not in grounding]", out, flags=re.I)
+        elif ident.startswith("PMC"):
+            out = re.sub(rf"\b{re.escape(ident)}\b", "[citation removed: not in grounding]", out, flags=re.I)
+            out = re.sub(rf"https?://(?:www\.)?ncbi\.nlm\.nih\.gov/pmc/articles/{re.escape(ident)}/?",
                          "[citation removed: not in grounding]", out, flags=re.I)
         else:
             out = out.replace(raw, "[citation removed: not in grounding]")
@@ -149,7 +155,7 @@ def numbers_from_tools(summary: str, tool_results: list[dict]) -> dict:
     for s in ("0.89", "0.34", "0.06", "0.04", "0.03"):   # tier precisions in API/README
         allowed.add(s)
     found = _NUM.findall(summary)
-    stray = [n for n in found if n not in allowed and f"{float(n):.1f}" not in allowed]
+    stray = [n for n in found if n not in allowed]
     return _gate("numbers_from_tools", not stray, {"numbers": found, "not_in_tool_output": stray})
 
 
