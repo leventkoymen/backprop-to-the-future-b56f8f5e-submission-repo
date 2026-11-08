@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import datetime as dt
 import json
+import threading
 import os
 import re
 from typing import Any
@@ -39,8 +40,13 @@ class RunLog:
         self.mode = mode
         self.seq = 0
         self.records: list[dict] = []
+        self._lock = threading.Lock()  # research agents write in parallel
 
     def write(self, kind: str, **fields) -> dict:
+        with self._lock:
+            return self._write(kind, **fields)
+
+    def _write(self, kind: str, **fields) -> dict:
         self.seq += 1
         rec = {"seq": self.seq, "ts": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
                "run_id": self.run_id, "mode": self.mode, "kind": kind, **fields}

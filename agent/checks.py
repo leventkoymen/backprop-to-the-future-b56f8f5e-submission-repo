@@ -155,3 +155,30 @@ def numbers_from_tools(summary: str, tool_results: list[dict]) -> dict:
 
 def all_pass(gates: list[dict]) -> bool:
     return all(g["pass"] for g in gates)
+
+
+# --- Scope: drugs the question names that the ranker does not know ----------
+# Plain Python, no model. A judge asking about a drug outside the 105-drug
+# NCI-ALMANAC panel (e.g. pembrolizumab) must get an explicit refusal for that
+# drug, not a silent answer about the other drug only.
+_DRUG_SUFFIX = re.compile(
+    r"\b[a-z]{3,}(?:mab|nib|ciclib|lisib|parib|rasib|tecan|platin|taxel|rubicin|"
+    r"mustine|tabine|trexed|limus|zomib|degib|stat|vir)\b", re.I)
+_KNOWN_OUTSIDE_PANEL = {  # common lung-cancer drugs not in NCI-ALMANAC
+    "osimertinib", "pembrolizumab", "nivolumab", "atezolizumab", "durvalumab",
+    "cemiplimab", "ipilimumab", "alectinib", "brigatinib", "lorlatinib", "crizotinib",
+    "sotorasib", "adagrasib", "amivantamab", "ramucirumab", "bevacizumab",
+    "afatinib", "dacomitinib", "capmatinib", "tepotinib", "selpercatinib",
+    "pralsetinib", "dabrafenib", "trametinib", "tarlatamab", "lurbinectedin",
+}
+
+
+def out_of_scope_drugs(question: str, known_names: list[str]) -> dict:
+    known_words = {w for n in known_names for w in re.findall(r"[a-z]+", n.lower())}
+    words = set(re.findall(r"[a-z]+", question.lower()))
+    cand = {w for w in words if w in _KNOWN_OUTSIDE_PANEL}
+    cand |= {m.group(0).lower() for m in _DRUG_SUFFIX.finditer(question)}
+    unknown = sorted(w for w in cand if w not in known_words)
+    return {"gate": "scope_stated", "pass": True, "unknown_drugs": unknown,
+            "detail": ("not in the 105-drug NCI-ALMANAC panel, so no score is given: "
+                       + ", ".join(unknown)) if unknown else "all named drugs are in the panel"}

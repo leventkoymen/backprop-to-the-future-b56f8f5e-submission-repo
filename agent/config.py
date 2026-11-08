@@ -30,6 +30,12 @@ LUNGPAIR_API = _env("LUNGPAIR_API", "http://127.0.0.1:8000")
 MAX_ORCH_TURNS = int(_env("LUNGPAIR_MAX_ORCH_TURNS", "6"))
 RESEARCH_TOP_K = int(_env("LUNGPAIR_RESEARCH_TOP_K", "5"))
 RESEARCH_RETRIES = int(_env("LUNGPAIR_RESEARCH_RETRIES", "1"))   # bounded retry
+# Research agents run in parallel, one per candidate pair (Gemini 3.8 Flash is
+# the Builder Guide's model for "fast parallel subagents").
+RESEARCH_WORKERS = int(_env("LUNGPAIR_RESEARCH_WORKERS", "5"))
+# Stopping rule: wall-clock budget for the whole research stage. Pairs not
+# finished in time are marked "timeout", never silently dropped.
+RESEARCH_BUDGET_S = float(_env("LUNGPAIR_RESEARCH_BUDGET_S", "90"))
 HTTP_TIMEOUT_S = float(_env("LUNGPAIR_HTTP_TIMEOUT_S", "120"))
 
 # --- Logs ---------------------------------------------------------------------

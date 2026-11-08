@@ -19,6 +19,8 @@ import re
 from typing import Callable
 
 from . import config, checks
+import time
+from concurrent.futures import ThreadPoolExecutor, as_completed, TimeoutError as FuturesTimeout
 from .agents import run_orchestrator, research_pair, run_checker
 from .runlog import RunLog
 from .tools import LungPairTools
@@ -106,12 +108,18 @@ def run_pipeline(question: str, tools: LungPairTools, log: RunLog, client=None,
         except Exception as e:
             log.write("error", agent="orchestrator", error=f"{type(e).__name__}: {e}")
             orch = {"summary": "", "error": str(e)}
+    known = [d["name"] for d in tools.list_drugs()["drugs"]]
+    g_scope = checks.out_of_scope_drugs(question, known)
+    report["out_of_scope"] = g_scope["unknown_drugs"]
+    log.write("gates", subject="question scope", gates=[g_scope])
     ranking, source = _latest_ranking(tools)
     if ranking is None:
         ranking, source = deterministic_ranking(question, tools, log)
     report["ranking_source"] = source
     if ranking is None or "ranked" not in ranking:
-        report["error"] = ("No ranker drug found in the question. Name a drug from the "
+        report["error"] = ((f'{", ".join(report["out_of_scope"])}: not in the NCI-ALMANAC panel, '
+                            "so LungPair gives no score. " if report["out_of_scope"] else "")
+                           + "No ranker drug found in the question. Name a drug from the "
                            "NCI-ALMANAC panel (e.g. gefitinib, docetaxel, carboplatin, pemetrexed).")
         report["ranker_response"] = ranking
         log.write("report", report=report)
@@ -142,18 +150,41 @@ def run_pipeline(question: str, tools: LungPairTools, log: RunLog, client=None,
         log.write("gates", subject="ranking", gates=[g_tier])
     report["tier4_gate"] = g_tier
 
-    # 3. Research + checks per candidate ----------------------------------
-    for c in candidates:
-        if client is None:
-            c["evidence"] = {"status": "not_run", "text": "No Gemini call (--no-llm)."}
-            continue
+    # 3. Research + checks per candidate, in parallel ----------------------
+    def _one(c):
         try:
-            c["evidence"] = evidence_for(client, c, withheld_names, log,
-                                         pubmed_check, follow_redirects)
+            return evidence_for(client, c, withheld_names, log, pubmed_check, follow_redirects)
         except Exception as e:
             log.write("error", agent="research", pair=f'{c["drug_a"]}+{c["drug_b"]}',
                       error=f"{type(e).__name__}: {e}")
-            c["evidence"] = {"status": "error", "text": f"research failed: {e}"}
+            return {"status": "error", "text": f"research failed: {e}"}
+
+    if client is None:
+        for c in candidates:
+            c["evidence"] = {"status": "not_run", "text": "No Gemini call (--no-llm)."}
+    elif candidates:
+        t0 = time.monotonic()
+        workers = max(1, min(config.RESEARCH_WORKERS, len(candidates)))
+        log.write("stage", stage="research", parallel_workers=workers,
+                  budget_s=config.RESEARCH_BUDGET_S, pairs=len(candidates))
+        pool = ThreadPoolExecutor(max_workers=workers)
+        futs = {pool.submit(_one, c): c for c in candidates}
+        done = set()
+        try:
+            for f in as_completed(futs, timeout=config.RESEARCH_BUDGET_S):
+                futs[f]["evidence"] = f.result()
+                done.add(id(futs[f]))
+        except FuturesTimeout:
+            for f, c in futs.items():
+                if id(c) not in done:
+                    f.cancel()
+                    c["evidence"] = {"status": "timeout",
+                                     "text": f"research not finished within {config.RESEARCH_BUDGET_S:.0f} s budget"}
+            log.write("stop", rule="time_budget", budget_s=config.RESEARCH_BUDGET_S,
+                      unfinished=[f'{c["drug_a"]}+{c["drug_b"]}' for c in candidates
+                                  if id(c) not in done])
+        pool.shutdown(wait=False, cancel_futures=True)
+        log.write("stage", stage="research_done", seconds=round(time.monotonic() - t0, 1))
     report["candidates"] = candidates
 
     # 4. Human in the loop -------------------------------------------------

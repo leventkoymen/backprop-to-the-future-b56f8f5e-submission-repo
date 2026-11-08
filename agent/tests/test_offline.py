@@ -171,3 +171,40 @@ def test_no_llm_mode_uses_deterministic_fallback(log):
 def test_receipt_redacts_key_shaped_strings(log):
     log.write("x", note="AIza" + "A" * 35)
     assert "AIzaAAAA" not in open(log.path).read()
+
+
+def test_research_runs_in_parallel_and_respects_time_budget(log, monkeypatch):
+    """Research agents run at the same time; a slow pair hits the stopping rule."""
+    import threading, time as _t
+    fake = FakeGemini(research_text=lambda i: "Prior evidence: PMID: 11111111.")
+    inner = fake.interactions.create
+    active, peak, lock = [0], [0], threading.Lock()
+
+    def slow_create(**kw):
+        if any(t.get("type") == "google_search" for t in (kw.get("tools") or [])):
+            with lock:
+                active[0] += 1; peak[0] = max(peak[0], active[0])
+            _t.sleep(0.3)
+            with lock:
+                active[0] -= 1
+        return inner(**kw)
+
+    monkeypatch.setattr(fake.interactions, "create", slow_create)
+    monkeypatch.setattr(config, "RESEARCH_BUDGET_S", 5.0)
+    rep = run(fake, log)
+    assert peak[0] >= 2                                   # more than one at once
+    seqs = [json.loads(l)["seq"] for l in open(log.path)]
+    assert len(seqs) == len(set(seqs))                     # log is thread-safe
+
+    monkeypatch.setattr(config, "RESEARCH_BUDGET_S", 0.05)  # stopping rule fires
+    rep = run(fake, RunLog(runs_dir=os.path.dirname(log.path), run_id="t2", mode="offline-test"))
+    assert any(c["evidence"]["status"] == "timeout" for c in rep["candidates"])
+
+
+def test_out_of_scope_drug_is_refused_by_name():
+    from agent.checks import out_of_scope_drugs
+    known = ["Gefitinib", "Docetaxel", "Carboplatin", "Paclitaxel"]
+    g = out_of_scope_drugs("Should we combine pembrolizumab with gefitinib?", known)
+    assert g["unknown_drugs"] == ["pembrolizumab"]
+    assert out_of_scope_drugs("osimertinib plus carboplatin", known)["unknown_drugs"] == ["osimertinib"]
+    assert out_of_scope_drugs("docetaxel and paclitaxel", known)["unknown_drugs"] == []

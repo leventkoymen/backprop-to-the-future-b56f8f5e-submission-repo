@@ -75,6 +75,11 @@ def main(argv=None) -> int:
     if client:
         print(f"models: orchestrator={config.ORCHESTRATOR_MODEL} research={config.RESEARCH_MODEL} "
               f"checker={config.CHECKER_MODEL}")
+    from .checks import out_of_scope_drugs
+    _scope = out_of_scope_drugs(a.question, [d["name"] for d in tools.list_drugs()["drugs"]])
+    if _scope["unknown_drugs"]:
+        print(f"\nREFUSED for: {', '.join(_scope['unknown_drugs'])} (not in the 105-drug NCI-ALMANAC "
+              "panel: no score, no evidence search). Anything below covers only drugs in the panel.")
     rep = run_pipeline(a.question, tools, log, client=client, top_k=a.top_k,
                        approve=interactive_approve(approver, a.approve),
                        pubmed_check=not a.no_pubmed_check)
