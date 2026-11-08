@@ -5,8 +5,8 @@ export const colors = {
   bg: "#080e1e",
   floor: "#0d1527",
   grid: "#1e293b",
-  base: "#24324d", // ordinary pair (positive score, muted background)
-  baseNegative: "#172033", // pair whose drugs work against each other
+  base: "#a3b4cc", // ordinary pair (positive score, muted background)
+  baseNegative: "#6b7f9c", // pair whose drugs work against each other
   unknown: "#1c263d", // Scene B: result not yet "bought"
   doseBase: "#1e293b", // Scene C colour scale starts here
 
