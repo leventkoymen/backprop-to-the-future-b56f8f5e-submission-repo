@@ -13,7 +13,7 @@
 [![One-Page Summary](https://img.shields.io/badge/Deliverable-One--Page%20Writeup-blue?style=for-the-badge)](docs/ONE-PAGE-WRITEUP.md)
 [![Live Demo Runner](https://img.shields.io/badge/Live%20Demo-./demo.sh-green?style=for-the-badge)](demo.sh)
 [![4-Min Pitch Script](https://img.shields.io/badge/Pitch-4--Min%20Script%20%26%20Q%26A-orange?style=for-the-badge)](docs/PITCH-SCRIPT.md)
-[![Tests Passing](https://img.shields.io/badge/Tests-23%20Passed-brightgreen?style=for-the-badge)](agent/tests/)
+[![Tests Passing](https://img.shields.io/badge/Tests-25%20Passed-brightgreen?style=for-the-badge)](agent/tests/)
 
 </div>
 
@@ -222,21 +222,30 @@ $env:GEMINI_API_KEY="<your-gemini-key>"
 python -m agent.run --api inprocess --top-k 3 "Which partner should a lab screen with gefitinib next?"
 ```
 
-### 3. Deterministic Offline Mode (No Internet / Wi-Fi Fallback)
-If the venue Wi-Fi is congested or drops during evaluation, run the completely deterministic offline mode:
+### 3. Recorded Live Run Replay (Wi-Fi Insurance Fallback)
+If venue Wi-Fi drops or is congested, replay the verified live multi-agent execution recorded from Google Gemini APIs (orchestrator: Argon, research: Flash, checker: Flash-Lite):
+```bash
+python -m agent.run --replay
+# Or run with the automated demo script:
+./demo.sh --replay
+```
+
+### 4. Deterministic Offline Mode (No Internet / Model Fallback)
+If the venue Wi-Fi is completely down and you want to test new queries without model calls:
 ```bash
 python -m agent.run --no-llm --api inprocess "Which partner should a lab screen with gefitinib next?"
 ```
 
-### 4. Interactive 3D Molecular Viewer & Dose Response Surface
+### 5. Interactive 3D Molecular Viewer & Dose Response Surface
 ```bash
 cd visual
 npm install
 npm run dev
 # Open http://localhost:5173 to explore 3D molecular structures and synergy surfaces
+# Or double-click run_viewer.sh (macOS) / run_viewer.bat (Windows)
 ```
 
-### 5. Inspect Cryptographic Run Receipts
+### 6. Inspect Cryptographic Run Receipts
 Every execution produces a cryptographic audit log:
 - `runs/<run_id>.jsonl`: Token counts, latencies, model calls, tool executions, and gate evaluations.
 - `runs/<run_id>.report.json`: Cleaned report ready for UI ingestion.
@@ -277,10 +286,12 @@ Every execution produces a cryptographic audit log:
 │   ├── pipeline.py              # Parallel execution harness & human-in-the-loop logic
 │   ├── run.py                   # Interactive CLI runner
 │   ├── run_eval.py              # Cross-disciplinary multi-persona evaluator runner
+│   ├── replay.py                # Verified live multi-agent execution replay engine
 │   ├── evaluator.py             # Binary Yes/No evaluation batteries across 6 personas
 │   ├── runlog.py                # JSONL receipt and redaction logger
 │   ├── tools.py                 # Tool wrappers: API, PubChem PUG-REST, ChEMBL Web Services
-│   └── tests/                   # 23 offline verification & evaluator tests
+│   └── tests/                   # 25 offline verification, replay & evaluator tests
+├── data/                        # Verified live run recordings (recorded_run.json/jsonl)
 ├── backend/                     # Preclinical Ranker API
 │   ├── api.py                   # Flask REST API endpoints (/rank, /pair, /drugs)
 │   ├── model.py                 # Random forest ranker & interval estimators
