@@ -163,7 +163,7 @@ def all_pass(gates: list[dict]) -> bool:
 # drug, not a silent answer about the other drug only.
 _DRUG_SUFFIX = re.compile(
     r"\b[a-z]{3,}(?:mab|nib|ciclib|lisib|parib|rasib|tecan|platin|taxel|rubicin|"
-    r"mustine|tabine|trexed|limus|zomib|degib|stat|vir)\b", re.I)
+    r"mustine|tabine|trexed|limus|zomib|degib|statin|formin|lukast|sartan|pril|olol|prazole|vir)\b", re.I)
 _KNOWN_OUTSIDE_PANEL = {  # common lung-cancer drugs not in NCI-ALMANAC
     "osimertinib", "pembrolizumab", "nivolumab", "atezolizumab", "durvalumab",
     "cemiplimab", "ipilimumab", "alectinib", "brigatinib", "lorlatinib", "crizotinib",
@@ -173,12 +173,68 @@ _KNOWN_OUTSIDE_PANEL = {  # common lung-cancer drugs not in NCI-ALMANAC
 }
 
 
+# Brand names a judge may type (brand -> generic). Generic is then checked
+# against the panel like any other name.
+BRANDS = {
+    "keytruda": "pembrolizumab", "opdivo": "nivolumab", "tecentriq": "atezolizumab",
+    "imfinzi": "durvalumab", "yervoy": "ipilimumab", "tagrisso": "osimertinib",
+    "iressa": "gefitinib", "tarceva": "erlotinib", "gilotrif": "afatinib",
+    "alecensa": "alectinib", "xalkori": "crizotinib", "lumakras": "sotorasib",
+    "avastin": "bevacizumab", "alimta": "pemetrexed", "taxotere": "docetaxel",
+    "taxol": "paclitaxel", "abraxane": "paclitaxel", "gemzar": "gemcitabine",
+    "tykerb": "lapatinib", "velcade": "bortezomib", "lipitor": "atorvastatin",
+}
+
+
 def out_of_scope_drugs(question: str, known_names: list[str]) -> dict:
+    import difflib
     known_words = {w for n in known_names for w in re.findall(r"[a-z]+", n.lower())}
-    words = set(re.findall(r"[a-z]+", question.lower()))
+    words = re.findall(r"[a-z]+", question.lower())
+    brands = {w: BRANDS[w] for w in words if w in BRANDS}
     cand = {w for w in words if w in _KNOWN_OUTSIDE_PANEL}
     cand |= {m.group(0).lower() for m in _DRUG_SUFFIX.finditer(question)}
+    cand |= {g for g in brands.values()}
     unknown = sorted(w for w in cand if w not in known_words)
+    suggest = {}
+    for w in list(unknown):  # misspelt panel drug (e.g. "gefitnib") -> suggest, not refuse
+        m = difflib.get_close_matches(w, list(known_words), n=1, cutoff=0.8)
+        if m:
+            suggest[w] = m[0]; unknown.remove(w)
+    # Possible misspellings of panel drugs: long words close to a known name.
+    for w in set(words) - known_words - set(BRANDS) - cand:
+        if len(w) >= 7:
+            m = difflib.get_close_matches(w, list(known_words), n=1, cutoff=0.8)
+            if m:
+                suggest[w] = m[0]
+    parts = []
+    if unknown:
+        parts.append("not in the 105-drug NCI-ALMANAC panel, so no score is given: " + ", ".join(unknown))
+    if brands:
+        parts.append("brand names read as: " + ", ".join(f"{b} = {g}" for b, g in brands.items()))
+    if suggest:
+        parts.append("did you mean: " + ", ".join(f"{w} -> {m}" for w, m in suggest.items()))
     return {"gate": "scope_stated", "pass": True, "unknown_drugs": unknown,
-            "detail": ("not in the 105-drug NCI-ALMANAC panel, so no score is given: "
-                       + ", ".join(unknown)) if unknown else "all named drugs are in the panel"}
+            "brands": brands, "did_you_mean": suggest,
+            "detail": "; ".join(parts) if parts else "all named drugs are in the panel"}
+
+
+# --- Intent: questions LungPair must refuse before any model is called ------
+_PATIENT_INTENT = re.compile(
+    r"\b(my|a|the|this|our) (patient|mum|mom|dad|father|mother|wife|husband|son|daughter|child)s?\b"
+    r"|\bshould (i|he|she|they|we) (take|be given|start|stop)\b|\b(what|which) dose\b|\bdos(e|age|ing) (for|of)\b"
+    r"|\bmg\b|\bprescri(be|ption)\b|\bis (it|this) safe\b|\bside effects? (for|in) (me|him|her)\b", re.I)
+_INJECTION = re.compile(r"ignore (all |the |previous |your )*(instructions|rules|gates)|system prompt|"
+                        r"you are now|disable (the )?(checks|gates)", re.I)
+
+
+def refuse_before_model(question: str) -> dict:
+    if _INJECTION.search(question):
+        return _gate("intent_in_scope", False,
+                     "Refused: the question asks the agent to change its rules. The checks are plain "
+                     "Python and cannot be switched off from a question.")
+    if _PATIENT_INTENT.search(question):
+        return _gate("intent_in_scope", False,
+                     "Refused: LungPair ranks drug pairs for preclinical lab screening on cell lines. "
+                     "It does not give treatment, dosing or safety advice for any person. Ask the "
+                     "treating clinician.")
+    return _gate("intent_in_scope", True, "preclinical screening question")

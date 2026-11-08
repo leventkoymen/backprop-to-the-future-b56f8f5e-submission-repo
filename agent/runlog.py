@@ -41,6 +41,8 @@ class RunLog:
         self.seq = 0
         self.records: list[dict] = []
         self._lock = threading.Lock()  # research agents write in parallel
+        self.late = False      # set when the research time budget has passed
+        self.deadline = None   # time.monotonic() deadline for the research stage
 
     def write(self, kind: str, **fields) -> dict:
         with self._lock:
@@ -50,6 +52,8 @@ class RunLog:
         self.seq += 1
         rec = {"seq": self.seq, "ts": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
                "run_id": self.run_id, "mode": self.mode, "kind": kind, **fields}
+        if self.late and threading.current_thread() is not threading.main_thread():
+            rec["late_after_budget"] = True  # written by a research thread after the stopping rule fired
         rec = _scrub(rec)
         with open(self.path, "a", encoding="utf-8") as f:
             f.write(json.dumps(rec, default=str) + "\n")
