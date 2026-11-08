@@ -11,6 +11,7 @@
 <br>
 
 [![Live 3D Web App](https://img.shields.io/badge/Live%203D%20Web%20App-Click%20to%20Open-fc734d?style=for-the-badge&logo=googlechrome&logoColor=white)](https://yonghwa11701-hash.github.io/lungpair-3d-visual/)
+[![Demo Video Walkthrough](https://img.shields.io/badge/Demo%20Video-Watch%20Walkthrough%20(MP4)-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](docs/img/demo-walkthrough.mp4)
 [![One-Page Summary](https://img.shields.io/badge/Deliverable-One--Page%20Writeup-blue?style=for-the-badge)](docs/ONE-PAGE-WRITEUP.md)
 [![Live Demo Runner](https://img.shields.io/badge/Live%20Demo-./demo.sh-green?style=for-the-badge)](demo.sh)
 [![4-Min Pitch Script](https://img.shields.io/badge/Pitch-4--Min%20Script%20%26%20Q%26A-orange?style=for-the-badge)](docs/PITCH-SCRIPT.md)
@@ -22,8 +23,8 @@
 
 </div>
 
-<p align="center"><img src="docs/img/haystack-3d.png" alt="3D view of 5,228 measured drug pairs in lung cancer cell lines; the 172 real hits glow green" width="900"></p>
-<p align="center"><sub>Every column represents a drug pair measured across NCI-ALMANAC non-small cell lung cancer cell lines. Only green columns (3.3%) represent validated synergy hits. Replay of measured screen data, not predictions.</sub></p>
+<p align="center"><img src="docs/img/demo-walkthrough.gif" alt="LungPair 3D Visualizer & Agent Triage Walkthrough: Haystack to Agent Triage to 3D Dose-Response Surface" width="900"></p>
+<p align="center"><sub>Automated walkthrough of LungPair's 3D synergy landscape: Scene 1 (5,228 pairs with 172 lit-up hits) ➔ Scene 2 (Gemini multi-agent triage & human sign-off) ➔ Scene 3 (Empirical 3D dose-response surface over Bliss independence). Replay of measured NCI-ALMANAC screen data.</sub></p>
 
 ---
 
