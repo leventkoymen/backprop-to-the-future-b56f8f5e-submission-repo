@@ -136,6 +136,13 @@ def research_pair(client, pair: dict, log: RunLog, feedback: str | None = None,
     model = model or config.RESEARCH_MODEL
     prompt = (f"Drug pair: {pair['drug_a']} + {pair['drug_b']} "
               f"(NCI NSC {pair['nsc_a']} and {pair['nsc_b']}), NSCLC.")
+    bio = []
+    if pair.get("chembl_mechs_a"):
+        bio.append(f"{pair['drug_a']} known targets/mechanisms (ChEMBL): {', '.join(pair['chembl_mechs_a'])}")
+    if pair.get("chembl_mechs_b"):
+        bio.append(f"{pair['drug_b']} known targets/mechanisms (ChEMBL): {', '.join(pair['chembl_mechs_b'])}")
+    if bio:
+        prompt += "\n" + "; ".join(bio) + "."
     if feedback:
         prompt += ("\n\nYour previous answer failed these checks; fix them and "
                    f"cite only sources you actually retrieved: {feedback}")

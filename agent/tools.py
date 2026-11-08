@@ -14,6 +14,7 @@ import json
 import os
 import sys
 import urllib.error
+import urllib.parse
 import urllib.request
 from typing import Any, Callable
 
@@ -83,6 +84,63 @@ def make_api(spec: str | None = None):
     return InProcessApi() if spec == "inprocess" else HttpApi(spec)
 
 
+def resolve_pubchem(name: str, timeout: float = 2.0) -> dict:
+    """Fetch verified compound properties (CID, SMILES, formula, MW) from PubChem PUG-REST."""
+    clean = str(name).strip()
+    url = (f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/"
+           f"{urllib.parse.quote(clean)}/property/CanonicalSMILES,MolecularWeight,MolecularFormula,IUPACName/JSON")
+    req = urllib.request.Request(url, headers={"User-Agent": "LungPair/1.0", "Accept": "application/json"})
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            data = json.loads(r.read().decode())
+            props = data.get("PropertyTable", {}).get("Properties", [])
+            if props:
+                p = props[0]
+                smiles = p.get("CanonicalSMILES") or p.get("ConnectivitySMILES", "")
+                return {
+                    "found": True,
+                    "name": clean,
+                    "cid": p.get("CID"),
+                    "smiles": smiles,
+                    "molecular_weight": p.get("MolecularWeight"),
+                    "formula": p.get("MolecularFormula"),
+                    "iupac_name": p.get("IUPACName"),
+                    "source": "pubchem",
+                }
+    except Exception as e:
+        return {"found": False, "name": clean, "error": str(e), "source": "pubchem"}
+    return {"found": False, "name": clean, "source": "pubchem"}
+
+
+def get_chembl_mechanism(name: str, timeout: float = 2.0) -> dict:
+    """Fetch verified mechanism of action and target IDs from EMBL-EBI ChEMBL API."""
+    clean = str(name).strip()
+    mol_url = f"https://www.ebi.ac.uk/chembl/api/data/molecule.json?pref_name__iexact={urllib.parse.quote(clean)}"
+    req = urllib.request.Request(mol_url, headers={"User-Agent": "LungPair/1.0", "Accept": "application/json"})
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            mols = json.loads(r.read().decode()).get("molecules", [])
+            if not mols:
+                return {"found": False, "name": clean, "source": "chembl"}
+            chembl_id = mols[0].get("molecule_chembl_id")
+            mech_url = f"https://www.ebi.ac.uk/chembl/api/data/mechanism.json?molecule_chembl_id={chembl_id}"
+            req_m = urllib.request.Request(mech_url, headers={"User-Agent": "LungPair/1.0", "Accept": "application/json"})
+            with urllib.request.urlopen(req_m, timeout=timeout) as r_m:
+                mechs = json.loads(r_m.read().decode()).get("mechanisms", [])
+                mech_list = [{"mechanism": m.get("mechanism_of_action"), "target_chembl_id": m.get("target_chembl_id")}
+                             for m in mechs if m.get("mechanism_of_action")]
+                return {
+                    "found": True,
+                    "name": clean,
+                    "chembl_id": chembl_id,
+                    "mechanisms": mech_list,
+                    "source": "chembl",
+                }
+    except Exception as e:
+        return {"found": False, "name": clean, "error": str(e), "source": "chembl"}
+    return {"found": False, "name": clean, "source": "chembl"}
+
+
 # --------------------------------------------------------------------------- #
 # Tool functions (what the model can call)
 # --------------------------------------------------------------------------- #
@@ -94,6 +152,8 @@ class LungPairTools:
         self.api = api
         self.results: list[dict] = []      # every tool call + raw result
         self._drugs: list[dict] | None = None
+        self._pubchem_cache: dict[str, dict] = {}
+        self._chembl_cache: dict[str, dict] = {}
 
     # -- helpers -------------------------------------------------------------
     def _drug_table(self) -> list[dict]:
@@ -121,6 +181,20 @@ class LungPairTools:
         return {"resolved": found, "unknown": unknown,
                 "note": "Unknown drugs are not in NCI-ALMANAC as served here "
                         "(e.g. osimertinib) and cannot be ranked."}
+
+    def resolve_pubchem(self, name: str) -> dict:
+        """Resolve compound properties from PubChem PUG-REST."""
+        key = str(name).strip().lower()
+        if key not in self._pubchem_cache:
+            self._pubchem_cache[key] = resolve_pubchem(name)
+        return self._pubchem_cache[key]
+
+    def get_chembl_mechanism(self, name: str) -> dict:
+        """Resolve mechanism of action from ChEMBL Web Services."""
+        key = str(name).strip().lower()
+        if key not in self._chembl_cache:
+            self._chembl_cache[key] = get_chembl_mechanism(name)
+        return self._chembl_cache[key]
 
     def rank_pairs(self, drugs: list[str], top: int = 20) -> dict:
         """Rank every pair among the given drugs (Duncan's POST /rank)."""
@@ -166,6 +240,8 @@ class LungPairTools:
             "rank_pairs": self.rank_pairs,
             "rank_partners": self.rank_partners,
             "get_pair": self.get_pair,
+            "resolve_pubchem": self.resolve_pubchem,
+            "get_chembl_mechanism": self.get_chembl_mechanism,
         }.get(name)
         if fn is None:
             out: dict[str, Any] = {"error": f"unknown tool {name}"}
@@ -192,6 +268,18 @@ TOOL_DECLARATIONS = [
      "parameters": {"type": "object", "properties": {
          "names": {"type": "array", "items": {"type": "string"}}},
          "required": ["names"]}},
+    {"type": "function", "name": "resolve_pubchem",
+     "description": "Fetch verified compound properties (CID, canonical SMILES, "
+                    "formula, molecular weight, IUPAC name) from PubChem PUG-REST API.",
+     "parameters": {"type": "object", "properties": {
+         "name": {"type": "string", "description": "Drug name, e.g. Gefitinib"}},
+         "required": ["name"]}},
+    {"type": "function", "name": "get_chembl_mechanism",
+     "description": "Fetch verified mechanisms of action and target IDs from "
+                    "EMBL-EBI ChEMBL REST API.",
+     "parameters": {"type": "object", "properties": {
+         "name": {"type": "string", "description": "Drug name, e.g. Gefitinib"}},
+         "required": ["name"]}},
     {"type": "function", "name": "rank_partners",
      "description": "Rank all known drugs as combination partners for one "
                     "anchor drug. Returns ranked pairs (tier 1-3, score, 95% "

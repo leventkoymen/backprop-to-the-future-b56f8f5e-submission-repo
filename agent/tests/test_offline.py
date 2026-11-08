@@ -53,6 +53,25 @@ def test_unknown_tool_and_bad_args_are_captured():
     assert "error" in t.call("rank_pairs", {"nonsense": 1})
 
 
+def test_pubchem_and_chembl_tool_declarations_and_dispatch():
+    from agent.tools import TOOL_DECLARATIONS
+    names = {d["name"] for d in TOOL_DECLARATIONS}
+    assert "resolve_pubchem" in names
+    assert "get_chembl_mechanism" in names
+
+    t = LungPairTools(FakeApi())
+    # Mocking lookups for offline test
+    t.resolve_pubchem = lambda name: {"found": True, "name": name, "cid": 1234, "smiles": "CC", "source": "pubchem"}
+    t.get_chembl_mechanism = lambda name: {"found": True, "name": name, "chembl_id": "CHEMBL1",
+                                           "mechanisms": [{"mechanism": "EGFR inhibitor"}], "source": "chembl"}
+
+    r_pub = t.call("resolve_pubchem", {"name": "Gefitinib"})
+    assert r_pub["found"] and r_pub["cid"] == 1234 and r_pub["source"] == "pubchem"
+
+    r_chem = t.call("get_chembl_mechanism", {"name": "Gefitinib"})
+    assert r_chem["found"] and r_chem["chembl_id"] == "CHEMBL1"
+
+
 # --- gates ------------------------------------------------------------------
 def test_citation_gate_grounded_vs_invented():
     g = [{"url": "https://pubmed.ncbi.nlm.nih.gov/11111111/", "title": None}]
