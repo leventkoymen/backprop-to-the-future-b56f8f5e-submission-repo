@@ -10,6 +10,7 @@
 
 <br>
 
+[![Live 3D Web App](https://img.shields.io/badge/Live%203D%20Web%20App-Click%20to%20Open-fc734d?style=for-the-badge&logo=googlechrome&logoColor=white)](https://yonghwa11701-hash.github.io/lungpair-3d-visual/)
 [![One-Page Summary](https://img.shields.io/badge/Deliverable-One--Page%20Writeup-blue?style=for-the-badge)](docs/ONE-PAGE-WRITEUP.md)
 [![Live Demo Runner](https://img.shields.io/badge/Live%20Demo-./demo.sh-green?style=for-the-badge)](demo.sh)
 [![4-Min Pitch Script](https://img.shields.io/badge/Pitch-4--Min%20Script%20%26%20Q%26A-orange?style=for-the-badge)](docs/PITCH-SCRIPT.md)
@@ -242,6 +243,8 @@ python -m agent.run --no-llm --api inprocess "Which partner should a lab screen 
 
 ### 5. Interactive 3D Molecular Viewer & Spatial Visualization (`visual/`)
 Built with **React, Three.js, and @react-three/fiber**, the frontend offers three synchronized viewports and an offline single-file executable:
+- **Live Hosted Web Application:** Run the full 3D app live in your browser on any computer, phone, or tablet with zero installation:  
+  👉 **[https://yonghwa11701-hash.github.io/lungpair-3d-visual/](https://yonghwa11701-hash.github.io/lungpair-3d-visual/)**
 - **Scene 1 · The Haystack:** 3D spatial matrix of all 5,228 tested NSCLC combinations, visually contrasting the 172 true biological hits (3.3%) against inactive negative space.
 - **Scene 2 · Gemini Multi-Agent & 3D Molecular Inspector:** Interactive proposal cards streaming from the Gemini harness with an unbypassable human **Approve Batch** button. Clicking **"View molecules"** opens an interactive 3D ball-and-stick structural inspector rendering canonical PubChem `.sdf` coordinate files for all 105 drugs, displaying SMILES, molecular weight, formula, and clinical $C_{\max}$ dose reachability.
 - **Scene 3 · Dose Response Surface:** Continuous 3D Loewe synergy biophysical mesh across the 3 × 3 concentration grid, allowing researchers to verify whether synergy spans the whole concentration space or is an isolated edge artifact.
