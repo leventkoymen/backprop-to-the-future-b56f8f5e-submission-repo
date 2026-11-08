@@ -1,0 +1,51 @@
+rank,drug_a,drug_b,trials_any,trials_lung,lung_examples
+1,Dactinomycin,Tamoxifen,1,0,
+2,Paclitaxel,Estramustine,20,0,
+3,Dactinomycin,Valrubicin,0,0,
+4,Docetaxel,Gefitinib,36,22,NCT02701231: Low-frequency Rotating Magnetic System Combined With Systemic Anti-tumor Therapy for Advan | NCT01755923: Gefitinib or Docetaxel as Second Line Therapy for Wild-type Epidermal Growth Factor Recept | NCT00198393: Randomized Phase 2 Study of 3 Therapeutic Modalities in PS 2/3 Patients With NSCLC Stage I
+5,Tamoxifen,Docetaxel,34,0,
+6,Tamoxifen,Cabazitaxel,0,0,
+7,Mitoxantrone,Gefitinib,2,0,
+8,Vinblastine,Vismodegib,1,0,
+9,Paclitaxel,Lapatinib,52,1,NCT00313599: Lapatinib and Paclitaxel in Treating Patients With Advanced Solid Tumors
+10,Dactinomycin,Estramustine,1,0,
+11,Tretinoin,Paclitaxel,14,4,"NCT00062010: Interferon Alfa, Isotretinoin, and Paclitaxel in Treating Patients With Recurrent Small Ce | NCT01041833: Effect of All-trans Retinoic Acid With Chemotherapy Based on Paclitaxel and Cisplatin As F | NCT00617409: To Immunize Patients With Extensive Stage SCLC Combined With Chemo With or Without All Tra"
+12,Docetaxel,Estramustine,27,0,
+13,Docetaxel,Lapatinib,22,0,
+14,Paclitaxel,Tamoxifen,39,0,
+15,Dactinomycin,Fulvestrant,0,0,
+16,Bortezomib,Erlotinib,7,1,NCT00283634: A Study of Tarceva for Use in Patients With Relapsed or Refractory Metastatic Non-Small Ce
+17,Tretinoin,Docetaxel,3,1,"NCT00514293: Bexarotene, Tretinoin, and Combination Chemotherapy in Treating Patients With Stage III or"
+18,Gefitinib,Cabazitaxel,1,0,
+19,Megestrol,Docetaxel,0,0,
+20,Valrubicin,Vorinostat,0,0,
+21,Docetaxel,Sorafenib,11,2,NCT00647426: Phase II Study of Sorafenib + Carboplatin and Docetaxel in First Line Treatment of Stage I | NCT00801801: Study of Low Dose Chemotherapy Plus Sorafenib as Initial Therapy for Patients With Advance
+22,Paclitaxel,Celecoxib,8,1,NCT00062179: Paclitaxel and Carboplatin With or Without Celecoxib Before Surgery in Treating Patients W
+23,Tretinoin,Cabazitaxel,2,0,
+24,Celecoxib,Cabazitaxel,1,0,
+25,Vinblastine,Tamoxifen,1,0,
+26,Vismodegib,Cabazitaxel,1,0,
+27,Vincristine,Gefitinib,2,0,
+28,Paclitaxel,Sorafenib,35,5,"NCT00558636: A Trial Comparing Safety and Efficacy of Carboplatin and Paclitaxel Plus or Minus Sorafeni | NCT00547443: Sorafenib and High-Dose Carboplatin, Paclitaxel, and External-Beam Radiation Therapy in Tr | NCT00300885: A Randomized Controlled Trial Comparing Safety and Efficacy of Carboplatin and Paclitaxel "
+29,Lapatinib,Cabazitaxel,2,0,
+30,Dactinomycin,Tretinoin,2,0,
+31,Abiraterone,Cabazitaxel,31,0,
+32,Mithramycin,Mitoxantrone,0,0,
+33,Mitoxantrone,Imatinib,5,0,
+34,Raloxifene,Cabazitaxel,0,0,
+35,Clofarabine,Bortezomib,6,0,
+36,Nilotinib,Cabazitaxel,1,0,
+37,Mitoxantrone,Celecoxib,0,0,
+38,Tamoxifen,Bortezomib,2,0,
+39,Methotrexate,Letrozole,12,0,
+40,Bleomycin,Bortezomib,2,0,
+41,Mithramycin,Vismodegib,0,0,
+42,Sorafenib,Cabazitaxel,2,0,
+43,Vandetanib,Cabazitaxel,0,0,
+44,Vinblastine,Vemurafenib,1,0,
+45,Vemurafenib,Cabazitaxel,1,0,
+46,Dactinomycin,Lapatinib,1,0,
+47,Mitoxantrone,Erlotinib,2,0,
+48,Paclitaxel,Gefitinib,19,13,NCT02039674: A Study of Pembrolizumab (MK-3475) in Combination With Chemotherapy or Immunotherapy in Pa | NCT01085136: LUX-Lung 5: Afatinib Plus Weekly Paclitaxel Versus Investigator's Choice of Single Agent C | NCT05834348: A Study to Learn About the Effectiveness of Cancer Medicines in Patients With Metastatic N
+49,Valrubicin,Sunitinib,0,0,
+50,Daunorubicin,Gefitinib,4,0,
