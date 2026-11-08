@@ -13,7 +13,7 @@
 [![One-Page Summary](https://img.shields.io/badge/Deliverable-One--Page%20Writeup-blue?style=for-the-badge)](docs/ONE-PAGE-WRITEUP.md)
 [![Live Demo Runner](https://img.shields.io/badge/Live%20Demo-./demo.sh-green?style=for-the-badge)](demo.sh)
 [![4-Min Pitch Script](https://img.shields.io/badge/Pitch-4--Min%20Script%20%26%20Q%26A-orange?style=for-the-badge)](docs/PITCH-SCRIPT.md)
-[![Tests Passing](https://img.shields.io/badge/Tests-22%20Passed-brightgreen?style=for-the-badge)](agent/tests/test_offline.py)
+[![Tests Passing](https://img.shields.io/badge/Tests-23%20Passed-brightgreen?style=for-the-badge)](agent/tests/)
 
 </div>
 
@@ -276,9 +276,11 @@ Every execution produces a cryptographic audit log:
 │   ├── gemini.py                # Google GenAI Interactions API client
 │   ├── pipeline.py              # Parallel execution harness & human-in-the-loop logic
 │   ├── run.py                   # Interactive CLI runner
+│   ├── run_eval.py              # Cross-disciplinary multi-persona evaluator runner
+│   ├── evaluator.py             # Binary Yes/No evaluation batteries across 6 personas
 │   ├── runlog.py                # JSONL receipt and redaction logger
 │   ├── tools.py                 # Tool wrappers: API, PubChem PUG-REST, ChEMBL Web Services
-│   └── tests/test_offline.py    # 22 offline verification tests
+│   └── tests/                   # 23 offline verification & evaluator tests
 ├── backend/                     # Preclinical Ranker API
 │   ├── api.py                   # Flask REST API endpoints (/rank, /pair, /drugs)
 │   ├── model.py                 # Random forest ranker & interval estimators

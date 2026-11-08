@@ -43,9 +43,10 @@ echo "  [2] Direct Combination Scoring (Docetaxel, Carboplatin, Pemetrexed)"
 echo "  [3] Safety Refusal Gate (Clinical treatment / patient advice test)"
 echo "  [4] Panel Scope Refusal Gate (Unmeasured drug test: Osimertinib)"
 echo "  [5] Offline Wi-Fi Fallback (--no-llm deterministic ranker)"
-echo "  [6] Run Full Verification Test Suite (22 unit tests)"
+echo "  [6] Run Full Verification Test Suite (23 unit tests across offline pipeline & evaluator)"
+echo "  [7] Launch 3D Molecular & Synergy Viewer (Browser)"
 echo ""
-read -r -p "Enter choice [1-6] (default: 1): " choice
+read -r -p "Enter choice [1-7] (default: 1): " choice
 choice="${choice:-1}"
 
 case "$choice" in
@@ -70,8 +71,12 @@ case "$choice" in
         "$PYTHON_BIN" -m agent.run --no-llm --api inprocess "Which partner should a lab screen with gefitinib next?"
         ;;
     6)
-        echo -e "\nRunning: Test Suite...\n"
-        "$PYTHON_BIN" -m pytest agent/tests/test_offline.py -v
+        echo -e "\nRunning: Test Suite (23 unit tests)...\n"
+        "$PYTHON_BIN" -m pytest agent/tests/ -v
+        ;;
+    7)
+        echo -e "\nLaunching 3D Molecular Viewer...\n"
+        ./run_viewer.sh
         ;;
     *)
         echo "Invalid choice. Exiting."
