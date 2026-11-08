@@ -13,6 +13,7 @@
 [![One-Page Summary](https://img.shields.io/badge/Deliverable-One--Page%20Writeup-blue?style=for-the-badge)](docs/ONE-PAGE-WRITEUP.md)
 [![Live Demo Runner](https://img.shields.io/badge/Live%20Demo-./demo.sh-green?style=for-the-badge)](demo.sh)
 [![4-Min Pitch Script](https://img.shields.io/badge/Pitch-4--Min%20Script%20%26%20Q%26A-orange?style=for-the-badge)](docs/PITCH-SCRIPT.md)
+[![Data & Licences](https://img.shields.io/badge/Data%20%26%20Licences-DATA.md-purple?style=for-the-badge)](DATA.md)
 [![Tests Passing](https://img.shields.io/badge/Tests-25%20Passed-brightgreen?style=for-the-badge)](agent/tests/)
 
 </div>

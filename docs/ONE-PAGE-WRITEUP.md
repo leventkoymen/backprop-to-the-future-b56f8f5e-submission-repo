@@ -14,13 +14,14 @@ Bringing novel cancer combinations to clinic takes over a decade and billions of
 - **Immediate Value:** Reduces wasted screening wells by pre-filtering high-probability synergistic combinations (Tier 1 precision: 89% vs 3% random base rate), cutting experimental screening costs and accelerating time-to-hit.
 - **Plausible Path to Use:** Designed for direct drop-in integration into academic screening cores. Before a multi-well assay is programmed, LungPair ranks candidate partners, fetches verified mechanistic literature, and outputs an auditable batch sign-off sheet for the principal investigator.
 
-### 3. Data & Permitted Biotech APIs
-All data sources strictly adhere to the hackathon's permitted data policy:
-- **NCI-ALMANAC (DTP):** 5,228 measured pairs across 9 NSCLC lines (A549, EKVX, HOP-62, HOP-92, NCI-H226, NCI-H23, NCI-H322M, NCI-H460, NCI-H522). Rescaled to 9-dose response matrices.
-- **PubChem PUG-REST API:** Real-time resolution of free-text drug names to canonical SMILES, CID, molecular formula, and molecular weights (`tools.resolve_pubchem`).
-- **EMBL-EBI ChEMBL Web Services:** REST API retrieval of validated mechanisms of action and molecular target IDs (e.g. EGFR, TUBB1) to prime research agents (`tools.get_chembl_mechanism`).
-- **NCBI PubMed / E-utilities:** Dynamic citation retrieval and title co-occurrence validation.
-- **CCLE / cBioPortal:** Public baseline mutations for the 9 lung cell lines (`experiments/genotype_coverage/`).
+### 3. Data, Permitted Biotech APIs & Licences
+All data sources strictly adhere to the hackathon's permitted data policy and are comprehensively licence-audited in [`DATA.md`](../DATA.md):
+- **NCI-ALMANAC (DTP):** 5,228 measured pairs across 9 NSCLC lines (A549, EKVX, HOP-62, HOP-92, NCI-H226, NCI-H23, NCI-H322M, NCI-H460, NCI-H522). Rescaled to 9-dose response matrices. Public Domain (U.S. Govt Work).
+- **Merck O'Neil External Screen (132 pairs):** Held-out independent screen used for external validation. Open Academic Access.
+- **PubChem PUG-REST API:** Real-time resolution of free-text drug names to canonical SMILES, CID, molecular formula, and molecular weights (`tools.resolve_pubchem`). Public Domain.
+- **EMBL-EBI ChEMBL Web Services:** REST API retrieval of validated mechanisms of action and molecular target IDs (e.g. EGFR, TUBB1) to prime research agents (`tools.get_chembl_mechanism`). CC BY-SA 4.0.
+- **NCBI PubMed / E-utilities:** Dynamic citation retrieval and title co-occurrence validation. Public Domain.
+- **CCLE / cBioPortal:** Public baseline mutations for the 9 lung cell lines (`experiments/genotype_coverage/`). CC BY 4.0.
 
 ### 4. Agent Architecture & Technical Evaluation
 Built according to Google DeepMind's "Harness²" paradigm—prioritizing deterministic external gates over unconstrained generation:
