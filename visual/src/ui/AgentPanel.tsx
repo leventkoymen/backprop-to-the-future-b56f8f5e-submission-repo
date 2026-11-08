@@ -48,8 +48,8 @@ export function AgentPanel({ runs, runName, onRun, compiled, run, state, view, o
       )}
 
       <div className="stats">
-        <Stat k={`Budget left (${unit})`} v={view.budgetLeft !== undefined ? `${view.budgetLeft}${total ? ` / ${total}` : ""}` : "–"} />
-        <Stat k="Real hits found" v={String(view.hitsTotal)} accent />
+        <Stat k={`Budget left (${unit})`} v={view.budgetLeft !== undefined ? `${view.budgetLeft}${total ? ` / ${total}` : ""}` : "–"} variant="orange" />
+        <Stat k="Real hits found" v={String(view.hitsTotal)} variant="teal" />
         <Stat k="Random, same budget" v={view.randomTotal.toFixed(1)} />
         <Stat k="Round" v={view.current ? `${view.current.round} / ${compiled.rounds.length}` : `– / ${compiled.rounds.length}`} />
       </div>
@@ -90,11 +90,12 @@ export function AgentPanel({ runs, runName, onRun, compiled, run, state, view, o
   );
 }
 
-function Stat({ k, v, accent }: { k: string; v: string; accent?: boolean }) {
+function Stat({ k, v, variant }: { k: string; v: string; variant?: "teal" | "orange" }) {
+  const vClass = variant === "orange" ? "stat-v accent-orange" : variant === "teal" ? "stat-v accent-teal" : "stat-v";
   return (
     <div className="stat">
       <div className="muted small">{k}</div>
-      <div className={accent ? "stat-v accent" : "stat-v"}>{v}</div>
+      <div className={vClass}>{v}</div>
     </div>
   );
 }

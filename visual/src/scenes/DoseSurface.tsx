@@ -112,7 +112,7 @@ export function DoseSurface({ grid, view }: { grid: DoseGrid; view: DoseView }) 
       )}
       <mesh geometry={geo.main}>
         {view === "growth" ? (
-          <meshStandardMaterial color={colors.hit} transparent opacity={0.8} side={THREE.DoubleSide} flatShading />
+          <meshStandardMaterial color={colors.accent} transparent opacity={0.85} side={THREE.DoubleSide} flatShading />
         ) : (
           <meshStandardMaterial vertexColors transparent opacity={0.9} side={THREE.DoubleSide} flatShading />
         )}
@@ -129,7 +129,7 @@ export function DoseSurface({ grid, view }: { grid: DoseGrid; view: DoseView }) 
           onPointerOut={() => setHover(null)}
         >
           <sphereGeometry args={[i === hover ? 1.1 : 0.8, 16, 16]} />
-          <meshStandardMaterial color={i === hover ? "#ffffff" : colors.hit} emissive={colors.hit} emissiveIntensity={0.4} />
+          <meshStandardMaterial color={i === hover ? "#ffffff" : colors.accent} emissive={colors.accent} emissiveIntensity={0.4} />
         </mesh>
       ))}
 

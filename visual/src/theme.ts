@@ -1,19 +1,26 @@
-// One place for colours and scales, so the look matches the organisers' slides
-// (dark navy, teal/violet accents) and the mock-ups.
+// 85% 2-Color Foundation (Midnight Space Navy + Electric Mint-Teal)
+// + 15% Unexpected Accent (Cantaloupe Orange #FC734D from Canva & Design Architecture)
 export const colors = {
-  bg: "#0b1029",
-  floor: "#121838",
-  grid: "#232a55",
-  base: "#3b4170", // ordinary pair (positive score)
-  baseNegative: "#2a2f55", // pair whose drugs work against each other
-  unknown: "#2f3560", // Scene B: result not yet "bought"
-  hit: "#2ee6c5", // real hit (teal)
-  proposed: "#ffc53d", // agent's pick awaiting approval (gold)
-  revealedHit: "#3ddc84",
-  revealedMiss: "#a3a8c3",
+  // Foundation: Deep Midnight Navy (matches Canva slide background)
+  bg: "#080e1e",
+  floor: "#0d1527",
+  grid: "#1e293b",
+  base: "#24324d", // ordinary pair (positive score, muted background)
+  baseNegative: "#172033", // pair whose drugs work against each other
+  unknown: "#1c263d", // Scene B: result not yet "bought"
+  doseBase: "#1e293b", // Scene C colour scale starts here
+
+  // Color 2: Electric Mint-Cyan / Teal (from Canva 5,032 & glowing hit columns)
+  hit: "#00dfa2", // real hit (luminous cyan/teal glow)
+  revealedHit: "#00dfa2",
+  revealedMiss: "#8292ab",
   hover: "#ffffff",
-  violet: "#8b7cf6",
-  tier: { T1: "#2ee6c5", T2: "#4c8dff", T3: "#f5b83d", T4: "#5d6282" },
+  violet: "#38bdf8", // Sky cyan reference in Scene C
+  tier: { T1: "#00dfa2", T2: "#38bdf8", T3: "#a3b3cc", T4: "#475569" },
+
+  // Color 3 (15%): Unexpected Cantaloupe Orange (matches Canva 'Budget for 50' & video)
+  proposed: "#fc734d", // agent's pick awaiting approval (Cantaloupe Orange)
+  accent: "#fc734d", // high-impact action CTA & budget indicators
 } as const;
 
 // Column heights: 1 ComboScore point = HEIGHT_SCALE scene units.
