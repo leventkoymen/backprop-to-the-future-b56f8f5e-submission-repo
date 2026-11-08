@@ -1,7 +1,27 @@
+# Python artifacts
 __pycache__/
-*.pyc
+*.py[cod]
 *.joblib
 *.db
 .venv/
 venv/
 runs/
+
+# Node / Frontend builds
+node_modules/
+dist/
+
+# Secrets: never commit
+.env
+.env.*
+*.key
+
+# OS & Editor
+.DS_Store
+.vscode/
+.idea/
+
+# Team-only material
+*handover*
+*Handover*
+zz generator*/

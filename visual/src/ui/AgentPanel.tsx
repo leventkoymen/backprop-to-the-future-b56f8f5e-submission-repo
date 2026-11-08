@@ -1,0 +1,91 @@
+import { drugName, type Run } from "../data/load";
+import type { CompiledRun, ReplayState, ReplayView } from "../state/replay";
+
+interface Props {
+  runs: Run[];
+  runName: string;
+  onRun: (name: string) => void;
+  compiled: CompiledRun;
+  run: Run;
+  state: ReplayState;
+  view: ReplayView;
+  onApprove: () => void;
+  onNext: () => void;
+  onReset: () => void;
+}
+
+/** Scene B side panel: budget, hits vs random, the picks with reasons, and the human Approve step. */
+export function AgentPanel({ runs, runName, onRun, compiled, run, state, view, onApprove, onNext, onReset }: Props) {
+  const isDemo = runName === "demo" || compiled.start?.label?.startsWith("DEMO");
+  const unit = compiled.start?.budget_unit ?? "experiments";
+  const total = compiled.start?.budget_total;
+  const status = {
+    ready: "Ready. Press Next to let the agent propose a batch.",
+    proposed: "Waiting for researcher approval.",
+    revealed: "Real results revealed. Press Next for the next round.",
+    finished: "Budget used. Run complete.",
+  }[state.phase];
+
+  return (
+    <aside className="agent-panel panel">
+      <label className="run-picker">
+        Run
+        <select value={runName} onChange={(e) => onRun(e.target.value)}>
+          {runs.map((r) => (
+            <option key={r.name} value={r.name}>{r.name}</option>
+          ))}
+        </select>
+      </label>
+      {isDemo && <div className="demo-banner">DEMO LOG: picks from the retrospective shortlist; results are measured values. Replace with the agent's real log.</div>}
+      {run.errors.length > 0 && (
+        <div className="error">Log has {run.errors.length} invalid line(s): {run.errors.slice(0, 2).join("; ")}</div>
+      )}
+
+      <div className="stats">
+        <Stat k={`Budget left (${unit})`} v={view.budgetLeft !== undefined ? `${view.budgetLeft}${total ? ` / ${total}` : ""}` : "–"} />
+        <Stat k="Real hits found" v={String(view.hitsTotal)} accent />
+        <Stat k="Random, same budget" v={view.randomTotal.toFixed(1)} />
+        <Stat k="Round" v={view.current ? `${view.current.round} / ${compiled.rounds.length}` : `– / ${compiled.rounds.length}`} />
+      </div>
+
+      <div className="status">{status}</div>
+
+      {view.current && (
+        <ol className="picks">
+          {view.current.propose.pairs.map((p, i) => {
+            const res = state.phase !== "proposed" ? view.current!.reveal?.results.find((r) => r.a === p.a && r.b === p.b) : undefined;
+            return (
+              <li key={`${p.a}-${p.b}`}>
+                <div className="pick-name">
+                  <span className="pick-num">{i + 1}</span> {drugName(p.a, p.drug_a)} + {drugName(p.b, p.drug_b)}
+                  {res && <span className={res.hit ? "badge hit" : "badge miss"}>{res.hit ? `Hit · ${res.score.toFixed(0)}` : `No · ${res.score.toFixed(0)}`}</span>}
+                </div>
+                <div className="muted small">Why: {p.reason}</div>
+                {p.sources && p.sources.length > 0 && <div className="muted small">Sources: {p.sources.join(", ")}</div>}
+              </li>
+            );
+          })}
+        </ol>
+      )}
+      {view.current?.learnNote && state.phase !== "proposed" && <div className="muted small">Learned: {view.current.learnNote}</div>}
+
+      <div className="actions">
+        <button className="primary" disabled={state.phase !== "proposed"} onClick={onApprove}>
+          Approve batch
+        </button>
+        <button onClick={onNext} disabled={state.phase === "proposed" || state.phase === "finished"}>Next</button>
+        <button onClick={onReset}>Reset</button>
+      </div>
+      <div className="muted small keys">Space = next / approve · R = reset</div>
+    </aside>
+  );
+}
+
+function Stat({ k, v, accent }: { k: string; v: string; accent?: boolean }) {
+  return (
+    <div className="stat">
+      <div className="muted small">{k}</div>
+      <div className={accent ? "stat-v accent" : "stat-v"}>{v}</div>
+    </div>
+  );
+}
