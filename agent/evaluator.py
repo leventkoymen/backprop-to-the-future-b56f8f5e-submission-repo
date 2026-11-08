@@ -33,7 +33,7 @@ PERSONAS = {
         ]
     },
     "Biostatistician": {
-        "metrics": ["FDR control ($q \le 0.05$)", "Receipts Precision ($>99.5\%$)"],
+        "metrics": [r"FDR control ($q \le 0.05$)", r"Receipts Precision ($>99.5\%$)"],
         "battery": [
             "Are all generated claims supported by empirical numbers extracted directly from tools?",
             "Are all citations cryptographically grounded with URL/PMID receipts?"
