@@ -28,7 +28,7 @@ export function Landscape({ mode, view, hovered, onHover, onSelect }: Props) {
     <group>
       <ambientLight intensity={0.55} />
       <directionalLight position={[60, 120, 40]} intensity={1.6} />
-      <directionalLight position={[-80, 40, -60]} intensity={0.4} color="#8b7cf6" />
+      <directionalLight position={[-80, 40, -60]} intensity={0.4} color="#a9c4e8" />
       <Floor />
       <PairColumns mode={mode} revealed={revealed} hovered={hovered} onHover={onHover} onSelect={onSelect} />
       {picks.length > 0 && <ProposedColumns picks={picks} />}

@@ -37,8 +37,8 @@ export function DosePicker({ grid, onGrid, view, onView }: { grid: DoseGrid; onG
       {!grid.complete && <div className="error">Only {grid.points.length} of 9 dose points measured: missing cells are left blank.</div>}
       <div className="muted small">
         {view === "growth"
-          ? "Teal = measured growth. Violet = expected if the drugs didn't interact. The white lines are the synergy."
-          : "Height = synergy (expected − observed). Teal above the floor = synergy; blue below = the drugs work against each other."}
+          ? "Coral = measured growth. Grey = expected if the drugs didn't interact. The white lines are the synergy."
+          : "Height = synergy (expected − observed). Coral above the floor = synergy; blue below = the drugs work against each other."}
       </div>
       <div className="muted small keys">V = switch view · ←/→ = cell line</div>
     </aside>

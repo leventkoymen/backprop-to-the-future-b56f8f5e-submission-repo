@@ -1,20 +1,22 @@
 // One place for colours and scales, so the look matches the organisers' slides
 // (dark navy, teal/violet accents) and the mock-ups.
 export const colors = {
-  bg: "#0b1029",
-  floor: "#121838",
-  grid: "#232a55",
-  base: "#8d94c4", // ordinary pair (positive score)
-  baseNegative: "#6c739f", // pair whose drugs work against each other
-  unknown: "#6c739f", // Scene B: result not yet "bought"
-  doseBase: "#3b4170", // Scene C colour scale starts here (unchanged)
-  hit: "#2ee6c5", // real hit (teal)
-  proposed: "#ffc53d", // agent's pick awaiting approval (gold)
-  revealedHit: "#3ddc84",
-  revealedMiss: "#d4d8ee",
+  // Palette: deep cold navy background, cool grey-blue neutrals, one coral accent.
+  // Coral vs blue is the one pairing that stays distinct for colour-blind viewers.
+  bg: "#0d1724", // deep cold navy
+  floor: "#132236",
+  grid: "#2b4262",
+  base: "#a3b4cc", // ordinary pair (positive score)
+  baseNegative: "#6b7f9c", // pair whose drugs work against each other
+  unknown: "#6b7f9c", // Scene B: result not yet "bought"
+  doseBase: "#2b4262", // Scene C colour scale starts here
+  hit: "#e77054", // real hit (coral accent)
+  proposed: "#dcccb7", // agent's pick awaiting approval (sand)
+  revealedHit: "#e77054",
+  revealedMiss: "#e8eef6",
   hover: "#ffffff",
-  violet: "#8b7cf6",
-  tier: { T1: "#2ee6c5", T2: "#4c8dff", T3: "#f5b83d", T4: "#5d6282" },
+  violet: "#a9b8cf", // reference planes in Scene C
+  tier: { T1: "#e77054", T2: "#6fa8dc", T3: "#dcccb7", T4: "#4a6080" },
 } as const;
 
 // Column heights: 1 ComboScore point = HEIGHT_SCALE scene units.

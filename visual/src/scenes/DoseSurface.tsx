@@ -6,7 +6,7 @@ import { Label } from "../three/Label";
 
 // Scene C: one real experiment = one 3 x 3 dose grid (drug pair x cell line).
 // Two views:
-//   "growth":  violet = expected % growth if the drugs didn't interact, teal = observed % growth.
+//   "growth":  grey = expected % growth if the drugs didn't interact, coral = observed % growth.
 //              The vertical gap between them is the synergy.
 //   "synergy": a single surface of synergy (expected - observed), floor = 0 = no interaction.
 // Surfaces pass exactly through the 9 measured points: no smoothing, no invented values.
@@ -57,7 +57,7 @@ function surface(points: DosePoint[], height: (p: DosePoint) => number, colorOf?
 }
 
 const synColor = (s: number) => {
-  // teal for synergy, blue for antagonism, grey near zero
+  // coral for synergy, blue for antagonism, slate near zero
   const t = Math.min(Math.abs(s) / 100, 1);
   return new THREE.Color(colors.doseBase).lerp(new THREE.Color(s >= 0 ? colors.hit : colors.tier.T2), t);
 };

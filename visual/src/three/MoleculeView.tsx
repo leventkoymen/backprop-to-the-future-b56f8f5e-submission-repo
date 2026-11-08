@@ -95,7 +95,7 @@ export function MoleculeView({ mol, mode, focus, light }: { mol: MoleculeData; m
   }, [mol]);
   return (
     <Canvas key={mol.nsc} camera={{ position: [0, 0, radius * 2.6], fov: 40 }} dpr={[1, 2]}>
-      <color attach="background" args={[light ? "#ffffff" : "#0e1433"]} />
+      <color attach="background" args={[light ? "#ffffff" : "#0d1724"]} />
       <ambientLight intensity={0.75} />
       <directionalLight position={[5, 8, 10]} intensity={1.3} />
       <Molecule mol={mol} mode={mode} focus={focus} />

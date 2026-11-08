@@ -6,7 +6,7 @@ import { pairKey } from "../data/load";
 import { colors } from "../theme";
 import { pairPosition, STUB } from "./PairColumns";
 
-/** The agent's current picks: gold columns that rise out of the floor, awaiting approval. */
+/** The agent's current picks: sand columns that rise out of the floor, awaiting approval. */
 export function ProposedColumns({ picks }: { picks: { a: number; b: number; drug_a: string; drug_b: string }[] }) {
   return (
     <group>
