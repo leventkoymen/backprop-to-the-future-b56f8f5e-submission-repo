@@ -20,7 +20,6 @@ from typing import Callable
 
 from . import config, checks
 import time
-from concurrent.futures import ThreadPoolExecutor, as_completed, TimeoutError as FuturesTimeout
 from .agents import run_orchestrator, research_pair, run_checker
 from .runlog import RunLog
 from .tools import LungPairTools
@@ -74,7 +73,8 @@ def evidence_for(client, pair: dict, withheld_names: list[str], log: RunLog,
             and not v.get("simulation_unlabelled")
         log.write("gates", subject=f'research {pair["drug_a"]}+{pair["drug_b"]}',
                   attempt=attempt, gates=gates, checker_ok=bool(model_ok))
-        if (checks.all_pass(gates) and model_ok) or attempt > config.RESEARCH_RETRIES:
+        near_deadline = log.deadline is not None and time.monotonic() > log.deadline - 30
+        if (checks.all_pass(gates) and model_ok) or attempt > config.RESEARCH_RETRIES or near_deadline:
             break
         fails = [g["gate"] + ": " + json.dumps(g["detail"], default=str)[:300]
                  for g in gates if not g["pass"]]
@@ -99,6 +99,15 @@ def run_pipeline(question: str, tools: LungPairTools, log: RunLog, client=None,
                       "checker": config.CHECKER_MODEL} if client else None)
     report: dict = {"run_id": log.run_id, "question": question, "mode": log.mode,
                     "disclaimer": DISCLAIMER}
+
+    # 0. Deterministic refusal before any model call ----------------------
+    g_pre = checks.refuse_before_model(question)
+    log.write("gates", subject="question intent", gates=[g_pre])
+    if not g_pre["pass"]:
+        report["refused"] = g_pre["detail"]
+        report["error"] = g_pre["detail"]
+        log.write("report", report=report)
+        return report
 
     # 1. Orchestrator ----------------------------------------------------
     orch = None
@@ -127,7 +136,8 @@ def run_pipeline(question: str, tools: LungPairTools, log: RunLog, client=None,
 
     ranked, withheld = ranking.get("ranked", []), ranking.get("withheld", [])
     withheld_names = [f'{w["drug_a"]} + {w["drug_b"]}' for w in withheld]
-    candidates = ranked[:top_k]
+    # Defence in depth: the ranker already withholds tier 4; never research or offer one.
+    candidates = [c for c in ranked if c.get("tier", 4) < 4][:top_k]
     g_tier = checks.tier4_refused(ranking, candidates)
     report.update(ranked=ranked, withheld=withheld, unknown=ranking.get("unknown", []),
                   ranker_model_version=ranking.get("model_version"))
@@ -167,23 +177,40 @@ def run_pipeline(question: str, tools: LungPairTools, log: RunLog, client=None,
         workers = max(1, min(config.RESEARCH_WORKERS, len(candidates)))
         log.write("stage", stage="research", parallel_workers=workers,
                   budget_s=config.RESEARCH_BUDGET_S, pairs=len(candidates))
-        pool = ThreadPoolExecutor(max_workers=workers)
-        futs = {pool.submit(_one, c): c for c in candidates}
-        done = set()
-        try:
-            for f in as_completed(futs, timeout=config.RESEARCH_BUDGET_S):
-                futs[f]["evidence"] = f.result()
-                done.add(id(futs[f]))
-        except FuturesTimeout:
-            for f, c in futs.items():
-                if id(c) not in done:
-                    f.cancel()
-                    c["evidence"] = {"status": "timeout",
-                                     "text": f"research not finished within {config.RESEARCH_BUDGET_S:.0f} s budget"}
-            log.write("stop", rule="time_budget", budget_s=config.RESEARCH_BUDGET_S,
-                      unfinished=[f'{c["drug_a"]}+{c["drug_b"]}' for c in candidates
-                                  if id(c) not in done])
-        pool.shutdown(wait=False, cancel_futures=True)
+        # Daemon threads: if the budget passes, the run finishes and the process can
+        # exit; any late writes from a still-running thread are marked late_after_budget.
+        import queue, threading
+        log.deadline = t0 + config.RESEARCH_BUDGET_S
+        todo, results = queue.Queue(), {}
+        for i, c in enumerate(candidates):
+            todo.put(i)
+
+        def _worker():
+            while True:
+                try:
+                    i = todo.get_nowait()
+                except queue.Empty:
+                    return
+                if time.monotonic() > log.deadline:
+                    return
+                results[i] = _one(candidates[i])
+
+        threads = [threading.Thread(target=_worker, daemon=True) for _ in range(workers)]
+        for th in threads:
+            th.start()
+        for th in threads:
+            th.join(max(0.0, log.deadline - time.monotonic()))
+        unfinished = []
+        for i, c in enumerate(candidates):
+            if i in results:
+                c["evidence"] = results[i]
+            else:
+                unfinished.append(f'{c["drug_a"]}+{c["drug_b"]}')
+                c["evidence"] = {"status": "timeout",
+                                 "text": f"research not finished within {config.RESEARCH_BUDGET_S:.0f} s budget"}
+        if unfinished:
+            log.late = True
+            log.write("stop", rule="time_budget", budget_s=config.RESEARCH_BUDGET_S, unfinished=unfinished)
         log.write("stage", stage="research_done", seconds=round(time.monotonic() - t0, 1))
     report["candidates"] = candidates
 
