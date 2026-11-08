@@ -4,13 +4,14 @@ export const colors = {
   bg: "#0b1029",
   floor: "#121838",
   grid: "#232a55",
-  base: "#3b4170", // ordinary pair (positive score)
-  baseNegative: "#2a2f55", // pair whose drugs work against each other
-  unknown: "#2f3560", // Scene B: result not yet "bought"
+  base: "#8d94c4", // ordinary pair (positive score)
+  baseNegative: "#6c739f", // pair whose drugs work against each other
+  unknown: "#6c739f", // Scene B: result not yet "bought"
+  doseBase: "#3b4170", // Scene C colour scale starts here (unchanged)
   hit: "#2ee6c5", // real hit (teal)
   proposed: "#ffc53d", // agent's pick awaiting approval (gold)
   revealedHit: "#3ddc84",
-  revealedMiss: "#a3a8c3",
+  revealedMiss: "#d4d8ee",
   hover: "#ffffff",
   violet: "#8b7cf6",
   tier: { T1: "#2ee6c5", T2: "#4c8dff", T3: "#f5b83d", T4: "#5d6282" },

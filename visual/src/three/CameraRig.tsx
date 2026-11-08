@@ -27,7 +27,7 @@ export function CameraRig({ cmd }: { cmd: CameraCommand }) {
         c.setLookAt(-120, 22, 70, 0, 8, 0, true);
         break;
       case "dose":
-        c.setLookAt(78, 52, 98, 0, 0, 0, true);
+        c.setLookAt(92, 50, 96, 14, -2, 4, true);
         break;
       case "focus":
         c.setLookAt(t[0] + 22, t[1] + 26, t[2] + 30, t[0], t[1], t[2], true);

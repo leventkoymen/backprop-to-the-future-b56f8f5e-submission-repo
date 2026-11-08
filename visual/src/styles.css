@@ -101,3 +101,8 @@ button:disabled { opacity: .4; cursor: default; }
 .mol-card dd { margin: 0; }
 .mol-dim { color: var(--muted); }
 button.mol-open { font-size: 12px; padding: 3px 8px; margin-top: 4px; }
+
+/* tab 3 labels: readable on a projector, never on top of each other */
+.axis-label.tick { background: rgba(11, 16, 41, .75); padding: 1px 6px; border-radius: 4px; }
+.axis-label.tick b { color: var(--text); font-weight: 600; }
+.axis-label.ref-label { transform: translateX(-100%); text-align: right; }

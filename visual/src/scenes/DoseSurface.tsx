@@ -17,7 +17,14 @@ const Y_GROWTH = 0.16; // scene units per % growth
 const Y_SYN = 0.12; // scene units per synergy point
 const LOW = -110 * Y_GROWTH; // dose labels sit below the lowest possible growth (-100%)
 
-const fmtConc = (c: number) => c.toExponential(0).replace("e-", "e−") + " M";
+// Plain units read better on a projector than 1e−9 M: 1 nM, 20 µM ...
+const fmtConc = (c: number) => {
+  const [v, u] = c >= 1e-3 ? [c * 1e3, "mM"] : c >= 1e-6 ? [c * 1e6, "µM"] : [c * 1e9, "nM"];
+  return `${+v.toPrecision(2)} ${u}`;
+};
+// Axis labels use the short drug name (e.g. "Estramustine"); the full name is in the title.
+const shortName = (n: string) => (n.length > 14 ? n.split(" ")[0] : n);
+const EDGE = SIZE / 2 + 9; // tick labels sit this far out from the grid, away from the corners
 const gx = (i: number) => (i / 2 - 0.5) * SIZE; // dose index 0..2 -> x
 const gz = (j: number) => (j / 2 - 0.5) * SIZE; // dose index 0..2 -> z
 
@@ -30,7 +37,7 @@ function surface(points: DosePoint[], height: (p: DosePoint) => number, colorOf?
       const p = at(i, j);
       positions.push(gx(i), p ? height(p) : 0, gz(j));
       if (colorOf) {
-        const c = p ? colorOf(p) : new THREE.Color(colors.base);
+        const c = p ? colorOf(p) : new THREE.Color(colors.doseBase);
         cols.push(c.r, c.g, c.b);
       }
     }
@@ -52,7 +59,7 @@ function surface(points: DosePoint[], height: (p: DosePoint) => number, colorOf?
 const synColor = (s: number) => {
   // teal for synergy, blue for antagonism, grey near zero
   const t = Math.min(Math.abs(s) / 100, 1);
-  return new THREE.Color(colors.base).lerp(new THREE.Color(s >= 0 ? colors.hit : colors.tier.T2), t);
+  return new THREE.Color(colors.doseBase).lerp(new THREE.Color(s >= 0 ? colors.hit : colors.tier.T2), t);
 };
 
 export function DoseSurface({ grid, view }: { grid: DoseGrid; view: DoseView }) {
@@ -98,11 +105,11 @@ export function DoseSurface({ grid, view }: { grid: DoseGrid; view: DoseView }) 
       </mesh>
       {view === "growth" ? (
         <>
-          <Label position={[SIZE / 2 + 4, 0, -SIZE / 2]} className="axis-label small">0% growth (below = cells die)</Label>
-          <Label position={[SIZE / 2 + 4, 100 * Y_GROWTH, -SIZE / 2]} className="axis-label small">100% (normal growth)</Label>
+          <Label position={[-SIZE / 2 - 4, 0, SIZE / 2 + 4]} className="axis-label small ref-label">0% growth · below = cells die</Label>
+          <Label position={[-SIZE / 2 - 4, 100 * Y_GROWTH, SIZE / 2 + 4]} className="axis-label small ref-label">100% = normal growth</Label>
         </>
       ) : (
-        <Label position={[SIZE / 2 + 4, 0, -SIZE / 2]} className="axis-label small">0 = no interaction (above = synergy)</Label>
+        <Label position={[-SIZE / 2 - 4, 0, SIZE / 2 + 4]} className="axis-label small ref-label">0 = no interaction · above = synergy</Label>
       )}
 
       {geo.ref && (
@@ -134,13 +141,17 @@ export function DoseSurface({ grid, view }: { grid: DoseGrid; view: DoseView }) 
       ))}
 
       {concA.map((c, i) => c !== undefined && (
-        <Label key={`a${i}`} position={[gx(i), labelY, SIZE / 2 + 4]} center className="axis-label small">{fmtConc(c)}</Label>
+        <Label key={`a${i}`} position={[gx(i), labelY, EDGE]} center className="axis-label small tick">
+          {i === 0 ? <b>{shortName(grid.drugA)} </b> : null}
+          {fmtConc(c)}
+        </Label>
       ))}
       {concB.map((c, j) => c !== undefined && (
-        <Label key={`b${j}`} position={[-SIZE / 2 - 6, labelY, gz(j)]} center className="axis-label small">{fmtConc(c)}</Label>
+        <Label key={`b${j}`} position={[EDGE, labelY, gz(j)]} center className="axis-label small tick">
+          {j === 0 ? <b>{shortName(grid.drugB)} </b> : null}
+          {fmtConc(c)}
+        </Label>
       ))}
-      <Label position={[0, labelY, SIZE / 2 + 10]} center className="axis-label">{grid.drugA} dose →</Label>
-      <Label position={[-SIZE / 2 - 18, labelY, 0]} center className="axis-label">{grid.drugB} dose →</Label>
 
       {h && (
         <Label position={[gx(h.ia), top(h) + 6, gz(h.ib)]} center className="hover-card compact">
