@@ -1,0 +1,106 @@
+nsc,name,cid,pubchem_title,found_by,kind,file
+740,Methotrexate,126941,Methotrexate,NSC number (NCI deposit),3d,740_Methotrexate.sdf
+750,Busulfan,2478,Busulfan,NSC number (NCI deposit),3d,750_Busulfan.sdf
+752,Thioguanine,2723601,Thioguanine,NSC number (NCI deposit),3d,752_Thioguanine.sdf
+755,Mercaptopurine,667490,6-Mercaptopurine,NSC number (NCI deposit),3d,755_Mercaptopurine.sdf
+762,Mechlorethamine hydrochloride,4033,Mechlorethamine,NSC number (NCI deposit),3d,762_Mechlorethamine_hydrochloride.sdf
+1390,Allopurinol,135401907,Allopurinol,NSC number (NCI deposit),3d,1390_Allopurinol.sdf
+3053,Dactinomycin,,,3D data pack,3d (pack),
+3088,Chlorambucil,2708,Chlorambucil,NSC number (NCI deposit),3d,3088_Chlorambucil.sdf
+6396,Thiotepa,5453,Thiotepa,NSC number (NCI deposit),3d,6396_Thiotepa.sdf
+8806,Melphalan,460612,Melphalan,NSC number (NCI deposit),3d,8806_Melphalan.sdf
+9706,Triethylenemelamine,5799,Triethylenemelamine,NSC number (NCI deposit),3d,9706_Triethylenemelamine.sdf
+13875,Altretamine,2123,Altretamine,NSC number (NCI deposit),3d,13875_Altretamine.sdf
+14229,Quinacrine hydrochloride,237,(+-)-Quinacrine,NSC number (NCI deposit),3d,14229_Quinacrine_hydrochloride.sdf
+18509,Aminolevulinic acid hydrochloride,137,5-Aminolevulinic Acid,NSC number (NCI deposit),3d,18509_Aminolevulinic_acid_hydrochloride.sdf
+19893,Fluorouracil,3385,5-Fluorouracil,NSC number (NCI deposit),3d,19893_Fluorouracil.sdf
+24559,Plicamycin,6326719,"(2S,3S)-2-[4-[4-(4,5-dihydroxy-4,6-dimethyloxan-2-yl)oxy-5-hydroxy-6-methyloxan-2-yl]oxy-5-hydroxy-6-methyloxan-2-yl]oxy-3-[(1S,3S,4R)-3,4-dihydroxy-1-methoxy-2-oxopentyl]-6-[4-(4,5-dihydroxy-6-methyloxan-2-yl)oxy-5-hydroxy-6-methyloxan-2-yl]oxy-8,9-dihydroxy-7-methyl-3,4-dihydro-2H-anthracen-1-one",NSC number (NCI deposit),2d,2d/24559_Plicamycin.sdf
+25154,Pipobroman,4842,Pipobroman,NSC number (NCI deposit),3d,25154_Pipobroman.sdf
+26271,Cyclophosphamide,2907,Cyclophosphamide,NSC number (NCI deposit),3d,26271_Cyclophosphamide.sdf
+26980,Mitomycin,5746,Mitomycin C,NSC number (NCI deposit),3d,26980_Mitomycin.sdf
+27640,Floxuridine,3363,5-Fluoro-2'-deoxyuridine,NSC number (NCI deposit),3d,27640_Floxuridine.sdf
+32065,Hydroxyurea,3657,Hydroxyurea,NSC number (NCI deposit),3d,32065_Hydroxyurea.sdf
+34462,Uracil mustard,6194,Uracil Mustard,NSC number (NCI deposit),3d,34462_Uracil_mustard.sdf
+38721,Mitotane,4211,Mitotane,NSC number (NCI deposit),3d,38721_Mitotane.sdf
+45388,Dacarbazine,135398738,Dacarbazine,NSC number (NCI deposit),3d,45388_Dacarbazine.sdf
+45923,Methoxsalen,4114,8-Methoxypsoralen,NSC number (NCI deposit),3d,45923_Methoxsalen.sdf
+49842,Vinblastine sulfate,,,3D data pack,3d (pack),
+63878,Cytarabine hydrochloride,596,4-Amino-1-pentofuranosyl-2(1H)-pyrimidinone,NSC number (NCI deposit),3d,63878_Cytarabine_hydrochloride.sdf
+66847,Thalidomide,5426,Thalidomide,NSC number (NCI deposit),3d,66847_Thalidomide.sdf
+67574,Vincristine sulfate,5978,Vincristine,NSC number (NCI deposit),2d,2d/67574_Vincristine_sulfate.sdf
+71423,Megestrol acetate,11683,Megestrol Acetate,NSC number (NCI deposit),3d,71423_Megestrol_acetate.sdf
+77213,Procarbazine hydrochloride,4915,Procarbazine,NSC number (NCI deposit),3d,77213_Procarbazine_hydrochloride.sdf
+79037,Lomustine,3950,Lomustine,NSC number (NCI deposit),3d,79037_Lomustine.sdf
+82151,Daunorubicin hydrochloride,3085107,"(7S,9S)-9-acetyl-7-[(4-amino-5-hydroxy-6-methyl-2-oxanyl)oxy]-6,9,11-trihydroxy-4-methoxy-8,10-dihydro-7H-tetracene-5,12-dione",NSC number (NCI deposit),3d,82151_Daunorubicin_hydrochloride.sdf
+85998,Streptozocin,23615975,"1-methyl-1-nitroso-3-[(2R,3R,4S,5R)-3,4,5,6-tetrahydroxy-1-oxohexan-2-yl]urea",NSC number (NCI deposit),3d,85998_Streptozocin.sdf
+92859,Arsenic trioxide,261004,"Arsenic(III)oxide,arsenic trioxide,arsenous acid anhydride,arsenous acid,arsenic sesquioxide,white arsenic",NSC synonym,2d,2d/92859_Arsenic_trioxide.sdf
+102816,Azacitidine,1805,"4-Amino-1-pentofuranosyl-1,3,5-triazin-2(1H)-one",NSC number (NCI deposit),3d,102816_Azacitidine.sdf
+105014,Cladribine,1546,2-Chloro-9-(2-deoxypentofuranosyl)-9H-purin-6-amine,NSC number (NCI deposit),3d,105014_Cladribine.sdf
+109724,Ifosfamide,3690,Ifosfamide,NSC number (NCI deposit),3d,109724_Ifosfamide.sdf
+118218,2-Fluoro Ara-A,3367,Fludarabine Base,NSC number (NCI deposit),3d,118218_2_Fluoro_Ara_A.sdf
+119875,Cisplatin,5460033,Cisplatin,NSC synonym,2d,2d/119875_Cisplatin.sdf
+122758,Tretinoin,,,3D data pack,3d (pack),
+122819,Teniposide,54610154,Veham-Sandoz,NSC number (NCI deposit),3d,122819_Teniposide.sdf
+123127,Doxorubicin hydrochloride,32875,"(7S,9S)-7-[(4-amino-5-hydroxy-6-methyl-2-oxanyl)oxy]-6,9,11-trihydroxy-9-(2-hydroxy-1-oxoethyl)-4-methoxy-8,10-dihydro-7H-tetracene-5,12-dione",NSC number (NCI deposit),3d,123127_Doxorubicin_hydrochloride.sdf
+125066,Bleomycin sulfate,54608729,"3-[[2-[2-[2-[[(2S,3R)-2-[[(2S,3S,4R)-4-[[(2S)-2-[[6-amino-2-[(1S)-3-amino-1-[[(2S)-2,3-diamino-3-oxopropyl]amino]-3-oxopropyl]-5-methylpyrimidine-4-carbonyl]amino]-3-[3-[4-carbamoyloxy-3,5-dihydroxy-6-(hydroxymethyl)oxan-2-yl]oxy-4,5-dihydroxy-6-(hydroxymethyl)oxan-2-yl]oxy-3-(1H-imidazol-5-yl)propanoyl]amino]-3-hydroxy-2-methylpentanoyl]amino]-3-hydroxybutanoyl]amino]ethyl]-1,3-thiazol-4-yl]-1,3-thiazole-4-carbonyl]amino]propyl-dimethylsulfanium",NSC number (NCI deposit),2d,2d/125066_Bleomycin_sulfate.sdf
+125973,Paclitaxel,,,3D data pack,3d (pack),
+127716,Decitabine,16886,1-(2-Deoxy-a-D-ribofuranosyl)-5-azacytosine,NSC number (NCI deposit),3d,127716_Decitabine.sdf
+138783,bendamustine hydrochloride,65628,Bendamustine,NSC number (NCI deposit),3d,138783_bendamustine_hydrochloride.sdf
+141540,Etoposide,439525,Vepesid J,NSC number (NCI deposit),2d,2d/141540_Etoposide.sdf
+169780,Dexrazoxane,71384,Dexrazoxane,NSC number (NCI deposit),3d,169780_Dexrazoxane.sdf
+180973,Tamoxifen citrate,,,3D data pack,3d (pack),
+218321,Pentostatin,40926,"(8R)-3-(4-Hydroxy-5-(Hydroxymethyl)Oxolan-2-Yl)-7,8-Dihydro-4H-Imidazo(4,5-D)(1,3)Diazepin-8-Ol",NSC number (NCI deposit),3d,218321_Pentostatin.sdf
+226080,Sirolimus,54600319,"23,1-c][1,4]oxaazacyclohentriacontine-1,5,11,28,29(4H,6H,31H)-pentone, 9,10,12,13,14,21,22,23,24, 25,26,27,32,33,34,34a-hexadecahydro-9,27-dihydroxy-3-[2-(4-hydroxy-3-methoxycyclohexyl)-1-methylethyl]-10,21-dimethoxy-6,8,12,14,20,26-hexamethyl-, [3S-[3R*[S* (1R*,3S*,4S*)],6S*,7E,9S*,10S*,12S*,14R*,15E,17E,19E,21R*, 23R*,26S*,27S*,34aR*]]-",NSC number (NCI deposit),2d,2d/226080_Sirolimus.sdf
+241240,Carboplatin,2568,"1,1-Cyclobutanedicarboxylic acid",NSC number (NCI deposit),3d,241240_Carboplatin.sdf
+246131,Valrubicin,,,3D data pack,3d (pack),
+256439,Idarubicin hydrochloride,3685,"9-acetyl-7-(4-amino-5-hydroxy-6-methyloxan-2-yl)oxy-6,9,11-trihydroxy-8,10-dihydro-7H-tetracene-5,12-dione",NSC number (NCI deposit),2d,2d/256439_Idarubicin_hydrochloride.sdf
+256942,4'-Epiadriamycin,32875,"(7S,9S)-7-[(4-amino-5-hydroxy-6-methyl-2-oxanyl)oxy]-6,9,11-trihydroxy-9-(2-hydroxy-1-oxoethyl)-4-methoxy-8,10-dihydro-7H-tetracene-5,12-dione",NSC number (NCI deposit),3d,256942_4_Epiadriamycin.sdf
+266046,Oxaliplatin,24197464,"Oxaliplatin; (SP-4-2)-[(1R,2R)-Cyclohexane-1,2-diamine-kappaN,kappaN'][ethanedioato(2-)-kappaO1,kappaO2]platinum",NSC number (NCI deposit),2d,2d/266046_Oxaliplatin.sdf
+279836,Mitoxantrone,,,3D data pack,3d (pack),
+296961,Amifostine,2141,Amifostine,NSC number (NCI deposit),3d,296961_Amifostine.sdf
+362856,Temozolomide,5394,Temozolomide,NSC number (NCI deposit),3d,362856_Temozolomide.sdf
+369100,Imiquimod,57469,Imiquimod,NSC number (NCI deposit),3d,369100_Imiquimod.sdf
+409962,Carmustine,2578,Carmustine,NSC number (NCI deposit),3d,409962_Carmustine.sdf
+606869,Clofarabine,354624,5-(6-Amino-2-chloro-9-purinyl)-4-fluoro-2-(hydroxymethyl)-3-oxolanol,NSC number (NCI deposit),3d,606869_Clofarabine.sdf
+608210,Vinorelbine tartrate,5311497,Vinorelbine,NSC number (NCI deposit),2d,2d/608210_Vinorelbine_tartrate.sdf
+609699,Topotecan hydrochloride,60700,Topotecan,NSC number (NCI deposit),3d,609699_Topotecan_hydrochloride.sdf
+613327,Gemcitabine hydrochloride,3461,"4-Amino-1-[3,3-difluoro-4-hydroxy-5-(hydroxymethyl)-2-oxolanyl]-2-pyrimidinone",NSC number (NCI deposit),3d,613327_Gemcitabine_hydrochloride.sdf
+628503,Docetaxel,,,3D data pack,3d (pack),
+673596,7-Ethyl-10-hydroxycamptothecin,104842,7-Ethyl-10-Hydroxycamptothecin,NSC number (NCI deposit),3d,673596_7_Ethyl_10_hydroxycamptothecin.sdf
+681239,Bortezomib,387447,Bortezomib,NSC number (NCI deposit),2d,2d/681239_Bortezomib.sdf
+686673,Nelarabine,248862,"2-(2-Amino-6-methoxypurin-9-yl)-5-(hydroxymethyl)oxolane-3,4-diol",NSC number (NCI deposit),3d,686673_Nelarabine.sdf
+698037,Pemetrexed Disodium,135410875,Pemetrexed,NSC number (NCI deposit),3d,698037_Pemetrexed_Disodium.sdf
+701852,Vorinostat,5311,Vorinostat,NSC number (NCI deposit),3d,701852_Vorinostat.sdf
+702294,Estramustine phosphate sodium,,,3D data pack,3d (pack),
+707389,Eribulin mesylate,6712722,"(1S,3S,6S,9S,14R,16R,18S,20R,21R,22S,26R,29S,31R,32S,33R,35R,36S)-20-[(2S)-3-amino-2-hydroxypropyl]-21-methoxy-14-methyl-8,15-dimethylidene-2,19,30,34,37,39,40,41-octaoxanonacyclo[24.9.2.13,32.13,33.16,9.112,16.018,22.029,36.031,35]hentetracontan-24-one",NSC number (NCI deposit),2d,2d/707389_Eribulin_mesylate.sdf
+712807,Capecitabine,400633,1-(5-Deoxypentofuranosyl)-5-fluoro-4-(((pentyloxy)carbonyl)amino)pyrimidin-2(1H)-one,NSC number (NCI deposit),3d,712807_Capecitabine.sdf
+713563,Exemestane,60198,Exemestane,NSC number (NCI deposit),3d,713563_Exemestane.sdf
+715055,Gefitinib,,,3D data pack,3d (pack),
+718781,Erlotinib hydrochloride,176870,Erlotinib,NSC number (NCI deposit),3d,718781_Erlotinib_hydrochloride.sdf
+719276,Fulvestrant,104741,Fulvestrant,NSC number (NCI deposit),3d,719276_Fulvestrant.sdf
+719344,Anastrozole,2187,Anastrozole,NSC number (NCI deposit),3d,719344_Anastrozole.sdf
+719345,Letrozole,3902,Letrozole,NSC number (NCI deposit),3d,719345_Letrozole.sdf
+719627,Celecoxib,2662,Celecoxib,NSC number (NCI deposit),3d,719627_Celecoxib.sdf
+721517,Zoledronic acid,68740,Zoledronic Acid,NSC number (NCI deposit),3d,721517_Zoledronic_acid.sdf
+732517,Dasatinib,3062316,Dasatinib,NSC number (NCI deposit),3d,732517_Dasatinib.sdf
+733504,Everolimus,54608520,42-O-(2-hydroxyethyl)rapamycin),NSC number (NCI deposit),2d,2d/733504_Everolimus.sdf
+737754,Pazopanib hydrochloride,10113978,Pazopanib,NSC number (NCI deposit),3d,737754_Pazopanib_hydrochloride.sdf
+743414,Imatinib mesylate,5291,Imatinib,NSC number (NCI deposit),3d,743414_Imatinib_mesylate.sdf
+745750,Lapatinib ditosylate,,,3D data pack,3d (pack),
+747599,Nilotinib,644241,Nilotinib,NSC number (NCI deposit),3d,747599_Nilotinib.sdf
+747971,Sorafenib tosylate,216239,Sorafenib,NSC number (NCI deposit),3d,747971_Sorafenib_tosylate.sdf
+747972,Lenalidomide,216326,Lenalidomide,NSC number (NCI deposit),3d,747972_Lenalidomide.sdf
+747973,Ixabepilone,6445540,Ixabepilone,NSC number (NCI deposit),3d,747973_Ixabepilone.sdf
+747974,Raloxifene hydrochloride,5035,Raloxifene,NSC number (NCI deposit),3d,747974_Raloxifene_hydrochloride.sdf
+749226,Abiraterone,132971,Abiraterone,NSC number (NCI deposit),3d,749226_Abiraterone.sdf
+750690,Sunitinib (free base),5329102,Sunitinib,NSC number (NCI deposit),3d,750690_Sunitinib_free_base.sdf
+753082,vemurafenib,42611257,Vemurafenib,drug name,3d,753082_vemurafenib.sdf
+754143,Romidepsin,5352062,Romidepsin,NSC number (NCI deposit),3d,754143_Romidepsin.sdf
+754230,pralatrexate,148121,Pralatrexate,NSC number (NCI deposit),3d,754230_pralatrexate.sdf
+755986,Vismodegib,,,3D data pack,3d (pack),
+756645,Crizotinib,54613769,"3-[(1R)-1-(2,6-dichloro-4-fluorophenyl)ethoxy]-5-(1-piperidin-4-ylpyrazol-4-yl)pyridin-2-amine",NSC number (NCI deposit),3d,756645_Crizotinib.sdf
+757441,Axitinib,6450551,Axitinib,NSC number (NCI deposit),3d,757441_Axitinib.sdf
+760766,Vandetanib,3081361,Vandetanib,NSC number (NCI deposit),3d,760766_Vandetanib.sdf
+761431,vemurafenib,42611257,Vemurafenib,NSC number (NCI deposit),3d,761431_vemurafenib.sdf
+761432,Cabazitaxel,,,3D data pack,3d (pack),
+763371,Ruxolitinib,25126798,Ruxolitinib,NSC number (NCI deposit),3d,763371_Ruxolitinib.sdf

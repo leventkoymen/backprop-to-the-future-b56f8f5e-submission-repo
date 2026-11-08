@@ -49,9 +49,24 @@ export const DoseRow = z.looseObject({
   observed_growth: num, // % growth: 100 = no effect, 0 = stopped, negative = cells killed
   expected_growth: num, // NCI's no-interaction (modified Bliss) prediction
   synergy: num, // expected - observed; positive = synergy
+  reachable_in_patients: z.enum(["yes", "no", "unknown"]).optional(), // added in the 7 Nov 3D pack
 });
 export type DoseRow = z.infer<typeof DoseRow>;
 export const DOSE_COLUMNS = Object.keys(DoseRow.shape);
+
+// ---------- starter/drugs.csv (13 drugs in the dose-response data; the preferred names) ----------
+export const DrugRow = z.looseObject({
+  nsc,
+  name: z.string().min(1),
+  route: z.string(),
+  standard_dose: z.string(),
+  cmax_molar: z.string(), // blank = no reliable figure: keep as text, never turn blank into 0
+  primary_target: z.string(),
+  mechanism_class: z.string(),
+  how_it_works: z.string(), // AI-written, checked against standard pharmacology: label it
+  structure_file: z.string(),
+});
+export const DRUG_COLUMNS = ["nsc", "name", "route", "standard_dose", "cmax_molar", "primary_target", "mechanism_class", "how_it_works", "structure_file"];
 
 // ---------- starter/nsc_names.csv (official NCI CellMiner ALMANAC names, 90 drugs) ----------
 export const NameRow = z.looseObject({ nsc, name: z.string().min(1) });

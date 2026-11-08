@@ -74,8 +74,10 @@ export interface ReplayView {
 
 export function viewOf(run: CompiledRun, s: ReplayState): ReplayView {
   const current = s.index >= 0 ? run.rounds[s.index] : undefined;
+  // Rounds whose results are visible: none before the run starts (index -1), the current
+  // round only once approved. (Bug fix: slice(0, -1) used to reveal 9 of 10 rounds at start.)
   const lastRevealed = s.phase === "revealed" || s.phase === "finished" ? s.index : s.index - 1;
-  const revealedRounds = run.rounds.slice(0, lastRevealed + 1);
+  const revealedRounds = lastRevealed < 0 ? [] : run.rounds.slice(0, lastRevealed + 1);
   const revealed = revealedRounds.flatMap((r) => r.reveal?.results ?? []);
   const lastReveal = revealedRounds.at(-1)?.reveal;
   return {

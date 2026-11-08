@@ -2,8 +2,9 @@
 // To add a new agent run: drop a .jsonl file into data/runs/ and restart `npm run dev`.
 import pairsRaw from "@data/starter/pairs_3d.json";
 import doseCsv from "@data/starter/surface_dose_response.csv?raw";
+import drugsCsv from "@data/starter/drugs.csv?raw";
 import { parseCsv } from "./csv";
-import { DoseRow, Event, PairsFile, type Pair } from "./schemas";
+import { DoseRow, DrugRow, Event, PairsFile, type Pair } from "./schemas";
 
 export const pairKey = (a: number, b: number) => (a < b ? `${a}-${b}` : `${b}-${a}`);
 
@@ -29,13 +30,21 @@ function loadLandscape(): Landscape {
 
 export const landscape = loadLandscape();
 
+// ---------- drug details (starter/drugs.csv) ----------
+export const drugInfo = new Map(
+  parseCsv(drugsCsv).flatMap((raw) => {
+    const r = DrugRow.safeParse(raw);
+    return r.success ? [[r.data.nsc, r.data] as const] : [];
+  }),
+);
+
 /**
- * THE one place drug names come from. Rule: every screen shows the name in
- * pairs_3d.json for that NSC ID, whatever name another file (agent log, dose CSV,
- * names list) uses. The other file's name is only a fallback for an unknown ID.
+ * THE one place drug names come from, so a drug has one name on every screen.
+ * Team decision (7 Nov): the names in drugs.csv (the 3D data pack) win; for the
+ * other drugs, pairs_3d.json; the other file's own name is only a last fallback.
  */
 export function drugName(nsc: number, fallback?: string): string {
-  return landscape.drugName.get(nsc) ?? fallback ?? `NSC ${nsc}`;
+  return drugInfo.get(nsc)?.name ?? landscape.drugName.get(nsc) ?? fallback ?? `NSC ${nsc}`;
 }
 
 // ---------- dose-response grids (Scene C) ----------

@@ -9,7 +9,7 @@
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { csvHeader, parseCsv } from "../src/data/csv";
-import { DOSE_COLUMNS, DoseRow, Event, NAME_COLUMNS, NameRow, PROGRESSION_COLUMNS, PairsFile, ProgressionRow } from "../src/data/schemas";
+import { DOSE_COLUMNS, DoseRow, DRUG_COLUMNS, DrugRow, Event, NAME_COLUMNS, NameRow, PROGRESSION_COLUMNS, PairsFile, ProgressionRow } from "../src/data/schemas";
 
 const dataDir = process.argv[2] ?? "../data";
 let problems = 0;
@@ -100,8 +100,18 @@ if (doseCheck && !doseCheck.fails) {
   ok(`starter/surface_dose_response.csv: ${doseCheck.parsed.length} rows, ${pairs} pairs, ${grids.size} grids` +
     (incomplete ? `, ${incomplete} incomplete (shown with gaps)` : ", all 3 x 3") +
     (doseCheck.extra.length ? ` · other columns: ${doseCheck.extra.join(", ")}` : ""));
-  if (renamed.size) console.log(`  note starter/surface_dose_response.csv: ${renamed.size} drug name(s) differ from pairs_3d.json; the app shows the pairs_3d name: ${[...renamed].join("; ")}`);
+  if (renamed.size) console.log(`  note ${renamed.size} drug name(s) differ between the 3D pack and pairs_3d.json; the app shows the 3D pack (drugs.csv) name everywhere: ${[...renamed].join("; ")}`);
+  const reach = doseCheck.parsed.filter((r: any) => r.reachable_in_patients).length;
+  if (reach < doseCheck.parsed.length) console.log(`  note starter/surface_dose_response.csv: ${doseCheck.parsed.length - reach} rows have no reachable_in_patients value`);
   if (unknown.size) bad(`starter/surface_dose_response.csv: NSC IDs not in pairs_3d.json (no drug names): ${[...unknown].join(", ")}`);
+}
+
+// 2c. starter/drugs.csv (names + drug details for the 3D pack)
+const drugs = checkCsv("starter/drugs.csv", DRUG_COLUMNS, DrugRow);
+if (drugs && !drugs.fails) {
+  const missing = drugs.parsed.filter((d: any) => !existsSync(join(dataDir, "starter", d.structure_file)));
+  if (missing.length) bad(`starter/drugs.csv: molecule files missing: ${missing.map((d: any) => d.structure_file).join(", ")}`);
+  else ok(`starter/drugs.csv: ${drugs.parsed.length} drugs, all molecule files present`);
 }
 
 // 2a. starter/nsc_names.csv (reference names; not required by the app)

@@ -1,0 +1,17 @@
+marker,what_it_is,related_drugs_in_this_data
+EGFR,Growth-signal receptor; the target of EGFR drugs,Gefitinib; Lapatinib
+ERBB2,"HER2, a related growth receptor",Lapatinib
+MET,"Growth receptor; when overactive, a known route of resistance to EGFR drugs",Gefitinib
+TUBB3,Beta-tubulin III; linked to resistance to drugs that act on microtubules,Paclitaxel; Docetaxel; Cabazitaxel; Vinblastine sulfate
+ABCB1,"P-glycoprotein, a pump that pushes many drugs back out of the cell",Paclitaxel; Docetaxel; Vinblastine sulfate; Dactinomycin; Mitoxantrone
+TP53,"Tumour-suppressor gene. Activity level only, not whether it is mutated",
+CDKN2A,"Cell-cycle brake, often lost in lung cancer",
+PTEN,Tumour suppressor in a cell-growth pathway,
+NRAS,RAS-family growth switch,
+RET,Receptor whose gene fusions drive some lung cancers,
+MYC,Growth-driving master regulator,
+NKX2-1,"TTF-1, a marker of lung adenocarcinoma origin",
+SOX2,Often amplified in squamous lung cancer,
+CD274,"PD-L1, the immune checkpoint targeted by immunotherapy",
+VIM,"Vimentin: high in cells shifting to a mobile, invasive state",
+CDH1,E-cadherin: high in tightly joined epithelial cells; falls as cells turn invasive,
