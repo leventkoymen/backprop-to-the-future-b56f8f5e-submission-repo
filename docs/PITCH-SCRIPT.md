@@ -219,7 +219,7 @@ PACING PROGRESSION:
 **15-Second Spoken Winning Answer:**  
 > *"The problem is balancing reasoning depth, latency, and cost. Gemini 4 Argon handles complex entity resolution and tool planning. Gemini 3.8 Flash executes parallel web and literature searches within a 90-second budget. Gemini 3.5 Flash-Lite performs high-speed structured JSON validation. Multi-model routing optimizes each step for its exact functional requirement."*  
 **Deep Technical Backup:**  
-* Using a flagship reasoning model for all sub-tasks multiplies latency and cost by $5\text{--}10\times$. Flash subagents run concurrently across candidate pairs, returning literature summaries in under 15 seconds. Flash-Lite executes schema validation in $<500$ ms. All models run natively via Google GenAI Interactions API, using introductory Argon pricing ($$2.00 / 1\text{M}$ in, $$10.00 / 1\text{M}$ out, with 95% prompt caching discounts down to $$0.10 / 1\text{M}$).
+* Using a flagship reasoning model for all sub-tasks multiplies latency and cost by $5\text{--}10\times$. Flash subagents run concurrently across candidate pairs, returning literature summaries in under 15 seconds. Flash-Lite executes schema validation in $<500$ ms. All models run natively via Google GenAI Interactions API, using introductory Argon pricing (\$2.00 / 1M in, \$10.00 / 1M out, with 95% prompt caching discounts down to \$0.10 / 1M).
 
 #### Q13. Mitigating Context Rot & Multi-Turn Drift
 **Question:** *"How does your agent prevent context window pollution and hallucination in extended screening sessions?"*  
@@ -308,7 +308,7 @@ PACING PROGRESSION:
 **15-Second Spoken Winning Answer:**  
 > *"By elevating triage precision from 3.3% random prevalence to 89% in Tier 1, LungPair reduces redundant robotic screening assays by over 40%. In translational oncology, filtering dead-end pairs early slashes millions in preclinical attrition, directly reducing the upfront R&D burden passed into downstream NHS drug acquisition costs."*  
 **Deep Technical Backup:**  
-* Translational drug development currently costs over $$1\text{B}$ per approved therapy, with high-throughput screening failure contributing significantly to early capital burn. Pre-filtering candidate combinations ensures that translational oncology programs only advance regimens with demonstrated pathway complementarity and verified human plasma reachability, optimizing capital allocation before initiating Phase I/II clinical trials.
+* Translational drug development currently costs over \$1B per approved therapy, with high-throughput screening failure contributing significantly to early capital burn. Pre-filtering candidate combinations ensures that translational oncology programs only advance regimens with demonstrated pathway complementarity and verified human plasma reachability, optimizing capital allocation before initiating Phase I/II clinical trials.
 
 #### Q24. NHS DTAC (Digital Technology Assessment Criteria) Readiness
 **Question:** *"Does your software architecture adhere to NHS DTAC standards for clinical safety and data protection?"*  
@@ -324,9 +324,9 @@ PACING PROGRESSION:
 #### Q25. Unit Economics of a Screening Run vs. Wet-Lab Costs
 **Question:** *"What are the exact unit economics of running a LungPair triage query compared to the cost of running a wet-lab screen?"*  
 **15-Second Spoken Winning Answer:**  
-> *"A complete multi-agent triage query consumes approximately 15,000 input tokens and 1,800 output tokens across our 3 Gemini models, costing under $0.05 per run. In contrast, setting up a single 384-well robotic combination assay plate costs between $800 and $2,500 in reagents, antibodies, and passage labor."*  
+> *"A complete multi-agent triage query consumes approximately 15,000 input tokens and 1,800 output tokens across our 3 Gemini models, costing under \$0.05 per run. In contrast, setting up a single 384-well robotic combination assay plate costs between \$800 and \$2,500 in reagents, antibodies, and passage labor."*  
 **Deep Technical Backup:**  
-* With Gemini 4 Argon pricing ($$2.00 / 1\text{M}$ in, $$10.00 / 1\text{M}$ out) and 95% prompt context caching discounts ($$0.10 / 1\text{M}$), computational triage is virtually free relative to laboratory overhead. Pre-filtering 100 potential pairs to identify the top 5 high-confidence candidates saves an academic screening core upwards of $$20,000$ in consumable assay kits.
+* With Gemini 4 Argon pricing (\$2.00 / 1M in, \$10.00 / 1M out) and 95% prompt context caching discounts (\$0.10 / 1M), computational triage is virtually free relative to laboratory overhead. Pre-filtering 100 potential pairs to identify the top 5 high-confidence candidates saves an academic screening core upwards of \$20,000 in consumable assay kits.
 
 #### Q26. The Defensibility Moat: Why Can't a Foundation Model Replace LungPair?
 **Question:** *"If Google releases Gemini 5 or OpenAI releases GPT-5 with greater intelligence, does LungPair become obsolete?"*  
