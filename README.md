@@ -8,6 +8,12 @@
 
 *Research tool only · Public NCI-ALMANAC data · Permitted Biotech Track APIs · No patient data · Scientist sign-off*
 
+<br>
+
+[![One-Page Summary](https://img.shields.io/badge/Deliverable-One--Page%20Writeup-blue?style=for-the-badge)](docs/ONE-PAGE-WRITEUP.md)
+[![Live Demo Runner](https://img.shields.io/badge/Live%20Demo-./demo.sh-green?style=for-the-badge)](demo.sh)
+[![Tests Passing](https://img.shields.io/badge/Tests-22%20Passed-brightgreen?style=for-the-badge)](agent/tests/test_offline.py)
+
 </div>
 
 <p align="center"><img src="docs/img/haystack-3d.png" alt="3D view of 5,228 measured drug pairs in lung cancer cell lines; the 172 real hits glow green" width="900"></p>
