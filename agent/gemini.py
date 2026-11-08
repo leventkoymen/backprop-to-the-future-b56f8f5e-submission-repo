@@ -20,11 +20,21 @@ class MissingKey(RuntimeError):
 
 
 def make_client():
-    """Real Gemini client. Key from GEMINI_API_KEY only; never printed."""
+    """Real Gemini client. Key from GEMINI_API_KEY or macOS keychain (lungpair-gemini); never printed."""
     key = os.environ.get("GEMINI_API_KEY", "").strip()
     if not key:
-        raise MissingKey("GEMINI_API_KEY is not set. Run `export GEMINI_API_KEY=...` "
-                         "in this shell (do not put it in a file in the repo), "
+        import subprocess, getpass
+        try:
+            user = os.environ.get("USER") or getpass.getuser()
+            key = subprocess.check_output(
+                ["security", "find-generic-password", "-s", "lungpair-gemini", "-a", user, "-w"],
+                stderr=subprocess.DEVNULL
+            ).decode().strip()
+        except Exception:
+            key = ""
+    if not key:
+        raise MissingKey("GEMINI_API_KEY is not set and lungpair-gemini not found in keychain. "
+                         "Run `export GEMINI_API_KEY=...` in this shell (do not put it in a file), "
                          "or use --no-llm for the ranking-only fallback.")
     from google import genai
     return genai.Client(api_key=key)
@@ -139,9 +149,10 @@ def resolve_redirect(url: str, timeout: float = 5.0) -> str | None:
 
 
 # --- citation extraction from free text --------------------------------------
-PMID_RE = re.compile(r"\bPMID[:\s#]*?(\d{6,9})\b", re.I)
+PMID_RE = re.compile(r"\b(?:PubMed\s*(?:ID)?|PMID)[:\s#]*?(\d{6,9})\b", re.I)
 PUBMED_URL_RE = re.compile(r"pubmed\.ncbi\.nlm\.nih\.gov/(\d{6,9})", re.I)
-PMC_RE = re.compile(r"\b(PMC\d{5,9})\b")
+PMC_RE = re.compile(r"\b(PMC\d{5,9})\b", re.I)
+PMC_URL_RE = re.compile(r"ncbi\.nlm\.nih\.gov/pmc/articles/(PMC\d{5,9})", re.I)
 DOI_RE = re.compile(r"\b(10\.\d{4,9}/[^\s\"'<>)\]]+)", re.I)
 URL_RE = re.compile(r"https?://[^\s\"'<>)\]]+", re.I)
 
@@ -149,7 +160,8 @@ URL_RE = re.compile(r"https?://[^\s\"'<>)\]]+", re.I)
 def cited_ids(text: str) -> dict:
     """Every identifier the model WROTE. These must be backed by grounding."""
     pmids = set(PMID_RE.findall(text)) | set(PUBMED_URL_RE.findall(text))
+    pmcids = {p.upper() for p in (set(PMC_RE.findall(text)) | set(PMC_URL_RE.findall(text)))}
     urls = {u.rstrip(".,;") for u in URL_RE.findall(text)}
     dois = {d.rstrip(".,;") for d in DOI_RE.findall(text)}
-    return {"pmids": sorted(pmids), "pmcids": sorted(set(PMC_RE.findall(text))),
+    return {"pmids": sorted(pmids), "pmcids": sorted(pmcids),
             "dois": sorted(dois), "urls": sorted(urls)}

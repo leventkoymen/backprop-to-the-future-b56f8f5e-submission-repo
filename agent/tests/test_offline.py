@@ -70,6 +70,16 @@ def test_citation_gate_uses_resolved_redirect():
     assert checks.citations_grounded("PMID: 33333333", g)["pass"]
 
 
+def test_citation_gate_pmcid():
+    g = [{"url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1234567/", "title": None}]
+    ok = checks.citations_grounded("evidence in PMC1234567", g)
+    bad = checks.citations_grounded("evidence in PMC1234567 and PMC9999999", g)
+    assert ok["pass"] and not bad["pass"]
+    assert "PMC9999999" in bad["detail"]["not_grounded"]
+    stripped = checks.strip_ungrounded("PMC9999999 here", ["PMC9999999"])
+    assert "PMC9999999" not in stripped
+
+
 def test_tier4_gate():
     ranking = {"ranked": [{"drug_a": "A", "drug_b": "B", "nsc_a": 1, "nsc_b": 2, "tier": 1}],
                "withheld": [{"drug_a": "C", "drug_b": "D", "nsc_a": 3, "nsc_b": 4, "tier": 4}]}
@@ -89,6 +99,8 @@ def test_numbers_gate_catches_invented_score():
     tr = [{"tool": "rank_partners", "result": {"ranked": [{"score": 162.3, "interval_95": [127.3, 197.3]}]}}]
     assert checks.numbers_from_tools("score 162.3 [127.3, 197.3]", tr)["pass"]
     assert not checks.numbers_from_tools("score 170.4", tr)["pass"]
+    # Exact match: 162.34 rounds to 162.3 but is not in allowed
+    assert not checks.numbers_from_tools("score 162.34", tr)["pass"]
 
 
 def test_grounding_parser_ignores_model_text_urls():
@@ -119,7 +131,8 @@ def test_pipeline_end_to_end_offline(log):
     # PMID 22222222 was never in grounding -> retried once, then flagged + stripped
     assert ev["status"] == "flagged" and ev["attempts"] == 1 + config.RESEARCH_RETRIES
     assert "22222222" not in ev["text"] and "11111111" in ev["text"]
-    assert rep["human_decision"]["approved_pairs"][0]["drug_a"] == "Docetaxel"
+    # Flagged pairs cannot be approved
+    assert rep["human_decision"]["approved_pairs"] == []
     recs = [json.loads(l) for l in open(log.path)]
     kinds = {r["kind"] for r in recs}
     assert {"request", "model_call", "tool_call", "gates", "human_decision", "report"} <= kinds
@@ -130,6 +143,7 @@ def test_research_passes_when_all_citations_grounded(log):
     fake = FakeGemini(research_text=lambda i: "Prior evidence: PMID: 11111111.")
     rep = run(fake, log, top_k=1)
     assert rep["candidates"][0]["evidence"]["status"] == "passed"
+    assert rep["human_decision"]["approved_pairs"][0]["drug_a"] == "Docetaxel"
     assert fake.research_calls == 1                               # no retry needed
 
 
@@ -159,6 +173,16 @@ def test_model_fallback_on_error(log):
     assert rep["orchestrator"]["model"] == config.FALLBACK_MODEL
     errs = [json.loads(l) for l in open(log.path) if '"error": "RuntimeError' in l]
     assert errs, "the failed primary call must be in the receipt"
+
+
+def test_model_non_recoverable_error_does_not_fallback(log):
+    from agent.agents import run_orchestrator
+    fake = FakeGemini()
+    def bad_request(**kw):
+        raise RuntimeError("invalid argument: bad syntax")
+    fake.interactions.create = bad_request
+    with pytest.raises(RuntimeError, match="invalid argument"):
+        run_orchestrator(fake, "Which partner?", LungPairTools(FakeApi()), log)
 
 
 def test_no_llm_mode_uses_deterministic_fallback(log):

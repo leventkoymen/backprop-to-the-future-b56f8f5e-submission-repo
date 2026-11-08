@@ -9,6 +9,7 @@ is shown and what is blocked (agent/checks.py).
 from __future__ import annotations
 
 import json
+import urllib.error
 from typing import Any
 
 from pydantic import BaseModel, Field, ValidationError
@@ -21,17 +22,26 @@ from .tools import LungPairTools, TOOL_DECLARATIONS
 
 
 def _create(client, log: RunLog, agent: str, model: str, prompt: str,
-            fallback: bool = True, **kw) -> tuple[dict, str]:
-    """One Interactions API call, logged. On an exception, one call with
-    FALLBACK_MODEL (no retry loop). Returns (interaction_dict, model_used)."""
+            fallback: bool = True, timeout: float | None = None, **kw) -> tuple[dict, str]:
+    """One Interactions API call, logged. On 404, 503, 504, 429, timeout or network error,
+    one call with FALLBACK_MODEL (no retry loop). Returns (interaction_dict, model_used)."""
+    timeout = timeout or config.HTTP_TIMEOUT_S
     try:
-        it = to_dict(client.interactions.create(model=model, **kw))
+        it = to_dict(client.interactions.create(model=model, timeout=timeout, **kw))
         return it, model
-    except Exception as e:                          # 404 / 503 / network
+    except Exception as e:
         log.model_call(agent, model, prompt, None, "", error=f"{type(e).__name__}: {e}")
-        if not fallback or model == config.FALLBACK_MODEL:
+        err_msg = str(e).lower()
+        err_code = getattr(e, "code", None) or getattr(e, "status_code", None)
+        is_recoverable = (
+            err_code in (404, 503, 504, 429)
+            or any(w in err_msg for w in ("404", "503", "504", "429", "timeout", "timed out",
+                                         "not found", "overloaded", "unavailable", "temporarily"))
+            or isinstance(e, (TimeoutError, urllib.error.URLError))
+        )
+        if not fallback or model == config.FALLBACK_MODEL or not is_recoverable:
             raise
-        it = to_dict(client.interactions.create(model=config.FALLBACK_MODEL, **kw))
+        it = to_dict(client.interactions.create(model=config.FALLBACK_MODEL, timeout=timeout, **kw))
         return it, config.FALLBACK_MODEL
 
 
@@ -77,7 +87,8 @@ def run_orchestrator(client, question: str, tools: LungPairTools, log: RunLog,
                             "call_id": c.get("id"),
                             "result": [{"type": "text", "text": json.dumps(out, default=str)}]})
         it = to_dict(client.interactions.create(
-            model=used, previous_interaction_id=it.get("id"), input=results, **common))
+            model=used, previous_interaction_id=it.get("id"), input=results,
+            timeout=config.HTTP_TIMEOUT_S, **common))
         turns += 1
         log.model_call("orchestrator", used, f"[function_result x{len(results)}]", it,
                        output_text(it),
