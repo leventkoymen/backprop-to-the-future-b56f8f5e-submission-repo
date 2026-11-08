@@ -1,6 +1,4 @@
-import type { ReactNode } from "react";
 import { drugName, type Run } from "../data/load";
-import { Term } from "./Term";
 import { molecules } from "../data/molecules";
 import type { CompiledRun, ReplayState, ReplayView } from "../state/replay";
 
@@ -15,14 +13,11 @@ interface Props {
   onApprove: () => void;
   onNext: () => void;
   onReset: () => void;
-  guided?: boolean; // 2b: adds "?" explanations
-  highlightApprove?: boolean; // 2b tour: pulse the Approve button
   onMolecules?: (a: number, b: number) => void;
 }
 
 /** Scene B side panel: budget, hits vs random, the picks with reasons, and the human Approve step. */
-export function AgentPanel({ runs, runName, onRun, compiled, run, state, view, onApprove, onNext, onReset, guided, highlightApprove, onMolecules }: Props) {
-  const t = (node: ReactNode, id: Parameters<typeof Term>[0]["id"]) => (guided ? <Term id={id}>{node}</Term> : node);
+export function AgentPanel({ runs, runName, onRun, compiled, run, state, view, onApprove, onNext, onReset, onMolecules }: Props) {
   const isDemo = runName === "demo" || compiled.start?.label?.startsWith("DEMO");
   const unit = compiled.start?.budget_unit ?? "experiments";
   const total = compiled.start?.budget_total;
@@ -49,16 +44,13 @@ export function AgentPanel({ runs, runName, onRun, compiled, run, state, view, o
       )}
 
       <div className="stats">
-        <Stat k={t(`Budget left (${unit})`, "budget")} v={view.budgetLeft !== undefined ? `${view.budgetLeft}${total ? ` / ${total}` : ""}` : "–"} />
-        <Stat k={t("Real hits found", "hit")} v={String(view.hitsTotal)} accent />
-        <Stat k={t("Random, same budget", "random")} v={view.randomTotal.toFixed(1)} />
+        <Stat k={`Budget left (${unit})`} v={view.budgetLeft !== undefined ? `${view.budgetLeft}${total ? ` / ${total}` : ""}` : "–"} />
+        <Stat k="Real hits found" v={String(view.hitsTotal)} accent />
+        <Stat k="Random, same budget" v={view.randomTotal.toFixed(1)} />
         <Stat k="Round" v={view.current ? `${view.current.round} / ${compiled.rounds.length}` : `– / ${compiled.rounds.length}`} />
       </div>
 
       <div className="status">{status}</div>
-      {guided && state.phase === "ready" && (
-        <div className="muted small">Each round the agent proposes a few drug pairs. You approve, then the real lab result is shown. {t("How is this honest?", "replay")}</div>
-      )}
 
       {view.current && (
         <ol className="picks">
@@ -83,7 +75,7 @@ export function AgentPanel({ runs, runName, onRun, compiled, run, state, view, o
       {view.current?.learnNote && state.phase !== "proposed" && <div className="muted small">Learned: {view.current.learnNote}</div>}
 
       <div className="actions">
-        <button className={highlightApprove && state.phase === "proposed" ? "primary pulse" : "primary"} disabled={state.phase !== "proposed"} onClick={onApprove}>
+        <button className="primary" disabled={state.phase !== "proposed"} onClick={onApprove}>
           Approve batch
         </button>
         <button onClick={onNext} disabled={state.phase === "proposed" || state.phase === "finished"}>Next</button>
@@ -94,7 +86,7 @@ export function AgentPanel({ runs, runName, onRun, compiled, run, state, view, o
   );
 }
 
-function Stat({ k, v, accent }: { k: ReactNode; v: string; accent?: boolean }) {
+function Stat({ k, v, accent }: { k: string; v: string; accent?: boolean }) {
   return (
     <div className="stat">
       <div className="muted small">{k}</div>

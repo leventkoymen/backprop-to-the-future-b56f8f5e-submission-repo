@@ -12,7 +12,7 @@ const fmtMolar = (s: string) => {
   return v < 1e-6 ? `${+(v * 1e9).toPrecision(2)} nM` : `${+(v * 1e6).toPrecision(2)} µM`;
 };
 
-export function MoleculePanel({ a, b, onClose, light }: { a: number; b: number; onClose: () => void; light?: boolean }) {
+export function MoleculePanel({ a, b, onClose }: { a: number; b: number; onClose: () => void }) {
   const [which, setWhich] = useState<number>(molecules.has(a) || !molecules.has(b) ? a : b);
   const [mode, setMode] = useState<MolMode>("groups");
   const [focus, setFocus] = useState<string | null>(null);
@@ -31,7 +31,7 @@ export function MoleculePanel({ a, b, onClose, light }: { a: number; b: number; 
         ];
 
   return (
-    <aside className={light ? "mol mol-light" : "mol"}>
+    <aside className="mol">
       <div className="mol-head">
         <div className="mol-tabs">
           {[a, b].map((n) => (
@@ -46,7 +46,7 @@ export function MoleculePanel({ a, b, onClose, light }: { a: number; b: number; 
       {mol ? (
         <>
           <div className="mol-canvas">
-            <MoleculeView mol={mol} mode={mode} focus={focus} light={light} />
+            <MoleculeView mol={mol} mode={mode} focus={focus} />
           </div>
           <div className="mol-modes">
             <button className={mode === "groups" ? "on" : ""} onClick={() => setMode("groups")}>Chemical groups</button>
