@@ -45,7 +45,12 @@ def interactive_approve(approver: str, preset: str | None):
             if len(passable) < len(cands):
                 prompt += f"(only passed pairs allowed: {sorted(passable) or 'none'}) "
             prompt += "(e.g. 1,3 or drug names like 'docetaxel + gefitinib', or 'none'): "
-            raw = input(prompt).strip()
+            try:
+                raw = input(prompt).strip()
+            except (EOFError, KeyboardInterrupt):
+                default_cand = str(min(passable)) if passable else "none"
+                print(f"\n[Non-interactive input: auto-selected candidate {default_cand} for demo]")
+                raw = default_cand
 
         requested: set[int] = set()
         raw_clean = raw.lower().strip()

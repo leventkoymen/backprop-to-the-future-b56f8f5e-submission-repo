@@ -30,7 +30,8 @@ fi
 
 # 3. Direct Flag Execution
 if [ "${1:-}" = "--replay" ]; then
-    "$PYTHON_BIN" -m agent.run --replay
+    shift
+    "$PYTHON_BIN" -m agent.run --replay "$@"
     exit 0
 fi
 if [ "${1:-}" = "--viewer" ]; then
