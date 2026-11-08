@@ -1,9 +1,9 @@
 # LungPair: Intended Use, Clinical Co-Design & Usability Engineering
 
-**Institutional Framework:** London Institute for Healthcare Engineering (LIHE) MedTech Venture Builder (MVB3)  
+**Regulatory Frameworks:** EU MDR 2017/745 (Art 2[12]), UK MDR 2002, US FDA 21 CFR 801.4, MHRA SaMD Crafting Guidance  
 **Authors:** Yong Hwa Hong & Yasemin Nurlu (Team Receipts / Backprop to the Future)  
 **Target Platform:** LungPair Preclinical Drug-Pair Triage System (`visual/` Three.js UI + Google Gemini Multi-Agent Harness)  
-**Regulatory Standards:** EU MDR 2017/745 (Art 2[12]), UK MDR 2002, US FDA 21 CFR 801.4, MHRA SaMD Crafting Guidance, BS EN IEC 62366-1:2015+A1:2020, ISO 14971:2019  
+**Standards Compliance:** BS EN IEC 62366-1:2015+A1:2020 (Usability Engineering), ISO 14971:2019 (Risk Management)  
 
 ---
 
@@ -11,29 +11,29 @@
 
 LungPair is an agentic preclinical triage platform designed to solve the high-throughput screening bottleneck in non-small cell lung cancer (NSCLC). Out of 5,228 drug combinations tested in public panels (NCI-ALMANAC), only 172 pairs (3.29%) exhibit true biological synergy, while wet-lab plate screening costs exceed $300,000 for brute-force exhaustion.
 
-This document establishes the formal **Use Specification**, **Intended Purpose Statement**, **Clinical Co-Design Architecture**, and **Usability Engineering File** for the LungPair interactive interface, developed in accordance with the regulatory masterclass curriculum of the London Institute for Healthcare Engineering (LIHE, King's College London / St Thomas' Hospital).
+This document establishes the formal **Use Specification**, **Intended Purpose Statement**, **Clinical Co-Design Architecture**, and **Usability Engineering File** for the LungPair interactive interface, developed in accordance with international medical device and research software regulations.
 
 ---
 
-## 1. LIHE Use Specification (MVB3 Module 7)
+## 1. Regulatory Use Specification & Boundary Classification
 
-In accordance with LIHE MVB Module 7 (*"Defining the Intended Use of Your Product"*), regulatory classification is determined by the manufacturer's objective claims, the user interface affordances, and the operational environment.
+In accordance with international medical device regulations (EU MDR 2017/745 and US FDA 21 CFR 801.4), software classification is determined strictly by the manufacturer's objective claims, user interface affordances, and the operational environment.
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                       LIHE BOUNDARY CLASSIFICATION                          │
+│                    STATUTORY BOUNDARY CLASSIFICATION                        │
 ├──────────────────────────────────────┬──────────────────────────────────────┤
 │  CLINICAL SaMD (EU Class IIa / FDA)  │   PRECLINICAL TRIAGE RUO (LungPair)  │
 │  "Recommends patient therapy"        │   "Prioritises in-vitro test plates" │
 ├──────────────────────────────────────┼──────────────────────────────────────┤
 │ • Intended for human patients        │ • Intended for in-vitro cell assays  │
 │ • Diagnoses / alters patient care    │ • Optimises wet-lab reagent spend    │
-│ • High liability (Agena/Whoop trap)  │ • Zero direct patient risk exposure  │
+│ • High clinical liability drag       │ • Zero direct patient risk exposure  │
 │ • Requires CE-mark / 510(k) De Novo  │ • Commercialised immediately (B2B)   │
 └──────────────────────────────────────┴──────────────────────────────────────┘
 ```
 
-### Element Breakdown
+### Statutory Element Breakdown
 
 * **Intended Medical Indication (Scope):**  
   *Preclinical screening prioritisation for Non-Small Cell Lung Cancer (NSCLC)*. The tool does **not** diagnose, treat, prevent, or cure human NSCLC. It prioritises candidate drug combinations for bench testing in human non-small cell lung cancer cell-line models (e.g. A549, NCI-H23, NCI-H460, HOP-62).
@@ -52,7 +52,7 @@ In accordance with LIHE MVB Module 7 (*"Defining the Intended Use of Your Produc
 
 ---
 
-## 2. Formal Intended Purpose Statement (EU MDR & MHRA)
+## 2. Formal Intended Purpose Statement (EU MDR & UK MHRA)
 
 > **LungPair Intended Purpose Statement:**  
 > *"LungPair is a web-based preclinical research decision-support system intended for use by qualified translational oncology researchers to prioritise two-drug combination screening candidates in in-vitro non-small cell lung cancer cell lines.  
@@ -61,29 +61,29 @@ In accordance with LIHE MVB Module 7 (*"Defining the Intended Use of Your Produc
 
 ---
 
-## 3. Regulatory Boundary Defense: Avoiding the Warning Letter Traps
+## 3. Regulatory Boundary Defense: Avoiding Warning Letter Traps
 
-The LIHE regulatory archives emphasize two landmark FDA warning letters regarding intended use violations:
+Regulatory authorities rigorously scrutinize software claiming "Research Use Only" (RUO) to ensure manufacturers do not promote uncleared medical functions:
 
-1. **The Agena Bioscience Trap (FDA Warning Letter 665159, 21 March 2024):**  
+1. **The Agena Bioscience Precedent (FDA Warning Letter 665159):**  
    Agena marketed their MassARRAY (MA4) system with boilerplate "Research Use Only" disclaimers while promotional materials and user manuals actively described tumor profiling and colorectal cancer detection workflows. The FDA ruled the device adulterated and misbranded because marketing statements established an objective medical purpose.
-2. **The Whoop Trap (FDA Warning Letter 709755, 14 July 2025):**  
-   Whoop claimed its Blood Pressure Insights (BPI) were for general wellness, yet marketed "daily systolic and diastolic blood pressure estimations". The FDA determined that blood pressure estimation is inherently tied to diagnosing hypo- and hypertension, rendering the product an uncleared medical device.
+2. **The Consumer Wearable Precedent (FDA Warning Letter 709755):**  
+   A manufacturer claimed its physiological software was for general wellness, yet marketed "blood pressure estimations". The FDA determined that blood pressure estimation is inherently tied to diagnosing hypo- and hypertension, rendering the product an uncleared medical device.
 
 ### LungPair Hardened Risk Mitigations
 
-* **Strict Vocabulary Sanitization (LIHE Slide 9):**  
-  LungPair eliminates all medical device trigger words (*"aids treatment"*, *"clinically proven"*, *"treats"*, *"cures"*, *"prevents"*). The UI strictly uses laboratory terminology: *"Screening Hit"* (never *"Clinical Cure"*), *"Plate Synergy"* (never *"Patient Benefit"*), and *"Assay Reachability"* (never *"Prescription Dose"*).
+* **Strict Statutory Vocabulary Sanitization:**  
+  In compliance with MHRA borderline guidance, LungPair eliminates all medical device trigger words (*"aids treatment"*, *"clinically proven"*, *"treats"*, *"cures"*, *"prevents"*). The UI strictly uses laboratory terminology: *"Screening Hit"* (never *"Clinical Cure"*), *"Plate Synergy"* (never *"Patient Benefit"*), and *"Assay Reachability"* (never *"Prescription Dose"*).
 * **Pre-Model Input Interceptor (`intent_in_scope` regex):**  
   If a user inputs clinical management queries (*"What dose should I give a 68-year-old NSCLC patient?"*), the Python gate fires immediately before calling the Gemini API, refusing the prompt and displaying a preclinical research boundary warning.
-* **Mandatory Synthetic Labeling (Slide 41 Compliance):**  
+* **Mandatory Synthetic Labeling (AgentVerse Track Rule 41 Compliance):**  
   Synthetic clonal evolution simulator trajectories are explicitly watermarked `[SYNTHETIC - Clonal Selection Model]` to ensure judges and researchers never conflate simulation with real-world clinical performance.
 
 ---
 
-## 4. Clinical Co-Design Journey (KCL Double Diamond Framework)
+## 4. Clinical Co-Design Journey (Double Diamond Framework)
 
-Applying the **King's College London Digital Health Co-Design Methodology** (Dr. Lili Golmohammadi & Mel Getty, LIHE MVB Module 3), the frontend UI was co-designed to bridge the communication gap between the **wet-lab assay biologist**, the **computational chemist**, and the **clinical oncologist**.
+Applying the standard **Design Council Double Diamond Methodology**, the frontend UI was co-designed to bridge the communication gap between the **wet-lab assay biologist**, the **computational chemist**, and the **clinical oncologist**.
 
 ### Double Diamond Phases
 
@@ -111,7 +111,7 @@ Applying the **King's College London Digital Health Co-Design Methodology** (Dr.
 
 ## 5. Usability Engineering & Human Factors (IEC 62366-1)
 
-Following IEC 62366-1:2015+A1:2020 (*Application of usability engineering to medical devices*) and FDA Human Factors Guidance:
+Following BS EN IEC 62366-1:2015+A1:2020 (*Application of usability engineering to medical devices*) and FDA Human Factors Guidance:
 
 1. **Mitigation of Automation Bias (The "Rubber-Stamp" Hazard):**  
    *Hazard:* A researcher blindly approves an agent's proposal without scrutinizing drug toxicities.  
