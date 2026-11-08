@@ -48,4 +48,5 @@ Built according to Google DeepMind's "Harness²" paradigm—prioritizing determi
 - **Grounded Citations Gate:** Any cited PMID/PMCID not verified in search redirects is automatically stripped.
 - **Human-in-the-Loop Sign-off:** Sign-off gate programmatically restricts approval exclusively to passed candidates.
 - **Cryptographic Audit Trail:** Thread-safe JSONL receipts (`runs/<id>.jsonl`) log exact tokens, costs, tool calls, and sign-offs.
+- **Real Messy Screen Data vs Synthetic Controls:** Trained strictly on real experimental measurements (NCI-ALMANAC) where assay replicate agreement is ~51%. We model real biological variance directly rather than relying on clean synthetic data. The tumour simulator is strictly an internal software test harness labelled `[SYNTHETIC]`, never presented as real-world performance.
 - **Preclinical Boundary:** Strictly in vitro cell-line screening prioritization. Not for clinical, patient, or diagnostic use.

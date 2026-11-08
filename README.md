@@ -172,6 +172,13 @@ Evaluated across 5 random seeds against negative controls and published benchmar
 
 *Note on Metrics: We explicitly report Precision, AUPRC, and MCC, never accuracy. Because only 3.3% of pairs are active, a trivial "predict all negative" classifier scores 96.7% accuracy while delivering zero clinical or scientific value.*
 
+### Ground Truth: Real Noisy Biology vs. Synthetic Controls
+
+A foundational principle of LungPair is **rigorous adherence to real-world laboratory reality**:
+- **Trained on Messy Experimental Noise:** All model weights, tier calibrations, and synergy scores derive strictly from REAL wet-lab measurements (NCI-ALMANAC matrix across 9 NSCLC cell lines). Real high-throughput screens contain unavoidable biological variance and plate effects—the assay's own replicate agreement caps reproducibility at ~51%. Rather than hiding this noise behind clean synthetic approximations, LungPair models uncertainty explicitly via 95% tree-variance intervals.
+- **Why We Refuse Tier 4 in Real Life:** On brand-new compounds with zero screen data, machine learning models frequently output hallucinatory confidence. Our empirical held-out evaluations prove that brand-new pairs perform near chance ($p@20 = 0.040$ vs $0.029$ random). LungPair reflects real-world constraints by **refusing to recommend** Tier 4 pairs and advising single-agent testing first.
+- **Strictly Demarcated Synthetic Simulator:** The tumour simulator (`tumour_simulator/`) is purely a mathematical engineering harness to verify that the agent's adaptive logic can track clonal frequency dynamics against a known ground truth. Per the organisers' rules, all simulator files and outputs are explicitly marked `[SYNTHETIC]` and are never presented as real-world clinical or biological performance.
+
 ---
 
 ## Quick Start
@@ -243,9 +250,13 @@ Every execution produces a cryptographic audit log:
 │   ├── api.py                   # Flask REST API endpoints (/rank, /pair, /drugs)
 │   ├── model.py                 # Random forest ranker & interval estimators
 │   └── external_test.py         # Merck O'Neil held-out benchmark evaluation
+├── visual/                      # Interactive 3D molecular viewer & dose surfaces (React + Three.js)
+├── theory/                      # Scientific theory notes, roadmaps, and business case
+├── experiments/                 # CCLE genotype coverage leave-one-line-out evaluations
 ├── LungPair_3D_data/            # 3D molecular structures (.sdf) and dose reachability data
-├── tumour_simulator/            # Synthetic tumour trajectory and toxicity simulator
-└── docs/img/                    # System diagrams and 3D visualization previews
+├── tumour_simulator/            # Synthetic tumour trajectory and toxicity simulator (labelled synthetic)
+├── docs/                        # One-page summary and architectural diagrams
+└── demo.sh                      # One-command live evaluation and demonstration runner
 ```
 
 ---
