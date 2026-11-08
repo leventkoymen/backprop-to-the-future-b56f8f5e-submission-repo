@@ -163,6 +163,23 @@ def run_pipeline(question: str, tools: LungPairTools, log: RunLog, client=None,
     # 3. Research + checks per candidate, in parallel ----------------------
     def _one(c):
         try:
+            try:
+                p_a = tools.resolve_pubchem(c["drug_a"])
+                p_b = tools.resolve_pubchem(c["drug_b"])
+                if p_a.get("found"):
+                    c["smiles_a"] = p_a.get("smiles")
+                    c["cid_a"] = p_a.get("cid")
+                if p_b.get("found"):
+                    c["smiles_b"] = p_b.get("smiles")
+                    c["cid_b"] = p_b.get("cid")
+                c_a = tools.get_chembl_mechanism(c["drug_a"])
+                c_b = tools.get_chembl_mechanism(c["drug_b"])
+                if c_a.get("found") and c_a.get("mechanisms"):
+                    c["chembl_mechs_a"] = [m["mechanism"] for m in c_a["mechanisms"]]
+                if c_b.get("found") and c_b.get("mechanisms"):
+                    c["chembl_mechs_b"] = [m["mechanism"] for m in c_b["mechanisms"]]
+            except Exception:
+                pass
             return evidence_for(client, c, withheld_names, log, pubmed_check, follow_redirects)
         except Exception as e:
             log.write("error", agent="research", pair=f'{c["drug_a"]}+{c["drug_b"]}',
