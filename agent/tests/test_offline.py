@@ -219,6 +219,8 @@ def test_receipt_redacts_key_shaped_strings(log):
 def test_research_runs_in_parallel_and_respects_time_budget(log, monkeypatch):
     """Research agents run at the same time; a slow pair hits the stopping rule."""
     import threading, time as _t
+    monkeypatch.setattr("agent.tools.get_chembl_mechanism", lambda *a, **k: {"found": False})
+    monkeypatch.setattr("agent.tools.resolve_pubchem", lambda *a, **k: {"found": False})
     fake = FakeGemini(research_text=lambda i: "Prior evidence: PMID: 11111111.")
     inner = fake.interactions.create
     active, peak, lock = [0], [0], threading.Lock()
