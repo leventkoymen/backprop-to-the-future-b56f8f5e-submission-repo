@@ -13,6 +13,8 @@ if [ -d ".venv" ]; then
     PYTHON_BIN=".venv/bin/python"
 elif [ -d "../WORKTREES/claude-6-gemini-agents/.venv" ]; then
     PYTHON_BIN="../WORKTREES/claude-6-gemini-agents/.venv/bin/python"
+elif [ -d "../claude-6-gemini-agents/.venv" ]; then
+    PYTHON_BIN="../claude-6-gemini-agents/.venv/bin/python"
 fi
 
 # 2. Check Gemini Key (Environment or macOS Keychain)
@@ -26,7 +28,17 @@ if [ -z "${GEMINI_API_KEY:-}" ]; then
     fi
 fi
 
-# 3. Interactive Menu or Direct Execution
+# 3. Direct Flag Execution
+if [ "${1:-}" = "--replay" ]; then
+    "$PYTHON_BIN" -m agent.run --replay
+    exit 0
+fi
+if [ "${1:-}" = "--viewer" ]; then
+    ./run_viewer.sh
+    exit 0
+fi
+
+# 4. Interactive Menu or Custom Query
 echo "================================================================================"
 echo "🫁 LungPair Multi-Agent Live Demo Runner (Google Gemini Interactions API)"
 echo "================================================================================"
@@ -43,10 +55,11 @@ echo "  [2] Direct Combination Scoring (Docetaxel, Carboplatin, Pemetrexed)"
 echo "  [3] Safety Refusal Gate (Clinical treatment / patient advice test)"
 echo "  [4] Panel Scope Refusal Gate (Unmeasured drug test: Osimertinib)"
 echo "  [5] Offline Wi-Fi Fallback (--no-llm deterministic ranker)"
-echo "  [6] Run Full Verification Test Suite (23 unit tests across offline pipeline & evaluator)"
+echo "  [6] Recorded Run Replay (Verified Live Run with full Gemini research)"
 echo "  [7] Launch 3D Molecular & Synergy Viewer (Browser)"
+echo "  [8] Run Full Verification Test Suite (25 unit tests)"
 echo ""
-read -r -p "Enter choice [1-7] (default: 1): " choice
+read -r -p "Enter choice [1-8] (default: 1): " choice
 choice="${choice:-1}"
 
 case "$choice" in
@@ -71,12 +84,16 @@ case "$choice" in
         "$PYTHON_BIN" -m agent.run --no-llm --api inprocess "Which partner should a lab screen with gefitinib next?"
         ;;
     6)
-        echo -e "\nRunning: Test Suite (23 unit tests)...\n"
-        "$PYTHON_BIN" -m pytest agent/tests/ -v
+        echo -e "\nRunning: Recorded Live Run Replay...\n"
+        "$PYTHON_BIN" -m agent.run --replay
         ;;
     7)
-        echo -e "\nLaunching 3D Molecular Viewer...\n"
+        echo -e "\nLaunching 3D Molecular & Synergy Viewer...\n"
         ./run_viewer.sh
+        ;;
+    8)
+        echo -e "\nRunning: Full Test Suite (25 unit tests)...\n"
+        "$PYTHON_BIN" -m pytest agent/tests/ -v
         ;;
     *)
         echo "Invalid choice. Exiting."

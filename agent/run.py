@@ -44,13 +44,40 @@ def interactive_approve(approver: str, preset: str | None):
             prompt = "\nHuman sign-off: which pairs go into the next screening batch? "
             if len(passable) < len(cands):
                 prompt += f"(only passed pairs allowed: {sorted(passable) or 'none'}) "
-            prompt += "(e.g. 1,3  or 'none'): "
+            prompt += "(e.g. 1,3 or drug names like 'docetaxel + gefitinib', or 'none'): "
             raw = input(prompt).strip()
-        requested = [] if raw.lower() in ("", "none", "0") else \
-            sorted({int(x) for x in raw.replace(" ", "").split(",") if x.isdigit()
-                    and 1 <= int(x) <= len(cands)})
-        picks = [p for p in requested if p in passable]
-        blocked = [p for p in requested if p not in passable]
+
+        requested: set[int] = set()
+        raw_clean = raw.lower().strip()
+        if raw_clean not in ("", "none", "0"):
+            # 1. Parse comma-separated tokens (numbers or drug names)
+            tokens = [t.strip() for t in raw.split(",") if t.strip()]
+            for t in tokens:
+                if t.isdigit() and 1 <= int(t) <= len(cands):
+                    requested.add(int(t))
+                else:
+                    tl = t.lower()
+                    for i, c in enumerate(cands, 1):
+                        p1 = f"{c['drug_a']} + {c['drug_b']}".lower()
+                        p2 = f"{c['drug_b']} + {c['drug_a']}".lower()
+                        if tl in (p1, p2) or (len(tl) > 3 and (tl == c['drug_a'].lower() or tl == c['drug_b'].lower())):
+                            requested.add(i)
+
+            # 2. If nothing matched token by token, test raw string directly against candidates
+            if not requested:
+                for i, c in enumerate(cands, 1):
+                    p1 = f"{c['drug_a']} + {c['drug_b']}".lower()
+                    p2 = f"{c['drug_b']} + {c['drug_a']}".lower()
+                    da = c['drug_a'].lower()
+                    db = c['drug_b'].lower()
+                    if raw_clean in (p1, p2) or (da in raw_clean and db in raw_clean):
+                        requested.add(i)
+                    elif len(raw_clean) > 3 and (raw_clean == da or raw_clean == db):
+                        requested.add(i)
+
+        sorted_req = sorted(requested)
+        picks = [p for p in sorted_req if p in passable]
+        blocked = [p for p in sorted_req if p not in passable]
         if blocked:
             print(f"Notice: pair(s) {blocked} cannot be approved because evidence status is not 'passed'.")
         return {"approved": picks, "approver": approver, "raw_input": raw, "blocked": blocked,
@@ -60,8 +87,9 @@ def interactive_approve(approver: str, preset: str | None):
 
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(prog="python -m agent.run")
-    ap.add_argument("question")
+    ap.add_argument("question", nargs="?", default="Which partner should a lab screen with gefitinib next?")
     ap.add_argument("--no-llm", action="store_true")
+    ap.add_argument("--replay", action="store_true", help="replay verified live multi-agent execution offline")
     ap.add_argument("--approve", default=None)
     ap.add_argument("--approver", default=None)
     ap.add_argument("--top-k", type=int, default=config.RESEARCH_TOP_K)
@@ -69,6 +97,10 @@ def main(argv=None) -> int:
     ap.add_argument("--no-pubmed-check", action="store_true",
                     help="skip the extra NCBI E-utilities lookup of ungrounded PMIDs")
     a = ap.parse_args(argv)
+
+    if a.replay:
+        from .replay import replay_run
+        return replay_run(top_k=a.top_k, approve_preset=a.approve, approver=a.approver)
 
     client = None
     if not a.no_llm:

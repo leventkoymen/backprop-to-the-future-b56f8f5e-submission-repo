@@ -253,3 +253,39 @@ def test_out_of_scope_drug_is_refused_by_name():
     assert g["unknown_drugs"] == ["pembrolizumab"]
     assert out_of_scope_drugs("osimertinib plus carboplatin", known)["unknown_drugs"] == ["osimertinib"]
     assert out_of_scope_drugs("docetaxel and paclitaxel", known)["unknown_drugs"] == []
+
+
+def test_interactive_approve_with_drug_names_and_numbers():
+    from agent.run import interactive_approve
+    cands = [
+        {"drug_a": "Docetaxel", "drug_b": "Gefitinib", "tier": 1, "score": 162.3, "evidence": {"status": "passed"}},
+        {"drug_a": "Mitoxantrone", "drug_b": "Gefitinib", "tier": 1, "score": 152.4, "evidence": {"status": "passed"}},
+        {"drug_a": "Paclitaxel", "drug_b": "Carboplatin", "tier": 1, "score": 120.0, "evidence": {"status": "flagged"}}
+    ]
+    # Drug pair exact text
+    ap_pair = interactive_approve("tester", "Docetaxel + Gefitinib")(cands)
+    assert ap_pair["approved"] == [1]
+
+    # Single drug name
+    ap_single = interactive_approve("tester", "mitoxantrone")(cands)
+    assert ap_single["approved"] == [2]
+
+    # Comma-separated numbers
+    ap_nums = interactive_approve("tester", "1, 2")(cands)
+    assert ap_nums["approved"] == [1, 2]
+
+    # Block unpassed candidates
+    ap_blocked = interactive_approve("tester", "3")(cands)
+    assert ap_blocked["approved"] == []
+    assert ap_blocked["blocked"] == [3]
+
+    # Empty / none
+    ap_none = interactive_approve("tester", "none")(cands)
+    assert ap_none["approved"] == []
+
+
+def test_replay_run_offline():
+    from agent.replay import replay_run
+    rc = replay_run(top_k=2, approve_preset="Docetaxel + Gefitinib", delay=0.0)
+    assert rc == 0
+
