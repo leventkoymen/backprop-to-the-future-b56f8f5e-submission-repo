@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 250" width="960" height="250" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <title>The bottleneck: too many drug pairs, too few lab slots</title>
+  <defs>
+    <marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8b93b8"/>
+    </marker>
+  </defs>
+  <rect width="960" height="250" rx="16" fill="#0b1029"/>
+  <text x="32" y="44" fill="#ffffff" font-size="22" font-weight="700">The bottleneck: which pairs do we test next?</text>
+
+  <rect x="32" y="76" width="260" height="140" rx="12" fill="#1b2350" stroke="#3a4486"/>
+  <text x="162" y="128" fill="#ffffff" font-size="40" font-weight="800" text-anchor="middle">5,228</text>
+  <text x="162" y="158" fill="#cfd4f0" font-size="14" text-anchor="middle">drug pairs measured in</text>
+  <text x="162" y="178" fill="#cfd4f0" font-size="14" text-anchor="middle">9 lung cancer cell lines</text>
+  <text x="162" y="200" fill="#8b93b8" font-size="12" text-anchor="middle">(NCI-ALMANAC)</text>
+
+  <line x1="300" y1="146" x2="344" y2="146" stroke="#8b93b8" stroke-width="2" marker-end="url(#b)"/>
+
+  <rect x="350" y="76" width="260" height="140" rx="12" fill="#10352f" stroke="#2fd6a8"/>
+  <text x="480" y="128" fill="#2fd6a8" font-size="40" font-weight="800" text-anchor="middle">3.3%</text>
+  <text x="480" y="158" fill="#cfd4f0" font-size="14" text-anchor="middle">are real hits</text>
+  <text x="480" y="178" fill="#cfd4f0" font-size="14" text-anchor="middle">(drugs work better together</text>
+  <text x="480" y="198" fill="#cfd4f0" font-size="14" text-anchor="middle">than expected)</text>
+
+  <line x1="618" y1="146" x2="662" y2="146" stroke="#8b93b8" stroke-width="2" marker-end="url(#b)"/>
+
+  <rect x="668" y="76" width="260" height="140" rx="12" fill="#3a2e0c" stroke="#f5c542"/>
+  <text x="798" y="128" fill="#f5c542" font-size="40" font-weight="800" text-anchor="middle">a few</text>
+  <text x="798" y="158" fill="#ffe7a3" font-size="14" text-anchor="middle">pairs a small lab can</text>
+  <text x="798" y="178" fill="#ffe7a3" font-size="14" text-anchor="middle">afford to screen next.</text>
+  <text x="798" y="198" fill="#ffe7a3" font-size="14" text-anchor="middle">Pick badly = wasted plates.</text>
+</svg>

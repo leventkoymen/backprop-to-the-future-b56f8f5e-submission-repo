@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400" width="960" height="400" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <title>Measured precision for each evidence tier</title>
+  <rect width="960" height="400" rx="16" fill="#0b1029"/>
+  <text x="32" y="44" fill="#ffffff" font-size="22" font-weight="700">The tool knows when it is guessing</text>
+  <text x="32" y="70" fill="#a9b0d6" font-size="14">Precision of top picks per evidence tier, held-out NCI-ALMANAC pairs, 5 seeds. Dashed line = random (0.03).</text>
+
+  <!-- axis -->
+  <line x1="300" y1="100" x2="300" y2="340" stroke="#3a4486"/>
+  <g fill="#8b93b8" font-size="12">
+    <text x="300" y="362" text-anchor="middle">0</text>
+    <text x="440" y="362" text-anchor="middle">0.25</text>
+    <text x="580" y="362" text-anchor="middle">0.50</text>
+    <text x="720" y="362" text-anchor="middle">0.75</text>
+    <text x="860" y="362" text-anchor="middle">1.0</text>
+    <text x="580" y="386" text-anchor="middle">precision (share of picks that were real hits)</text>
+  </g>
+  <g stroke="#1e2650">
+    <line x1="440" y1="100" x2="440" y2="340"/><line x1="580" y1="100" x2="580" y2="340"/>
+    <line x1="720" y1="100" x2="720" y2="340"/><line x1="860" y1="100" x2="860" y2="340"/>
+  </g>
+
+  <!-- bars: width = 560 * value -->
+  <g font-size="14">
+    <text x="32" y="130" fill="#ffffff" font-weight="700">Tier 1</text>
+    <text x="32" y="148" fill="#a9b0d6" font-size="12">pair measured in other cancers</text>
+    <rect x="300" y="114" width="498" height="36" rx="6" fill="#2fd6a8"/>
+    <text x="808" y="138" fill="#ffffff" font-weight="700">0.89 · 24×</text>
+
+    <text x="32" y="188" fill="#ffffff" font-weight="700">Tier 2</text>
+    <text x="32" y="206" fill="#a9b0d6" font-size="12">both drugs screened, pair untested</text>
+    <rect x="300" y="172" width="190" height="36" rx="6" fill="#4aa3ff"/>
+    <text x="500" y="196" fill="#ffffff" font-weight="700">0.34 · 6.1×</text>
+
+    <text x="32" y="246" fill="#ffffff" font-weight="700">Tier 3</text>
+    <text x="32" y="264" fill="#a9b0d6" font-size="12">new drugs, single-drug data known</text>
+    <rect x="300" y="230" width="34" height="36" rx="6" fill="#f5c542"/>
+    <text x="344" y="254" fill="#ffffff" font-weight="700">0.06 · 3.0× (flagged as weak)</text>
+
+    <text x="32" y="304" fill="#ffffff" font-weight="700">Tier 4</text>
+    <text x="32" y="322" fill="#a9b0d6" font-size="12">no usable data</text>
+    <rect x="300" y="288" width="22" height="36" rx="6" fill="#ff6b81"/>
+    <text x="332" y="312" fill="#ff9aab" font-weight="700">0.04 ≈ chance → REFUSED, not ranked</text>
+  </g>
+  <line x1="317" y1="100" x2="317" y2="340" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="4 4"/>
+</svg>
