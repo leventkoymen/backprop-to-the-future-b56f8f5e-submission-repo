@@ -93,3 +93,16 @@ model quality.
 - The tumour simulator (`tumour_simulator/`) is not wired in yet.
 - No design-build-test-learn replay loop yet: approved pairs are logged, not
   replayed against held-out data.
+
+## Cross-Disciplinary Evaluation Battery (AgentVerse Integration)
+
+We integrated the **Cross-Disciplinary Multi-Persona Evaluator** from our research into this codebase.
+Run receipts generated in `runs/` can be rigorously audited against 9 distinct professional personas (e.g. Biostatistician, ReguGate Guardian, Venture Capitalist) using strict Binary (Yes/No) evaluation batteries:
+
+```bash
+python agent/run_eval.py agent/runs/20261108-013436.jsonl
+```
+
+### Antigravity Custom Agents
+
+This repo also includes a `.agents/` folder conforming to the **Google Antigravity IDE** standard for isolated custom agent skills. This guarantees that `regugate-guardian` and `biostatistician` skills can be independently invoked directly inside your IDE or CI/CD pipelines without monolithic context rot.
