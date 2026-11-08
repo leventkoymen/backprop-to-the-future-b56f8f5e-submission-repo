@@ -1,0 +1,3 @@
+# Unified dependencies for LungPair (Preclinical Ranker, Multi-Agent Gemini, & Simulations)
+-r backend/requirements.txt
+-r agent/requirements.txt
