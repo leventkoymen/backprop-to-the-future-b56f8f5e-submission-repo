@@ -1,0 +1,13 @@
+drug_a,drug_b,cell_lines,peak_synergy,peak_conc_a_M,peak_conc_b_M,cmax_a_M,cmax_b_M,peak_reachable,best_synergy_at_reachable_doses,share_of_grid_reachable,share_reachable_unbound,flags
+Dactinomycin,Valrubicin,8,186.0,1e-07,2e-06,1.99936275290744e-08,1.3819789939192922e-08,False,,0.0,,NOT SYSTEMIC: INTRAVESICAL ONLY - not for IV use
+Dactinomycin,Tamoxifen citrate,9,183.0,1e-08,7e-06,1.99936275290744e-08,3.2839838492597575e-07,False,30.0,0.2222222222222222,,
+Tamoxifen citrate,Docetaxel,7,169.0,7e-06,4e-08,3.2839838492597575e-07,2.116598588934274e-06,False,34.0,0.3333333333333333,,
+Dactinomycin,Estramustine disodium phosphate,9,155.0,1e-07,1e-05,1.99936275290744e-08,,unknown,,,,
+Paclitaxel,Estramustine disodium phosphate,9,154.0,3e-08,1e-05,4.274505211383066e-06,,unknown,,,,
+Tretinoin,Paclitaxel,7,149.0,4e-06,3e-07,1.1551264980026632e-06,4.274505211383066e-06,False,86.0,0.6666666666666666,0.2222222222222222,
+Docetaxel,Estramustine disodium phosphate,9,129.0,4e-08,1e-05,2.116598588934274e-06,,unknown,,,,
+Vinblastine sulfate,Vismodegib,9,115.0,5e-09,2.5e-05,,2.36e-05,unknown,,,,
+Paclitaxel,Lapatinib,9,104.0,3e-08,3e-06,4.274505211383066e-06,4.181724315952504e-06,True,104.0,1.0,0.2222222222222222,
+Docetaxel,Gefitinib,9,97.0,3e-08,1e-05,2.116598588934274e-06,8.435891698366525e-07,False,28.0,0.3333333333333333,0.0,
+Tamoxifen citrate,Cabazitaxel,9,72.0,3e-06,5e-09,3.2839838492597575e-07,2.7036726881205885e-07,False,50.0,0.6666666666666666,,
+Mitoxantrone,Gefitinib,9,62.0,5e-07,1e-05,1.0236220472440944e-06,8.435891698366525e-07,False,27.0,0.3333333333333333,0.0,

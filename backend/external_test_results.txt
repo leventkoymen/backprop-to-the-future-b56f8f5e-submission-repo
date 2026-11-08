@@ -1,0 +1,36 @@
+TEST 1 - replication inside the Merck screen (no NCI-ALMANAC data used)
+
+  all 7 lung lines: 583 pairs; rank correlation other-cancer vs lung = 0.81
+    hit = lung Loewe > 10 (24.5% of pairs)   top 20: 90% hits vs 25% random   (p = 0.0000)
+    hit = lung Loewe > 10 (24.5% of pairs)   top 50: 92% hits vs 25% random   (p = 0.0000)
+    hit = lung Loewe > 30 ( 3.3% of pairs)   top 20: 80% hits vs 3% random   (p = 0.0000)
+    hit = lung Loewe > 30 ( 3.3% of pairs)   top 50: 36% hits vs 3% random   (p = 0.0000)
+
+  5 lung lines never in NCI-ALMANAC: 583 pairs; rank correlation other-cancer vs lung = 0.82
+    hit = lung Loewe > 10 (26.4% of pairs)   top 20: 100% hits vs 26% random   (p = 0.0000)
+    hit = lung Loewe > 10 (26.4% of pairs)   top 50: 98% hits vs 26% random   (p = 0.0000)
+    hit = lung Loewe > 30 ( 3.6% of pairs)   top 20: 70% hits vs 4% random   (p = 0.0000)
+    hit = lung Loewe > 30 ( 3.6% of pairs)   top 50: 30% hits vs 4% random   (p = 0.0000)
+
+
+TEST 2 - LungPair (trained on NCI-ALMANAC) vs Merck lung results, shared pairs
+  drugs in both screens: 22
+
+  all 7 Merck lung lines: 132 shared pairs
+    NCI-ALMANAC lung result (what LungPair knows)  rank corr with Merck lung = +0.25 (p=0.003) | top 10: 50% Merck hits vs 19% base (p=0.019)
+    NCI-ALMANAC other-cancer lookup                rank corr with Merck lung = +0.21 (p=0.015) | top 10: 30% Merck hits vs 19% base (p=0.289)
+    LungPair model score                           rank corr with Merck lung = +0.27 (p=0.002) | top 10: 40% Merck hits vs 19% base (p=0.087)
+    LungPair top 8 shared pairs and their Merck lung Loewe:
+      LAPATINIB      + PACLITAXEL     model  151.1  Merck lung   13.8
+      BORTEZOMIB     + ERLOTINIB      model  133.4  Merck lung  -10.0
+      PACLITAXEL     + SORAFENIB      model   83.4  Merck lung   -0.1
+      ERLOTINIB      + PACLITAXEL     model   51.2  Merck lung   13.0
+      LAPATINIB      + VINORELBINE    model   42.3  Merck lung    3.2
+      ERLOTINIB      + VINORELBINE    model   41.9  Merck lung   12.0
+      ERLOTINIB      + ETOPOSIDE      model   37.3  Merck lung    1.2
+      ETOPOSIDE      + ZOLINZA        model   32.5  Merck lung    4.2
+
+  5 lines never in NCI-ALMANAC: 132 shared pairs
+    NCI-ALMANAC lung result (what LungPair knows)  rank corr with Merck lung = +0.27 (p=0.002) | top 10: 30% Merck hits vs 20% base (p=0.333)
+    NCI-ALMANAC other-cancer lookup                rank corr with Merck lung = +0.25 (p=0.004) | top 10: 10% Merck hits vs 20% base (p=0.917)
+    LungPair model score                           rank corr with Merck lung = +0.29 (p=0.001) | top 10: 20% Merck hits vs 20% base (p=0.658)
