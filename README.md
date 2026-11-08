@@ -15,6 +15,7 @@
 [![4-Min Pitch Script](https://img.shields.io/badge/Pitch-4--Min%20Script%20%26%20Q%26A-orange?style=for-the-badge)](docs/PITCH-SCRIPT.md)
 [![Data & Licences](https://img.shields.io/badge/Data%20%26%20Licences-DATA.md-purple?style=for-the-badge)](DATA.md)
 [![Tri-Perspective Explainer](https://img.shields.io/badge/Team%20%26%20Judge%20Guide-Tri--Perspective%20Explainer-teal?style=for-the-badge)](docs/TRI-PERSPECTIVE-EXPLAINER.md)
+[![Co-Design & Intended Use](https://img.shields.io/badge/LIHE%20Regulatory-Co--Design%20%26%20Intended%20Use-darkgreen?style=for-the-badge)](docs/INTENDED-USE-AND-CODESIGN.md)
 [![PDF Guide](https://img.shields.io/badge/PDF-Download%20Guide-red?style=for-the-badge)](docs/TRI-PERSPECTIVE-EXPLAINER.pdf)
 [![Tests Passing](https://img.shields.io/badge/Tests-25%20Passed-brightgreen?style=for-the-badge)](agent/tests/)
 
